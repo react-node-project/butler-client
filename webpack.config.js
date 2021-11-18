@@ -1,15 +1,15 @@
-import path from 'path';
-import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
-import webpack from 'webpack';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+const path = require('path');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const webpack = require('webpack');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
-const config = {
-  name: 'sleact',
+module.exports = {
+  name: 'butler-web',
   mode: isDevelopment ? 'development' : 'production',
-  devtool: !isDevelopment ? 'hidden-source-map' : 'eval',
+  // devtool: !isDevelopment ? 'hidden-source-map' : 'eval',
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
     alias: {
@@ -38,14 +38,6 @@ const config = {
             ],
             '@babel/preset-react',
           ],
-          env: {
-            development: {
-              plugins: [['@emotion', { sourceMap: true }], require.resolve('react-refresh/babel')],
-            },
-            production: {
-              plugins: ['@emotion'],
-            },
-          },
         },
         exclude: path.join(__dirname, 'node_modules'),
       },
@@ -69,7 +61,7 @@ const config = {
   devServer: {
     historyApiFallback: true, // react router
     port: 3000,
-    publicPath: '/dist/',
+    contentBase: path.join(__dirname, "dist"),
     proxy: {
       '/api/': {
         target: 'http://localhost:3095',
@@ -78,15 +70,3 @@ const config = {
     },
   },
 };
-
-if (isDevelopment && config.plugins) {
-  config.plugins.push(new webpack.HotModuleReplacementPlugin());
-  config.plugins.push(new ReactRefreshWebpackPlugin());
-  config.plugins.push(new BundleAnalyzerPlugin({ analyzerMode: 'server', openAnalyzer: true }));
-}
-if (!isDevelopment && config.plugins) {
-  config.plugins.push(new webpack.LoaderOptionsPlugin({ minimize: true }));
-  config.plugins.push(new BundleAnalyzerPlugin({ analyzerMode: 'static' }));
-}
-
-export default config;
