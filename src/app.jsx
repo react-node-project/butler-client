@@ -25,5 +25,5 @@ export default function App() {
 }
 
 const Main = styled(Box)({
-  paddingTop: '64px',
+  padding: '74px 10px 10px 10px',
 });

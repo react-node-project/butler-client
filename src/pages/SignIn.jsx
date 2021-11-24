@@ -50,7 +50,7 @@ export default function SignIn() {
               helperText={errors.email?.message}
               {...register('email', {
                 required: { value: true, message: '필수입력사항입니다.' },
-                pattern: { value: /^\S+@\S+$/i, message: '올바른 이메일이 아닙니다.' },
+                pattern: { value: /^\S+@\S+$/i, message: '올바른 이메일 형식이 아닙니다.' },
               })}
               error={Boolean(errors.email)}
             />
