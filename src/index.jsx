@@ -5,10 +5,12 @@ import { store } from './store';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './styles/theme';
+import CssBaseline from '@mui/material/CssBaseline';
 
 ReactDom.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <App />
     </ThemeProvider>
   </Provider>,

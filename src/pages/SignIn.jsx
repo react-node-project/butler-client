@@ -77,7 +77,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="./sign-up" variant="body2">
                   {'아직 계정이 없으신가요? 계정 만들기'}
                 </Link>
               </Grid>
@@ -90,11 +90,16 @@ export default function SignIn() {
 }
 
 const SignInWrap = styled(Box)({
+  position: 'absolute',
+  left: 0,
+  right: 0,
+  top: 0,
+  bottom: 0,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: '100vw',
-  height: '100vh',
+  width: '100%',
+  height: '100%',
 });
 
 const Contents = styled(Box)({
