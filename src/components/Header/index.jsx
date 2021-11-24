@@ -1,12 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-// import IconButton from '@mui/material/IconButton';
-// import MenuIcon from '@mui/icons-material/Menu';
-import Link from '@mui/material/Link';
 import LoginIcon from '@mui/icons-material/Login';
+import { PATH_ROOT, PATH_USER_SIGNIN } from '../../constants/PathConstants';
+import { styled } from '@mui/styles';
 
 export default function Header() {
   return (
@@ -17,17 +17,18 @@ export default function Header() {
             <MenuIcon />
           </IconButton> */}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link href="./" color="inherit">
-              Butler
-            </Link>
+            <LinkTag to={PATH_ROOT}>Butler</LinkTag>
           </Typography>
-          <Link href="./sign-in" color="#fff">
+          <LinkTag to={PATH_USER_SIGNIN} href="#">
             <LoginIcon />
-          </Link>
+          </LinkTag>
         </Toolbar>
-        {/* <Link Link="./sign-in">로그인</Link>
-    <Link Link="./sign-up">회원가입</Link> */}
       </AppBar>
     </Box>
   );
 }
+
+const LinkTag = styled(Link)({
+  color: '#fff',
+  textDecoration: 'none',
+});

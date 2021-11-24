@@ -10,6 +10,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useForm } from 'react-hook-form';
+import { PATH_USER_SIGNIN } from '../../constants/PathConstants';
+import { styled } from '@mui/styles';
 
 export default function SignUp() {
   const {
@@ -22,14 +24,14 @@ export default function SignUp() {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <SignUpWrap maxWidth="sm">
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          padding: '10px',
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
@@ -107,13 +109,26 @@ export default function SignUp() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="./sign-in" variant="body2">
+              <Link href={PATH_USER_SIGNIN} variant="body2">
                 이미 계정이 있으십니까? 로그인
               </Link>
             </Grid>
           </Grid>
         </Box>
       </Box>
-    </Container>
+    </SignUpWrap>
   );
 }
+
+const SignUpWrap = styled(Container)({
+  position: 'absolute',
+  left: 0,
+  right: 0,
+  top: 0,
+  bottom: 0,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '100%',
+  height: '100%',
+});
