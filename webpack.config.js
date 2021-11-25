@@ -1,7 +1,5 @@
 const path = require('path');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const webpack = require('webpack');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -21,7 +19,7 @@ module.exports = {
       '@typings': path.resolve(__dirname, 'typings'),
     },
   },
-  entry: "./src/index",
+  entry: './src/index',
   module: {
     rules: [
       {
@@ -49,7 +47,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html'
+      template: './public/index.html',
     }),
     new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
   ],
@@ -61,7 +59,7 @@ module.exports = {
   devServer: {
     historyApiFallback: true, // react router
     port: 3000,
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, 'dist'),
     proxy: {
       '/api/': {
         target: 'http://localhost:3095',
