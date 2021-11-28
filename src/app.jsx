@@ -7,6 +7,7 @@ import Header from './components/Header/index';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/styles';
 import { PATH_USER_SIGNIN, PATH_USER_SIGNUP, PATH_ROOT } from './constants/PathConstants';
+import AuthFlip from './pages/user/AuthFlip';
 
 export default function App() {
   return (
@@ -16,7 +17,7 @@ export default function App() {
         <Main component="main">
           <Routes>
             <Route path={PATH_USER_SIGNUP} element={<SignUp />} />
-            <Route path={PATH_USER_SIGNIN} element={<SignIn />} />
+            <Route path={PATH_USER_SIGNIN} element={<AuthFlip />} />
             <Route path={PATH_ROOT} element={<Home />} />
           </Routes>
         </Main>

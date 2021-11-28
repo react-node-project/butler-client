@@ -11,6 +11,8 @@
     }
   },
   "extends": ["plugin:prettier/recommended", "react", "prettier"],
+  "rules": {     "prettier/prettier": ["error", { "endOfLine": "auto" }]   },
+  "noUnusedLocals": false,
   "settings": {
     "react": {
       "version": "detect"
