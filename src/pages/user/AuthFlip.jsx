@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
 export default function AuthFlip() {
-  const [isFlipped, setFlip] = useState(true);
+  const [isFlipped, setFlip] = useState(false);
   return (
     <>
       <Box sx={{ marginTop: '450px' }}>
