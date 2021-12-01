@@ -12,17 +12,34 @@ import Container from '@mui/material/Container';
 import { useForm } from 'react-hook-form';
 import { PATH_USER_SIGNIN } from '../../constants/PathConstants';
 import { styled } from '@mui/styles';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 export default function SignUp() {
+  const validationSchema = yup.object().shape({
+    firstName: yup.string().required('필수입력사항입니다'),
+    lastName: yup.string().required('필수입력사항입니다'),
+    email: yup.string().email('올바른 이메일 형식이 아닙니다').required('필수입력사항입니다'),
+    password: yup
+      .string()
+      .required('필수입력사항입니다')
+      .min(5, '비밀번호는 5자리 이상이어야 합니다')
+      .max(20, '비밀번호는 20자리 이하이어야합니다')
+      .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d\s:]).*$/, {
+        message:
+          '비밀번호는 최소한 대문자 한개 (A-Z), 소문자 한개 (a-z), 숫자 (0-9) 그리고 특수문자를 포함하여야 합니다',
+      }),
+  });
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
   const onSubmit = (data) => {
     console.log('data', data);
   };
-
   return (
     <SignUpWrap maxWidth="sm">
       <CssBaseline />
@@ -51,9 +68,7 @@ export default function SignUp() {
                 id="firstName"
                 label="성"
                 autoFocus
-                {...register('firstName', {
-                  required: { value: true, message: '필수입력사항입니다.' },
-                })}
+                {...register('firstName')}
                 helperText={errors.firstName?.message}
                 error={Boolean(errors.firstName)}
               />
@@ -66,9 +81,7 @@ export default function SignUp() {
                 label="이름"
                 name="lastName"
                 autoComplete="family-name"
-                {...register('lastName', {
-                  required: { value: true, message: '필수입력사항입니다.' },
-                })}
+                {...register('lastName')}
                 helperText={errors.lastName?.message}
                 error={Boolean(errors.lastName)}
               />
@@ -81,10 +94,7 @@ export default function SignUp() {
                 label="이메일"
                 name="email"
                 autoComplete="email"
-                {...register('email', {
-                  required: { value: true, message: '필수입력사항입니다.' },
-                  pattern: { value: /^\S+@\S+$/i, message: '올바른 이메일 형식이 아닙니다.' },
-                })}
+                {...register('email')}
                 helperText={errors.email?.message}
                 error={Boolean(errors.email)}
               />
@@ -98,7 +108,7 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="new-password"
-                {...register('password', { required: { value: true, message: '필수입력사항입니다.' } })}
+                {...register('password')}
                 helperText={errors.password?.message}
                 error={Boolean(errors.password)}
               />
