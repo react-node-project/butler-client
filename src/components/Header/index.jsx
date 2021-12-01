@@ -28,18 +28,22 @@ export default function Header() {
             <MenuIcon />
           </IconButton> */}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <LinkButton to={PATH_ROOT}>Butler</LinkButton>
+            <LinkButton>
+              <Link to={PATH_ROOT} href="#">
+                Butler
+              </Link>
+            </LinkButton>
           </Typography>
           {user ? (
             <LinkButton onClick={onClickLogout}>
               <LogoutIcon />
             </LinkButton>
           ) : (
-            <Link to={PATH_USER_SIGNIN} href="#">
-              <LinkButton>
+            <LinkButton>
+              <Link to={PATH_USER_SIGNIN} href="#">
                 <LoginIcon />
-              </LinkButton>
-            </Link>
+              </Link>
+            </LinkButton>
           )}
         </Toolbar>
       </AppBar>

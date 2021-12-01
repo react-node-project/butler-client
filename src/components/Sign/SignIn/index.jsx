@@ -2,29 +2,29 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 import { Box, Button, Link, Paper, Grid, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { PATH_USER_SIGNUP } from '../../../constants/PathConstants';
+import { StyledContainer } from '../../../styles/element.styled';
 import Glogin from '../Glogin';
 import OnTheWay from '../../../asset/img/ontheway';
-import KaKaoLogin from '../KaKaoLogin';
-import { StyledContainer } from './../../../styles/element.styled';
+import KaKaoLogin from '../KaKaoLogin/index';
 
-const SignIn = () => {
+const SignIn = (props) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
   const onSubmit = (data) => {
     console.log(data);
   };
-
+  const handleFlip = () => {
+    props.handleFlip();
+  };
   return (
     <StyledContainer maxWidth="xs">
       <Paper sx={{ px: 5, py: 8 }}>
         <Grid container spacing={2} justifyContent="center">
           <Grid item>
-            <Typography variant="h5">Login</Typography>
+            <Typography variant="h5">Sign In</Typography>
             <OnTheWay />
           </Grid>
 
@@ -64,7 +64,7 @@ const SignIn = () => {
             {/* Login buttons */}
             <Grid item>
               <Button sx={{ px: 6 }} type="submit" variant="contained" size="large">
-                Log in
+                Sign In
               </Button>
             </Grid>
             <Grid item>
@@ -80,8 +80,8 @@ const SignIn = () => {
                 Reset Password
               </Link>
             </Box>
-            <Link href={PATH_USER_SIGNUP} variant="body2">
-              {'Not registered yet? Signup'}
+            <Link component="button" onClick={handleFlip} variant="body2">
+              {'Not registered yet? Sign up'}
             </Link>
           </Grid>
         </Grid>
