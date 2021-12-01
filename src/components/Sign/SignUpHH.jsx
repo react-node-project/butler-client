@@ -2,8 +2,6 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 import { Box, Button, Link, Paper, Grid, Typography, Container } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { PATH_USER_SIGNUP } from '../../constants/PathConstants';
-import Glogin from './Glogin';
 // import { ReactComponent as deliveryImage } from '../../asset/img/ontheway.svg';
 import OnTheWay from './../../asset/img/ontheway';
 import { styled } from '@mui/styles';
@@ -12,8 +10,7 @@ import * as yup from 'yup';
 
 const SignIn = (props) => {
   const validationSchema = yup.object().shape({
-    firstName: yup.string().required('필수입력사항입니다'),
-    lastName: yup.string().required('필수입력사항입니다'),
+    name: yup.string().required('필수입력사항입니다'),
     email: yup.string().email('올바른 이메일 형식이 아닙니다').required('필수입력사항입니다'),
     password: yup
       .string()
@@ -58,7 +55,7 @@ const SignIn = (props) => {
               id="firstName"
               label="성"
               autoFocus
-              {...register('firstName')}
+              {...register('name')}
               helperText={errors.firstName?.message}
               error={Boolean(errors.firstName)}
             />
@@ -71,7 +68,7 @@ const SignIn = (props) => {
               label="이름"
               name="lastName"
               autoComplete="family-name"
-              {...register('lastName')}
+              {...register('name')}
               helperText={errors.lastName?.message}
               error={Boolean(errors.lastName)}
             />

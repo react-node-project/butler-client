@@ -2,7 +2,6 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 import { Box, Button, Link, Paper, Grid, Typography, Container } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { PATH_USER_SIGNUP } from '../../constants/PathConstants';
 import Glogin from './Glogin';
 // import { ReactComponent as deliveryImage } from '../../asset/img/ontheway.svg';
 import OnTheWay from './../../asset/img/ontheway';
