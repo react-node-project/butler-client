@@ -25,18 +25,6 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        options: {
-          presets: [
-            [
-              '@babel/preset-env',
-              {
-                targets: { browsers: ['IE 10'] },
-                debug: isDevelopment,
-              },
-            ],
-            '@babel/preset-react',
-          ],
-        },
         exclude: path.join(__dirname, 'node_modules'),
       },
       {
