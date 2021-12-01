@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { StyledContainer } from '../../../styles/element.styled';
 import Glogin from '../Glogin';
 import OnTheWay from '../../../asset/img/ontheway';
+import KaKaoLogin from '../KaKaoLogin/index';
 
 const SignIn = (props) => {
   const {
@@ -68,6 +69,9 @@ const SignIn = (props) => {
             </Grid>
             <Grid item>
               <Glogin />
+            </Grid>
+            <Grid item>
+              <KaKaoLogin />
             </Grid>
           </Box>
           <Grid item>
