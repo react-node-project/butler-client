@@ -1,12 +1,5 @@
-import { Container, Box } from '@mui/material';
 import { styled } from '@mui/styles';
-
-export const StyledBox = styled(Box)();
-
-// export const StyledButton = styled(Button)({
-//   background: `${({ bg }) => bg || 'transparent'}`,
-//   fontWeight: 600,
-// });
+import { Container } from '@mui/material';
 
 export const StyledContainer = styled(Container)({
   display: 'flex',
