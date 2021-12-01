@@ -12,7 +12,11 @@ export default function Header() {
   return (
     <Box>
       <AppBar position="sticky">
+<<<<<<< HEAD
         <Toolbar>
+=======
+        <Toolbar >
+>>>>>>> master
           {/* <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             <MenuIcon />
           </IconButton> */}
