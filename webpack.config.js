@@ -47,7 +47,13 @@ module.exports = {
   devServer: {
     historyApiFallback: true, // react router
     port: 3000,
-    contentBase: path.join(__dirname, 'dist'),
+    static: [
+      {
+        directory: path.join(__dirname, 'dist'),
+        serveIndex: true,
+        watch: true,
+      },
+    ],
     proxy: {
       '/api/': {
         target: 'http://localhost:3095',
