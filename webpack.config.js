@@ -25,18 +25,6 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        options: {
-          presets: [
-            [
-              '@babel/preset-env',
-              {
-                targets: { browsers: ['IE 10'] },
-                debug: isDevelopment,
-              },
-            ],
-            '@babel/preset-react',
-          ],
-        },
         exclude: path.join(__dirname, 'node_modules'),
       },
       {
@@ -59,7 +47,13 @@ module.exports = {
   devServer: {
     historyApiFallback: true, // react router
     port: 3000,
-    contentBase: path.join(__dirname, 'dist'),
+    static: [
+      {
+        directory: path.join(__dirname, 'dist'),
+        serveIndex: true,
+        watch: true,
+      },
+    ],
     proxy: {
       '/api/': {
         target: 'http://localhost:3095',

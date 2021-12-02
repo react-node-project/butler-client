@@ -1,6 +1,15 @@
 {
   "presets": [
-    "@babel/preset-env",
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "entry",
+        "corejs": 3,
+        "targets": {
+          "ie": "10"
+        }
+      }
+    ],
     "@babel/preset-react"
   ]
 }
