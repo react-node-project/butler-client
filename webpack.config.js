@@ -42,11 +42,11 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: '/dist/',
   },
   devServer: {
     historyApiFallback: true, // react router
     port: 3000,
+<<<<<<< HEAD
     static: [
       {
         directory: path.join(__dirname, 'dist'),
@@ -54,6 +54,11 @@ module.exports = {
         watch: true,
       },
     ],
+=======
+    static: './dist',
+    liveReload: true,
+    open: true,
+>>>>>>> 831bec2 (환경구성: webpack 5 설정)
     proxy: {
       '/api/': {
         target: 'http://localhost:3095',
