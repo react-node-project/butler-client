@@ -45,35 +45,23 @@ const SignUp = (props) => {
 
           {/* 아래는 formcontrol */}
           <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
-                autoComplete="given-name"
-                name="firstName"
+                margin="normal"
                 required
                 fullWidth
-                id="firstName"
-                label="성"
-                autoFocus
-                {...register('name')}
-                helperText={errors.firstName?.message}
-                error={Boolean(errors.firstName)}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                fullWidth
-                id="lastName"
+                id="name"
                 label="이름"
-                name="lastName"
+                name="name"
                 autoComplete="family-name"
                 {...register('name')}
-                helperText={errors.lastName?.message}
-                error={Boolean(errors.lastName)}
+                helperText={errors.name?.message}
+                error={Boolean(errors.name)}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
+                margin="normal"
                 required
                 fullWidth
                 id="email"
@@ -87,6 +75,7 @@ const SignUp = (props) => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                margin="normal"
                 required
                 fullWidth
                 name="password"

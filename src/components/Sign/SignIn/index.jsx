@@ -63,14 +63,12 @@ const SignIn = (props) => {
             </Grid>
             {/* Login buttons */}
             <Grid item>
-              <Button sx={{ px: 6 }} type="submit" variant="contained" size="large">
+              <Button sx={{ m: 1, px: 6 }} type="submit" variant="contained" size="large">
                 Sign In
               </Button>
             </Grid>
             <Grid item>
               <Glogin />
-            </Grid>
-            <Grid item>
               <KaKaoLogin />
             </Grid>
           </Box>
