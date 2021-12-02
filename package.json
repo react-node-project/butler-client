@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "global delivery service app",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-node-project/butler-client"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack serve",
@@ -39,7 +43,6 @@
     "@emotion/babel-plugin": "^11.3.0",
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.1",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
     "eslint": "^8.3.0",
@@ -47,9 +50,8 @@
     "eslint-config-react": "^1.1.7",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.27.1",
-    "html-webpack-plugin": "^4.4.0",
+    "html-webpack-plugin": "^5.5.0",
     "prettier": "^2.4.1",
-    "react-refresh": "^0.11.0",
     "react-router-dom": "^6.0.2",
     "style-loader": "^3.3.1",
     "webpack": "^5.64.4",

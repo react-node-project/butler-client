@@ -42,13 +42,18 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
+    publicPath: '/dist/',
   },
   devServer: {
     historyApiFallback: true, // react router
     port: 3000,
-    static: './dist',
-    liveReload: true,
-    open: true,
+    static: [
+      {
+        directory: path.join(__dirname, 'dist'),
+        serveIndex: true,
+        watch: true,
+      },
+    ],
     proxy: {
       '/api/': {
         target: 'http://localhost:3095',
