@@ -33,6 +33,7 @@
     "react-google-login": "^5.2.2",
     "react-hook-form": "^7.20.2",
     "react-redux": "^7.2.6",
+    "styled-components": "^5.3.3",
     "yup": "^0.32.11"
   },
   "devDependencies": {
