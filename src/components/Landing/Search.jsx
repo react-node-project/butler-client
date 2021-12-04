@@ -5,7 +5,7 @@ function Search() {
     <div id="serch">
       <StyledContainer height={'50vh'}>
         <Typography variant="h5">Your favourite takeaways delivered to your door</Typography>
-        <Paper></Paper>
+        <Paper>{/* Search box comes here */}</Paper>
       </StyledContainer>
     </div>
   );
