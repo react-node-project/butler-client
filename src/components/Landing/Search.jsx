@@ -1,14 +1,5 @@
-import { StyledContainer } from './../../styles/element2.styled';
-import { Paper, Typography } from '@mui/material';
 function Search() {
-  return (
-    <div id="serch">
-      <StyledContainer height={'50vh'}>
-        <Typography variant="h5">Your favourite takeaways delivered to your door</Typography>
-        <Paper>{/* Search box comes here */}</Paper>
-      </StyledContainer>
-    </div>
-  );
+  return <div>{/* 검색창 */}</div>;
 }
 
 export default Search;

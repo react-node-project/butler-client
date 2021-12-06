@@ -18,6 +18,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Installed` for installing new dependencies
 - `Setting` for adding/changing the general settings
 
+## [0.0.4] - 2021-12-06
+
+written by esther615kim
+
+`Added`
+
+- add ThemeMenu.jsx
+- add landing.test.js
+- add data.js for mock data
+  `Changed`
+- add new font to index.html and theme.js
+
+## [0.0.3] -
+
+## [0.0.2] -
+
 ## [0.0.1] - 2021-11.27
 
 written by esther615kim

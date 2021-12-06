@@ -21,7 +21,7 @@ export const theme = createTheme({
       fontWeight: 'bold',
     },
     h4: {
-      fontWeight: '700',
+      fontWeight: '800',
     },
     h5: {
       fontWeight: 'bold',

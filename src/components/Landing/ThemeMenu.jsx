@@ -7,7 +7,7 @@ export default function ThemeMenu() {
   return (
     <div>
       {/* fontFamily theme 적용 안됨 */}
-      <Typography align="left" variant="h5" sx={{ fontFamily: "'Readex Pro', 'sans-serif'" }}>
+      <Typography data-testid="header" align="left" variant="h4" sx={{ fontFamily: "'Readex Pro', 'sans-serif'" }}>
         What's on the menu?
       </Typography>
       <ImageList
