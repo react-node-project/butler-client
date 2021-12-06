@@ -15,6 +15,14 @@ export const theme = createTheme({
     },
   },
   tyopography: {
+    // Readex Pro added
+    fontFmily: ['Readex Pro', 'sans-serif'].join(','),
+    h3: {
+      fontWeight: 'bold',
+    },
+    h4: {
+      fontWeight: '700',
+    },
     h5: {
       fontWeight: 'bold',
     },
