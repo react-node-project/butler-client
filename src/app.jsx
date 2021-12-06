@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/styles';
 import { PATH_USER_SIGNIN, PATH_ROOT } from './constants/PathConstants';
 import AuthFlip from './pages/user/AuthFlip';
+import Basket from './components/StoreDetails/Basket/index';
 
 export default function App() {
   return (
