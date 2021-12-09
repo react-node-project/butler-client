@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es5", // 모듈 형식
+    "allowJs": true, // js파일 허용 여부
+    "skipLibCheck": true, // 정의된 파일은 확인 건너뜀
+    "esModuleInterop": true, // 'allowSyntheticDefaultImports'를 암시적으로 승인
+    "strict": true, // use strict
+    "module": "esnext", // 모듈을 위한 코드 생성설정
+    "moduleResolution": "node", // 모듈해석
+    "isolatedModules": true, // 각 파일을 분리된 모듈로 변경
+    "noEmit": true, // 결과 파일을 내보낼지 여부
+    "jsx": "react-jsx", // tsx -> jsx
+    "baseUrl": "src", // baseurl
+    "lib": ["es6", "dom"], // library, mui
+    "noImplicitAny": true, // mui
+    "noImplicitThis": true, // mui
+    "strictNullChecks": true // mui
+  },
+  "include": [
+    "src",
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
