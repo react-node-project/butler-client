@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
-import Header from './components/Header/index';
+import { Header, SideNav } from './components/layouts';
 
 import Box from '@mui/material/Box';
 import { styled } from '@mui/styles';
 import { PATH_ROOT, PATH_USER_SIGNIN } from './constants/PathConstants';
 import AuthFlip from './pages/user/AuthFlip';
-import { SideNav } from './components/Address/layouts/SideBar';
 
 export default function App() {
   const [isShowSideNav, setIsShowSideNav] = useState(false);

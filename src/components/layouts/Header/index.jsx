@@ -7,9 +7,9 @@ import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import { PATH_ROOT, PATH_USER_SIGNIN } from '../../constants/PathConstants';
+import { PATH_ROOT, PATH_USER_SIGNIN } from '../../../constants/PathConstants';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '../../store/features/userSlice';
+import { setUser } from '../../../store/features/userSlice';
 import { Link } from 'react-router-dom';
 import { LinkButton } from './styled.header';
 import { IconButton } from '@mui/material';
