@@ -1,4 +1,6 @@
 // import { styled } from '@mui/styles';
+// issue - how are we gonna style non-mui elements with @mui styles?
+
 import { StyledGrid } from '@mui/material';
 import styled from 'styled-components';
 
