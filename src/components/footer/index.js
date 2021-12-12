@@ -1,4 +1,3 @@
-import React from 'react'
 import { Typography, Link, Box, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { FOOTERDATA } from './../Landing/data';
@@ -21,18 +20,15 @@ export default function Footer() {
                             <Typography varian="h5">{item.heading}</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-
                             <Box sx={{ display: "flex", flexDirection: "column" }} textAlign="left">
                                 {/* <Link href="/signin">{item.link1.title}</Link> */}
                                 <Link href="/">Contact us</Link>
                                 <Link href="/signup">Signup</Link>
                                 <Link href="/signin">Signin</Link>
                             </Box>
-
                         </AccordionDetails>
                     </Accordion>
                 ))}
-
                 {/* socials */}
                 <Box></Box>
 
