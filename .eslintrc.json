@@ -12,16 +12,11 @@
     }
   },
   "extends": ["plugin:prettier/recommended", "plugin:jest-dom/recommended", "react", "prettier"],
-  "rules": {     "prettier/prettier": ["error", { "endOfLine": "auto" }]   },
+  "rules": { "prettier/prettier": ["error", { "endOfLine": "auto" }] },
   "settings": {
     "react": {
       "version": "detect"
     }
   },
-  "plugins": [
-    "react",
-    "testing-library",
-    "jest-dom"
-  ]
+  "plugins": ["react", "testing-library", "jest-dom"]
 }
-
