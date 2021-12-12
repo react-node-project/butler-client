@@ -1,3 +1,22 @@
+export const FOOTERDATA = [
+    {
+        heading: "Discover Butler",
+        // link1~3 중복 obj => footer iteration 방법 고민중입니다.
+        link1: {
+            title: "contact us", url: "#"
+        },
+        link2: {
+            title: "Signin", url: "#"
+        },
+        link4: {
+            title: "My account", url: "#"
+        }, link3: {
+            title: "Signup", url: "#"
+        }
+    },
+    { heading: "Customer Service" },
+    { heading: "Terms and Conditions" },
+];
 
 export const THEMEMENU = [
     {

@@ -1,35 +1,47 @@
 import { THEMEMENU } from './data';
-
+import { StyledDiv } from './landing.styled';
 import React from 'react';
 import { Grid, Typography, ImageListItem, ImageList, ImageListItemBar } from '@mui/material';
 
 export default function ThemeMenu() {
   return (
-    <div>
+    <>
       {/* fontFamily theme 적용 안됨 */}
-      <Typography data-testid="header" align="left" variant="h4" sx={{ fontFamily: "'Readex Pro', 'sans-serif'" }}>
+      <Typography data-testid="header" align="left" variant="h4">
         What's on the menu?
       </Typography>
-      <ImageList
-      // sx={{ width: 500, height: 450 }}
-      >
+      <ImageList>
         <Grid container sx={{ flexGrow: 1 }} spacing={3}>
           {THEMEMENU.map((item) => (
             <Grid item xs={4} sm={6} md={6}>
-              <ImageListItem key={item.url}>
-                <img
-                  style={{ height: 120 }}
-                  src={`${item.url}?w=128&fit=crop&auto=format`}
-                  // srcSet={`${item.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                  alt={item.title}
-                  loading="lazy"
-                />
-                <ImageListItemBar title={item.desc} subtitle={<span>view more {item.title}</span>} position="below" />
-              </ImageListItem>
+              <StyledDiv>
+                <ImageListItem key={item.url}>
+                  <img
+                    style={{ height: 120 }}
+                    src={`${item.url}?w=128&fit=crop&auto=format`}
+                    alt={item.title}
+                    loading="lazy"
+                  />
+                  <div className="title">
+                    <Typography variant="h5" align="center">
+                      {item.title}
+                    </Typography>
+                  </div>
+                  <ImageListItemBar
+                    title={item.desc}
+                    subtitle={
+                      <Typography align="left" variant="subtitle2">
+                        view more {item.title}
+                      </Typography>
+                    }
+                    position="below"
+                  />
+                </ImageListItem>
+              </StyledDiv>
             </Grid>
           ))}
         </Grid>
       </ImageList>
-    </div>
+    </>
   );
 }
