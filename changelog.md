@@ -17,6 +17,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Bug` for any issue/error occurred
 - `Installed` for installing new dependencies
 - `Setting` for adding/changing the general settings
+                        
+### [0.0.5] - 2021-12-11
+ written by hoin
+ Added
+ * add Header.jsx
+ * Installed/Setting - Webpack Env Config
+   * https://www.cluemediator.com/how-to-set-environment-variables-in-react-with-webpack
+ * Installed/Setting - installed Axios, setting react Async Await(regeneratorRuntime config)
+   * https://velog.io/@haebin/React-regeneratorRuntime-is-not-defined-%EC%97%90%EB%9F%AC-%ED%95%B4%EA%B2%B0
 
 ## [0.0.4] - 2021-12-06
 

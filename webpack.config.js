@@ -1,13 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   name: 'butler-web',
   mode: isDevelopment ? 'development' : 'production',
-  // devtool: !isDevelopment ? 'hidden-source-map' : 'eval',
+  devtool: !isDevelopment ? 'hidden-source-map' : 'eval',
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
     alias: {
@@ -46,6 +47,7 @@ module.exports = {
       template: './public/index.html',
     }),
     new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
+    new Dotenv(),
   ],
   output: {
     path: path.join(__dirname, 'dist'),
