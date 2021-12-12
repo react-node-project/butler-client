@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/styles';
 import { PATH_USER_SIGNIN, PATH_ROOT } from './constants/PathConstants';
 import AuthFlip from './pages/user/AuthFlip';
-import Basket from './components/StoreDetails/Basket/index';
+import ShopDetail from './components/ShopDetails/index';
 
 export default function App() {
   return (
@@ -16,7 +16,7 @@ export default function App() {
         <Main component="main">
           <Routes>
             <Route path={PATH_USER_SIGNIN} element={<AuthFlip />} />
-            <Route path={PATH_ROOT} element={<Home />} />
+            <Route path={PATH_ROOT} element={<ShopDetail />} />
           </Routes>
         </Main>
       </Router>
