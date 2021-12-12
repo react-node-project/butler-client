@@ -1,6 +1,8 @@
 import React from 'react';
 import AddressSearch from '../AddressSearch';
-import { getByText, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { render, screen } from '../../../util/testUtil';
+import { getByText } from '@testing-library/react';
 
 describe('AddressSearch', () => {
   it('default rendering check ', () => {
@@ -17,5 +19,16 @@ describe('AddressSearch', () => {
     expect(searchLocationBtn).toBeEnabled();
   });
 
-  it('input valid address ', function () {});
+  it('input liverpool in Input box. show optional box ', async () => {
+    render(<AddressSearch />);
+
+    const inputBox = screen.getByPlaceholderText('Enter your full address', { exact: true });
+    userEvent.type(inputBox, 'liverpool');
+
+    const expectLocations = ['Liverpool Street Station', 'Liverpool'];
+    const searchedLocations = await screen.findAllByTitle('searched-location').map((value) => value.textContent);
+
+    expect(searchedLocations).toContain(expectLocations[0]);
+    expect(searchedLocations).toContain(expectLocations[1]);
+  });
 });
