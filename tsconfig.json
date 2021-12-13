@@ -10,11 +10,15 @@
     "isolatedModules": true, // 각 파일을 분리된 모듈로 변경
     "noEmit": true, // 결과 파일을 내보낼지 여부
     "jsx": "react-jsx", // tsx -> jsx
-    "baseUrl": "src", // baseurl
     "lib": ["es6", "dom"], // library, mui
     "noImplicitAny": true, // mui
     "noImplicitThis": true, // mui
-    "strictNullChecks": true // mui
+    "strictNullChecks": true, // mui
+    "baseUrl": ".", // baseurl
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@hooks/*": ["src/hooks/*"]
+    }
   },
   "include": [
     "src",
