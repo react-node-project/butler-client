@@ -4,8 +4,9 @@ import Home from './pages/Home';
 import Header from './components/Header/index';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/styles';
-import { PATH_USER_SIGNIN, PATH_ROOT } from './constants/PathConstants';
+import { PATH_USER_SIGNIN, PATH_ROOT, PATH_RESTAURANTS } from './constants/PathConstants';
 import AuthFlip from './pages/user/AuthFlip';
+import RestaurantsPage from './pages/restaurants';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Routes>
             <Route path={PATH_USER_SIGNIN} element={<AuthFlip />} />
             <Route path={PATH_ROOT} element={<Home />} />
+            <Route path={PATH_RESTAURANTS} element={<RestaurantsPage />} />
           </Routes>
         </Main>
       </Router>

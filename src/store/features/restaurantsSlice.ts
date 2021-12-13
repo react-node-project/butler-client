@@ -55,4 +55,5 @@ export const restaurantsSlice = createSlice({
 
 export const { setCategoryList } = restaurantsSlice.actions;
 
+export type restaurantsState = ReturnType<typeof restaurantsSlice.reducer>;
 export default restaurantsSlice.reducer;
