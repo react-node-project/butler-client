@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -48,6 +49,14 @@ module.exports = {
     }),
     new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
     new Dotenv(),
+    new CopyPlugin({
+      patterns: [
+        isDevelopment && {
+          from: './public/mockServiceWorker.js',
+          to: './mockServiceWorker.js',
+        },
+      ],
+    }),
   ],
   output: {
     path: path.join(__dirname, 'dist'),
