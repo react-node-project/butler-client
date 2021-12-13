@@ -12,7 +12,7 @@
     }
   },
   "extends": ["plugin:prettier/recommended", "plugin:jest-dom/recommended", "react", "prettier"],
-  "rules": {     "prettier/prettier": ["error", { "endOfLine": "auto" }]   },
+  "rules": { "prettier/prettier": ["error", { "endOfLine": "auto" }] },
   "settings": {
     "react": {
       "version": "detect"
@@ -25,4 +25,3 @@
     "@typescript-eslint"
   ]
 }
-

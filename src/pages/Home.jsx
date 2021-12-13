@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setIsLoading } from '../store/features/appSlice';
 import ThemeMenu from './../components/Landing/ThemeMenu';
 import { Paper } from '@mui/material';
+import Footer from '../components/footer';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ export default function Home() {
       <Button onClick={() => onClickButton()} variant="outlined">
       </Button> */}
           <ThemeMenu />
+          <Footer />
         </Paper>
       </StyledContainer>
     </div>

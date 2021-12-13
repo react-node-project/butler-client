@@ -1,13 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   name: 'butler-web',
   mode: isDevelopment ? 'development' : 'production',
-  // devtool: !isDevelopment ? 'hidden-source-map' : 'eval',
+  devtool: !isDevelopment ? 'hidden-source-map' : 'eval',
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     alias: {
@@ -44,6 +45,14 @@ module.exports = {
         test: /\.css?$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ],
   },
   plugins: [
@@ -51,22 +60,18 @@ module.exports = {
       template: './public/index.html',
     }),
     new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
+    new Dotenv(),
   ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: '/dist/',
   },
   devServer: {
     historyApiFallback: true, // react router
     port: 3000,
-    static: [
-      {
-        directory: path.join(__dirname, 'dist'),
-        serveIndex: true,
-        watch: true,
-      },
-    ],
+    static: './dist',
+    liveReload: true,
+    open: true,
     proxy: {
       '/api/': {
         target: 'http://localhost:3095',
