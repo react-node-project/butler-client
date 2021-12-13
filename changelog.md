@@ -18,6 +18,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Installed` for installing new dependencies
 - `Setting` for adding/changing the general settings
 
+
+## [0.0.5] - 2021-12-12
+
+written by 조효형
+
+`Added`
+- add Slider Component
+- add restaurants Page
+- add typescript
 ## [0.0.4] - 2021-12-06
 
 written by esther615kim
