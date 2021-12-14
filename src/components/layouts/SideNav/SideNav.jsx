@@ -11,9 +11,9 @@ import {
   Typography
 } from '@mui/material';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import { Link } from 'react-router-dom';
 import { PATH_USER_SIGNIN } from '../../../constants/PathConstants';
-import { StyledSideNavContainer, StyledSideNavHeader, StyledSideNavMain } from './styled.sideNav';
+import { StyledSideNavContainer, StyledSideNavHeader, StyledSideNavMain } from './sideNav.styled';
+import { StyledLink } from '../../../styles/element.styled';
 
 export default ({ isShowSideNav, hideSideNav }) => {
   const [selected, setSelected] = useState({
@@ -34,7 +34,9 @@ export default ({ isShowSideNav, hideSideNav }) => {
         <Divider />
         <StyledSideNavMain>
           <Button sx={{ width: '100%' }} size="large" variant="contained" onClick={hideSideNav}>
-            <Link to={PATH_USER_SIGNIN}>Sign up or log in</Link>
+            <StyledLink color="black" style={{ textDecoration: 'none', color: 'black' }} to={PATH_USER_SIGNIN}>
+              Sign up or log in
+            </StyledLink>
           </Button>
           <FormGroup className="sidenav-selected-buttons">
             <InputLabel id="select-language-label">Language</InputLabel>
