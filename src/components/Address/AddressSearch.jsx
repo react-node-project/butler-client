@@ -17,8 +17,8 @@ import DisabledAddressModal from './DisabledAddressModal';
 const AddressSearch = () => {
   let navigate = useNavigate();
   const [sendAddress, sendAddressResult] = useSendAddressMutation({});
-
   const [searchText, setSearchText] = useState('');
+
   const [isShow, setIsShow] = useState({
     markLocationModal: false,
     disabledAddressModal: false,
@@ -35,10 +35,11 @@ const AddressSearch = () => {
     });
   };
 
-  const { ref } = usePlacesWidget({ apiKey, onPlaceSelected });
+  const { ref } = usePlacesWidget({ apiKey, onPlaceSelected, libraries: ['places', 'geometry'] });
 
-  const showMarkLocationModal = async (e) => {
+  const showMarkLocationModal = (e) => {
     e.preventDefault();
+
     if (!searchText) {
       return;
     }
@@ -48,8 +49,26 @@ const AddressSearch = () => {
     setIsShow({ disabledAddressModal: false, markLocationModal: false });
   };
 
+  const handleCurrentLocation = async (e) => {
+    e.preventDefault();
+
+    const { coords } = await new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+    const geocoder = new window.google.maps.Geocoder();
+    const { results } = await geocoder.geocode({
+      location: {
+        lat: coords.latitude,
+        lng: coords.longitude,
+      },
+    });
+
+    setSearchText(results[0].formatted_address);
+    setIsShow({ disabledAddressModal: false, markLocationModal: true });
+  };
+
   const handleSearchText = (e) => setSearchText(e.target.value);
-  const onChangedLocationText = (text) => setSearchText(text);
+  const onChangeLocationText = (text) => console.log(text, 'cb on');
   const handleSendAddressResult = () => {
     const { isError, isSuccess, error } = sendAddressResult;
 
@@ -72,11 +91,12 @@ const AddressSearch = () => {
 
   return (
     <>
-      <Card sx={{ width: '400px', display: 'flex', justifyContent: 'center' }}>
-        <CardContent>
+      <Card sx={{ width: '800px', display: 'flex', justifyContent: 'center' }}>
+        <CardContent sx={{ width: '100%' }}>
           <p>Enter your address to find local restaurants</p>
           <div>
             <TextField
+              sx={{ width: '350px' }}
               size={'small'}
               inputRef={ref}
               value={searchText}
@@ -84,7 +104,7 @@ const AddressSearch = () => {
               variant="outlined"
               placeholder="Enter your full address"
             />
-            <IconButton name="useCurrentLocation" title="useCurrentLocation">
+            <IconButton name="useCurrentLocation" title="useCurrentLocation" onClick={handleCurrentLocation}>
               <SendIcon fontSize="inherit" />
             </IconButton>
 
@@ -110,7 +130,7 @@ const AddressSearch = () => {
           <MarkLocationModal
             searchText={searchText}
             onClose={handleClose}
-            onChangeLocationText={onChangedLocationText}
+            onChangeLocationText={onChangeLocationText}
           />
         }
         onClose={handleClose}
