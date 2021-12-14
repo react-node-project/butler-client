@@ -10,10 +10,10 @@ module.exports = {
   mode: isDevelopment ? 'development' : 'production',
   devtool: !isDevelopment ? 'hidden-source-map' : 'eval',
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     alias: {
-      '@hooks': path.resolve(__dirname, 'hooks'),
-      '@components': path.resolve(__dirname, 'components'),
+      '@hooks': path.resolve(__dirname, 'src/hooks/'),
+      '@components': path.resolve(__dirname, 'src/components/'),
       '@layouts': path.resolve(__dirname, 'layouts'),
       '@pages': path.resolve(__dirname, 'pages'),
       '@utils': path.resolve(__dirname, 'utils'),
@@ -23,6 +23,19 @@ module.exports = {
   entry: './src/index',
   module: {
     rules: [
+      {
+        test: /\.(ts|tsx)$/,
+        use: [
+          'babel-loader',
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+            },
+          },
+        ],
+        exclude: /node_modules/,
+      },
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
