@@ -21,16 +21,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### [0.0.7] - 2021-12-13
 written by Hoin
 
-Installed
- * msw                
- * copy-webpack-plugin
- * mui
+`Installed`
+ * msw (목 서버, 테스트에 용이함, 실제로 적용가능)                
+ * copy-webpack-plugin(특정 파일 복사해서 빌드시 편리함)
+ * mui/lab (연구중인 mui 컴포넌트 )
 
-Setting
+`Setting`
  * mock service worker 환경 구축(https://imch.dev/posts/experiment-of-mock-service-worker)
  * Webpack Config CopyPlugin 활용 mockServiceWorker.js build 시 카피
 
-Added
+`Added`
  * addressApi => redux-toolkit 을 활용한 api mock 관 연동 및 활용
  * AddressSearchComponent => 검색 된 장소를 서버와 연동 후 응답에 따른 액션 추가
 

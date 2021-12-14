@@ -13,7 +13,7 @@ export const handlers = [
     return res(ctx.status(200), ctx.json([...THEMEMENU]));
   }),
   rest.post(`${MOCK_API_URL}/address`, async (req, res, ctx) => {
-    await sleep(5000);
+    await sleep(3000);
     const whiteList = ['영국 리버풀'];
 
     if (!whiteList.includes(req.body.address)) {
