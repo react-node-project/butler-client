@@ -5,7 +5,7 @@ import { setUser } from '../../../store/features/userSlice';
 import { Box } from '@mui/system';
 
 export default function KaKaoLogin() {
-  const Kakao = (window as any).Kakao;
+  const { Kakao } = window as any;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isLogin, setIsLogin] = useState(false);
@@ -38,6 +38,8 @@ export default function KaKaoLogin() {
       });
     }
   }, [isLogin]);
+
+  if (!Kakao) return null;
 
   return <Box id="kakao-login" sx={{ m: 2, px: 6 }} />;
 }

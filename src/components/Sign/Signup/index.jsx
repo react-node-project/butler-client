@@ -64,7 +64,7 @@ const SignUp = (props) => {
                 margin="normal"
                 required
                 fullWidth
-                id="email"
+                id="email-signin"
                 label="이메일"
                 name="email"
                 autoComplete="email"
@@ -81,7 +81,7 @@ const SignUp = (props) => {
                 name="password"
                 label="비밀번호"
                 type="password"
-                id="password"
+                id="password-signin"
                 autoComplete="new-password"
                 {...register('password')}
                 helperText={errors.password?.message}
