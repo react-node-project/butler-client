@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setIsLoading } from '../store/features/appSlice';
 import ThemeMenu from './../components/Landing/ThemeMenu';
 import { Paper } from '@mui/material';
-import Footer from '../components/footer';
+import Footer from '@components/Footer';
+import PopularMenu from '@components/Landing/PopularMenu';
+import SearchBox from '@components/Landing/SearchBox';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -21,7 +23,9 @@ export default function Home() {
           {/* <div>isLoading: {`${isLoading}`}</div>
       <Button onClick={() => onClickButton()} variant="outlined">
       </Button> */}
+          <SearchBox />
           <ThemeMenu />
+          <PopularMenu />
           <Footer />
         </Paper>
       </StyledContainer>

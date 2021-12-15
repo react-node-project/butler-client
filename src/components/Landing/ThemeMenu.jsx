@@ -6,18 +6,19 @@ import { Grid, Typography, ImageListItem, ImageList, ImageListItemBar } from '@m
 export default function ThemeMenu() {
   return (
     <>
-      {/* fontFamily theme 적용 안됨 */}
-      <Typography data-testid="header" align="left" variant="h4">
+      {/* fontFamily theme NOT applicable */}
+      {/* <Typography data-testid="header" align="left" variant="h5">
         What's on the menu?
-      </Typography>
+      </Typography> */}
+      <h2>What's on the Menu</h2>
       <ImageList>
-        <Grid container sx={{ flexGrow: 1 }} spacing={3}>
+        <Grid container spacing={2}>
           {THEMEMENU.map((item) => (
-            <Grid item xs={4} sm={6} md={6}>
+            <Grid item xs={10} sm={6} md={6}>
               <StyledDiv>
                 <ImageListItem key={item.url}>
                   <img
-                    style={{ height: 120 }}
+                    style={{ maxHeight: 140 }}
                     src={`${item.url}?w=128&fit=crop&auto=format`}
                     alt={item.title}
                     loading="lazy"

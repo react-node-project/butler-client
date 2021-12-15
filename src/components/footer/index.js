@@ -1,19 +1,17 @@
+import React from 'react';
 import { Typography, Link, Box, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { FOOTERDATA } from './../Landing/data';
+import { ExpandMore } from "@mui/icons-material";
+import { FOOTERDATA } from '../Landing/data';
+
 export default function Footer() {
     return (
-        <>
+        <div>
             <Box>
-                <Typography variant="h6">
-                    I'm footer
-                </Typography>
-
                 {/* Accordions*/}
                 {FOOTERDATA.map((item, idx) => (
-                    < Accordion key={idx} >
+                    < Accordion key={idx} sx={{ background: "#eee" }}>
                         <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
+                            expandIcon={<ExpandMore />}
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
@@ -21,7 +19,6 @@ export default function Footer() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Box sx={{ display: "flex", flexDirection: "column" }} textAlign="left">
-                                {/* <Link href="/signin">{item.link1.title}</Link> */}
                                 <Link href="/">Contact us</Link>
                                 <Link href="/signup">Signup</Link>
                                 <Link href="/signin">Signin</Link>
@@ -30,12 +27,15 @@ export default function Footer() {
                     </Accordion>
                 ))}
                 {/* socials */}
-                <Box></Box>
-
+                <Box mt={2}>
+                    <Typography mt={5} variant="button">
+                        tweeter instagram facebook
+                    </Typography>
+                </Box>
                 <Box pt={2} textAlign="center">
                     Butler global &reg;{new Date().getFullYear()}
                 </Box>
             </Box>
-        </>
+        </div>
     )
-};
+}

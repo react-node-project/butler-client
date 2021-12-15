@@ -8,5 +8,5 @@ export const StyledContainer = styled(Container)({
   justifyContent: 'center',
   textAlign: 'center',
   padding: 20,
-  marginTop: '2rem',
+  marginTop: '1rem',
 });

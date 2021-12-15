@@ -7,8 +7,8 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/styles';
 import { PATH_ROOT, PATH_USER_SIGNIN, PATH_RESTAURANTS } from './constants/PathConstants';
 import AuthFlip from './pages/user/AuthFlip';
-import ShopDetail from './components/ShopDetails/index';
-import RestaurantsPage from './components/restaurants'
+// import ShopDetail from './components/ShopDetails/index';
+import RestaurantsPage from './components/restaurants';
 
 export default function App() {
   const [isShowSideNav, setIsShowSideNav] = useState(false);
@@ -23,7 +23,7 @@ export default function App() {
         <Main component="main">
           <Routes>
             <Route path={PATH_USER_SIGNIN} element={<AuthFlip />} />
-            <Route path={PATH_ROOT} element={<ShopDetail />} />
+            <Route path={PATH_ROOT} element={<Home />} />
             <Route path={PATH_RESTAURANTS} element={<RestaurantsPage />} />
           </Routes>
         </Main>
