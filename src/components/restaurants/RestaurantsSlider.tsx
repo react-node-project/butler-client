@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
 import CardSlider from '@components/slider/CardSlider';
-import { useRestaurantsEvent } from '@hooks/useRestaurantsEvent';
 import { StyledList } from './RestaurantsSlider.styled';
-import CardItem from './CardItem';
+import RestaurantsCard from './RestaurantsCard';
+import { useRestaurantsEvent } from '@hooks/restaurants/useRestaurants';
 
 export type RestaurantsSliderProps = {};
 
-const RestaurantsSlider: React.FC<RestaurantsSliderProps> = (props) => {
+const RestaurantsSlider = (props: RestaurantsSliderProps) => {
   const { title, list } = useRestaurantsEvent();
   const sliderRef = useRef<HTMLUListElement>(null);
 
@@ -14,7 +14,7 @@ const RestaurantsSlider: React.FC<RestaurantsSliderProps> = (props) => {
     <CardSlider title={title} list={list} cardWidth={262} sliderRef={sliderRef}>
       <StyledList component="ul" ref={sliderRef} className="slide_list">
         {list.map((item) => (
-          <CardItem key={item.title} {...item} />
+          <RestaurantsCard key={item.title} {...item} />
         ))}
       </StyledList>
     </CardSlider>

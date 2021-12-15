@@ -10,9 +10,10 @@ export type CardSliderProps = {
   list: any[];
   cardWidth: number;
   sliderRef: any;
+  children: React.ReactChild;
 };
 
-const CardSlider: React.FC<CardSliderProps> = (props) => {
+const CardSlider = (props: CardSliderProps) => {
   const { title, list, cardWidth, children, sliderRef } = props;
   const windowSize = useWindowSize();
   const [index, setIndex] = useState<number>(1);
@@ -22,16 +23,18 @@ const CardSlider: React.FC<CardSliderProps> = (props) => {
   const nextIndex = index + count;
   const prevIndex = index - count;
   const cardMargin = 16;
+  const nowWidth = cardWidth * count;
+  const nowMargin = cardMargin * count;
 
   const onClickNext = () => {
     if (sliderRef.current) {
-      setMoveWidth((prev) => prev + cardWidth * count + count * cardMargin);
+      setMoveWidth((prev) => prev + nowWidth + nowMargin);
       setIndex((prev) => prev + count);
     }
   };
   const onClickPrev = () => {
     if (sliderRef.current) {
-      setMoveWidth((prev) => prev - cardWidth * count - count * cardMargin);
+      setMoveWidth((prev) => prev - nowWidth - nowMargin);
       setIndex((prev) => prev - count);
     }
   };

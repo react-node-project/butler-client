@@ -3,7 +3,7 @@ import { StyledLayout } from './LeftNavBar.styled';
 
 export type LeftNavBarProps = {};
 
-const LeftNavBar: React.FC<LeftNavBarProps> = (props) => {
+const LeftNavBar = (props: LeftNavBarProps) => {
   return <StyledLayout>left Bar</StyledLayout>;
 };
 

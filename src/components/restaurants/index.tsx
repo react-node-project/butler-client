@@ -5,7 +5,7 @@ import RestaurantsSlider from './RestaurantsSlider';
 
 export type RestaurantsProps = {};
 
-const Restaurants: React.FC<RestaurantsProps> = (props) => {
+const Restaurants = (props: RestaurantsProps) => {
   // 주소 확인 필요
 
   return (

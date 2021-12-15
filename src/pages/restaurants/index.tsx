@@ -6,7 +6,7 @@ import { StyledLayout } from './restaurants.styled';
 
 export type RestaurantsProps = {};
 
-const RestaurantsPage: React.FC<RestaurantsProps> = (props) => {
+const RestaurantsPage = (props: RestaurantsProps) => {
   return (
     <StyledLayout container wrap="nowrap">
       <Grid item>

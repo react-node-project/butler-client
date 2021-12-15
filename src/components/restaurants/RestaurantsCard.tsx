@@ -1,9 +1,9 @@
 import { Box } from '@mui/system';
 import React from 'react';
 import StarIcon from '@mui/icons-material/Star';
-import { StyledText, StyledThumb } from './CardItem.styled';
+import { StyledText, StyledThumb } from './RestaurantsCard.styled';
 
-export type CardItemProps = {
+export type RestaurantsCardProps = {
   imageUrl: string;
   title: string;
   review?: {
@@ -12,11 +12,10 @@ export type CardItemProps = {
   };
   description: string;
   distanceText: string;
-  eventText: string;
 };
 
-const CardItem: React.FC<CardItemProps> = (props) => {
-  const { imageUrl, title, review, description, distanceText, eventText } = props;
+const RestaurantsCard = (props: RestaurantsCardProps) => {
+  const { imageUrl, title, review, description, distanceText } = props;
   return (
     <Box className={'card_item'}>
       <Box component="button">
@@ -36,11 +35,10 @@ const CardItem: React.FC<CardItemProps> = (props) => {
             <Box component="span">{description}</Box>
           </Box>
           <Box className="distance">{distanceText}</Box>
-          <Box className="event">{eventText}</Box>
         </StyledText>
       </Box>
     </Box>
   );
 };
 
-export default CardItem;
+export default RestaurantsCard;
