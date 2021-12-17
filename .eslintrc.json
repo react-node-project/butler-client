@@ -23,5 +23,8 @@
     "testing-library",
     "jest-dom",
     "@typescript-eslint"
-  ]
+  ],
+  "globals": {
+    "google": "readonly"
+  }
 }

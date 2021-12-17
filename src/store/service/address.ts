@@ -8,7 +8,7 @@ export const addressApi = createApi({
   }),
   endpoints: (build) => ({
     sendAddress: build.mutation({
-      query: ({ location, address }) => ({
+      query: ({ location, address }: { location: { lat: number; lng: number }; address: string }) => ({
         url: `/address`,
         method: 'post',
         body: {

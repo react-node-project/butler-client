@@ -13,6 +13,12 @@ import { StyledLink } from '../../styles/element.styled';
 
 import MarkLocationModal from './MarkLocationModal';
 import DisabledAddressModal from './DisabledAddressModal';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+
+interface DefinedServerError {
+  code: number;
+  message: number;
+}
 
 const AddressSearch = () => {
   let navigate = useNavigate();
@@ -23,21 +29,23 @@ const AddressSearch = () => {
     markLocationModal: false,
     disabledAddressModal: false,
   });
-  const onPlaceSelected = (placed) => {
-    setSearchText(placed.formatted_address);
+  const onPlaceSelected = (places: google.maps.places.PlaceResult) => {
+    if (!places || !places.formatted_address) return;
+
+    setSearchText(places.formatted_address);
 
     sendAddress({
-      address: placed.formatted_address,
+      address: places.formatted_address,
       location: {
-        lat: placed.geometry.location.lat(),
-        lng: placed.geometry.location.lng(),
+        lat: places.geometry?.location?.lat() || 0,
+        lng: places.geometry?.location?.lng() || 0,
       },
     });
   };
 
   const { ref } = usePlacesWidget({ apiKey, onPlaceSelected, libraries: ['places', 'geometry'] });
 
-  const showMarkLocationModal = (e) => {
+  const showMarkLocationModal = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     if (!searchText) {
@@ -45,11 +53,11 @@ const AddressSearch = () => {
     }
     setIsShow({ disabledAddressModal: false, markLocationModal: true });
   };
-  const handleClose = (e) => {
+  const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
     setIsShow({ disabledAddressModal: false, markLocationModal: false });
   };
 
-  const handleCurrentLocation = async (e) => {
+  const handleCurrentLocation = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     const { coords } = await new Promise((resolve, reject) => {
@@ -67,8 +75,8 @@ const AddressSearch = () => {
     setIsShow({ disabledAddressModal: false, markLocationModal: true });
   };
 
-  const handleSearchText = (e) => setSearchText(e.target.value);
-  const onChangeLocationText = (text) => console.log(text, 'cb on');
+  const handleSearchText = (e: React.ChangeEvent<HTMLInputElement>) => setSearchText(e.target.value);
+  const onChangeLocationText = (text: string) => console.log(text, 'cb on');
   const handleSendAddressResult = () => {
     const { isError, isSuccess, error } = sendAddressResult;
 
@@ -78,9 +86,15 @@ const AddressSearch = () => {
     }
 
     if (isError) {
-      if (error.data.code === 2000) {
-        setIsShow({ disabledAddressModal: true, markLocationModal: false });
-        return;
+      if (!error) return;
+
+      if ('data' in error) {
+        const err = error as FetchBaseQueryError;
+        const defineServerError = err.data as DefinedServerError;
+        if (defineServerError.code === 2000) {
+          setIsShow({ disabledAddressModal: true, markLocationModal: false });
+          return;
+        }
       }
     }
   };

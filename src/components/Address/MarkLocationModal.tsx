@@ -5,14 +5,21 @@ import CloseIcon from '@mui/icons-material/Close';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 import { MAP_API_KEY } from '../../constants/EnvContant';
 
+interface Props {
+  searchText: string;
+  onClose(e: React.MouseEvent<HTMLButtonElement>): void;
+  onChangeLocationText(changeText: string): void;
+}
+
 const containerStyle = {
   width: '400px',
   height: '400px',
 };
 const DEFAULT_ZOOM_SIZE = 15;
 
-const MarkLocationModal = forwardRef(({ searchText, onClose, currentLocation, onChangeLocationText }, refs) => {
-  const [map, setMap] = useState(null);
+const MarkLocationModal = forwardRef(({ searchText, onClose }: Props, refs) => {
+  // eslint-disable-next-line no-undef
+  const [map, setMap] = useState<google.maps.Map | null>(null);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: MAP_API_KEY,
@@ -21,7 +28,7 @@ const MarkLocationModal = forwardRef(({ searchText, onClose, currentLocation, on
   const [{ lat, lng }, setLocation] = useState({ lat: 0, lng: 0 });
   const [makerLocation, setMarkerLocation] = useState({ lat: 0, lng: 0 });
 
-  useEffect(async () => {
+  useEffect(() => {
     const bounds = new window.google.maps.LatLngBounds({
       lat,
       lng,
@@ -30,38 +37,45 @@ const MarkLocationModal = forwardRef(({ searchText, onClose, currentLocation, on
     if (map && bounds) {
       map.fitBounds(bounds);
       map.setZoom(DEFAULT_ZOOM_SIZE);
-      const { lat, lng } = map.getCenter();
+      const center = map.getCenter();
       const geocoder = new window.google.maps.Geocoder();
-      const { results } = await geocoder.geocode({
-        location: {
-          lat: lat(),
-          lng: lng(),
-        },
-      });
-      console.log(results[0].formatted_address);
+
+      const searchGeocoder = async () => {
+        const { results } = await geocoder.geocode({
+          location: {
+            lat: center?.lat() ?? 0,
+            lng: center?.lng() ?? 0,
+          },
+        });
+      };
+      searchGeocoder().catch();
 
       setMarkerLocation({
-        lat: lat(),
-        lng: lng(),
+        lat: center?.lat() ?? 0,
+        lng: center?.lng() ?? 0,
       });
     }
   }, [lat, lng]);
 
   const handleLocation = () => {
-    const { lat, lng } = map.getCenter();
+    if (!map) return;
+    const center = map.getCenter();
 
-    setMarkerLocation({ lat: lat(), lng: lng() });
+    setMarkerLocation({
+      lat: center?.lat() ?? 0,
+      lng: center?.lng() ?? 0,
+    });
   };
 
-  const onLoad = useCallback(function callback(map) {
+  const onLoad = useCallback(function callback(map: google.maps.Map) {
     const placesService = new window.google.maps.places.PlacesService(map);
 
-    function findPlaces(places) {
-      if (!places.length) return;
+    function findPlaces(places: google.maps.places.PlaceResult[] | null) {
+      if (!places || !places.length) return;
 
       setLocation({
-        lat: places[0].geometry.location.lat(),
-        lng: places[0].geometry.location.lng(),
+        lat: places[0].geometry?.location?.lat() ?? 0,
+        lng: places[0].geometry?.location?.lng() ?? 0,
       });
     }
 
@@ -110,7 +124,6 @@ const MarkLocationModal = forwardRef(({ searchText, onClose, currentLocation, on
               }}
               label={{
                 text: 'Move the pin to your location',
-                fontsize: '15px',
                 fontWeight: 'bolder',
                 color: 'blue',
               }}
