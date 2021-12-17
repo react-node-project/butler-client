@@ -21,7 +21,7 @@ const MarkLocationModal = forwardRef(({ searchText, onClose, currentLocation, on
   const [{ lat, lng }, setLocation] = useState({ lat: 0, lng: 0 });
   const [makerLocation, setMarkerLocation] = useState({ lat: 0, lng: 0 });
 
-  useEffect(() => {
+  useEffect(async () => {
     const bounds = new window.google.maps.LatLngBounds({
       lat,
       lng,
@@ -31,6 +31,14 @@ const MarkLocationModal = forwardRef(({ searchText, onClose, currentLocation, on
       map.fitBounds(bounds);
       map.setZoom(DEFAULT_ZOOM_SIZE);
       const { lat, lng } = map.getCenter();
+      const geocoder = new window.google.maps.Geocoder();
+      const { results } = await geocoder.geocode({
+        location: {
+          lat: lat(),
+          lng: lng(),
+        },
+      });
+      console.log(results[0].formatted_address);
 
       setMarkerLocation({
         lat: lat(),
@@ -89,6 +97,11 @@ const MarkLocationModal = forwardRef(({ searchText, onClose, currentLocation, on
             mapContainerStyle={containerStyle}
             onLoad={onLoad}
             onUnmount={onUnmount}
+            options={{
+              streetViewControl: false,
+              scrollwheel: false,
+              fullscreenControl: false,
+            }}
           >
             <Marker
               position={{
