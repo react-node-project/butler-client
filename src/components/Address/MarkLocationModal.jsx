@@ -11,7 +11,7 @@ const containerStyle = {
 };
 const DEFAULT_ZOOM_SIZE = 15;
 
-const MarkLocationModal = forwardRef(({ searchText, onClose, onChangeLocationText }, refs) => {
+const MarkLocationModal = forwardRef(({ searchText, onClose, currentLocation, onChangeLocationText }, refs) => {
   const [map, setMap] = useState(null);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',

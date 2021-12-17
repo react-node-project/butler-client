@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
-const DisabledAddressModal = () => {
+const DisabledAddressModal = forwardRef(() => {
   return <div />;
-};
+});
 
 export default DisabledAddressModal;
