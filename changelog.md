@@ -45,6 +45,31 @@ written by Hoin
  * Installed/Setting - installed Axios, setting react Async Await(regeneratorRuntime config)
    * https://velog.io/@haebin/React-regeneratorRuntime-is-not-defined-%EC%97%90%EB%9F%AC-%ED%95%B4%EA%B2%B0
 
+
+
+## [0.0.5] - 2021-12-12
+
+written by 조효형
+
+`Added`
+- add Slider Component
+- add restaurants Page
+- add typescript
+
+#### written by minju
+
+`Added` 
+
+* add ShopHedaer/index.js 
+* add ShopDetails/index.js
+* add ShopDetails/data.js
+
+
+`Installed`
+
+
+* file-loader
+*  url-loader
 ## [0.0.4] - 2021-12-06
 
 written by esther615kim

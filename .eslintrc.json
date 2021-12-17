@@ -4,7 +4,7 @@
     "node": true,
     "jest": true
   },
-  "parser": "@babel/eslint-parser",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true,
@@ -18,5 +18,10 @@
       "version": "detect"
     }
   },
-  "plugins": ["react", "testing-library", "jest-dom"]
+  "plugins": [
+    "react",
+    "testing-library",
+    "jest-dom",
+    "@typescript-eslint"
+  ]
 }
