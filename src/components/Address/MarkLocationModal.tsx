@@ -1,9 +1,14 @@
 import React, { forwardRef, useCallback, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-import { Button, Card, CardContent, IconButton, Input, InputLabel, Typography } from '@mui/material';
+import { Button, IconButton, Input, InputLabel, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+
+import { SendAddressProps } from 'src/store/service/address';
 import { MAP_API_KEY } from '../../constants/EnvContant';
+
+import Styled from './markLocationModal.styled';
+import './marker.css';
 
 interface Props {
   searchText: string;
@@ -12,10 +17,10 @@ interface Props {
 }
 
 const containerStyle = {
-  width: '400px',
-  height: '400px',
+  width: '100%',
+  height: '100%',
 };
-const DEFAULT_ZOOM_SIZE = 15;
+const DEFAULT_ZOOM_SIZE = 18;
 
 const MarkLocationModal = forwardRef(({ searchText, onClose }: Props, refs) => {
   // eslint-disable-next-line no-undef
@@ -60,6 +65,9 @@ const MarkLocationModal = forwardRef(({ searchText, onClose }: Props, refs) => {
   const handleLocation = () => {
     if (!map) return;
     const center = map.getCenter();
+    const lat = center?.lat() ?? 0;
+    const lng = center?.lng() ?? 0;
+    searchGeocoder({ lat, lng }).then((address) => changeLocationText(address));
 
     setMarkerLocation({
       lat: center?.lat() ?? 0,
@@ -90,20 +98,20 @@ const MarkLocationModal = forwardRef(({ searchText, onClose }: Props, refs) => {
   if (!isLoaded) return null;
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', height: '100%', justifyContent: 'center' }}>
-      <Card sx={{ width: '40rem' }}>
-        <CardContent>
-          <Box sx={{ display: 'flex', width: '40rem' }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Typography>Mark your location</Typography>
-              <Typography>We'll show your nearby shop.</Typography>
-            </Box>
-            <div>
-              <IconButton aria-label="close-button" onClick={onClose}>
-                <CloseIcon />
-              </IconButton>
-            </div>
+    <Styled.Wrapper>
+      <Styled.Container>
+        <Styled.Header>
+          <Box className="title">
+            <Typography sx={{ fontWeight: 'bold' }}>Mark your location</Typography>
+            <Typography sx={{ fontWeight: 'bold' }}>We'll show your nearby shop.</Typography>
           </Box>
+          <Box className="close-button-wrapper">
+            <IconButton aria-label="close-button" onClick={onClose}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
+        </Styled.Header>
+        <Styled.Main>
           <InputLabel>Drag the pin to your exact location</InputLabel>
           <Input disabled value={searchText} />
           <GoogleMap
@@ -125,15 +133,19 @@ const MarkLocationModal = forwardRef(({ searchText, onClose }: Props, refs) => {
               label={{
                 text: 'Move the pin to your location',
                 fontWeight: 'bolder',
-                color: 'blue',
+                color: '#ffff',
+                className: 'butler-map-marker',
               }}
             />
           </GoogleMap>
-
-          <Button>Mark Location</Button>
-        </CardContent>
-      </Card>
-    </Box>
+        </Styled.Main>
+        <Styled.Footer>
+          <Button variant="contained" onClick={sendAddressSearch}>
+            Mark Location
+          </Button>
+        </Styled.Footer>
+      </Styled.Container>
+    </Styled.Wrapper>
   );
 });
 
