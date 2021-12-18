@@ -12,8 +12,9 @@ import './marker.css';
 
 interface Props {
   searchText: string;
-  onClose(e: React.MouseEvent<HTMLButtonElement>): void;
-  onChangeLocationText(changeText: string): void;
+  onClose(): void;
+  changeLocationText(changeText: string): void;
+  sendAddress({ location: { lat, lng }, address }: SendAddressProps): void;
 }
 
 const containerStyle = {
@@ -22,8 +23,7 @@ const containerStyle = {
 };
 const DEFAULT_ZOOM_SIZE = 18;
 
-const MarkLocationModal = forwardRef(({ searchText, onClose }: Props, refs) => {
-  // eslint-disable-next-line no-undef
+const MarkLocationModal = forwardRef(({ sendAddress, searchText, onClose, changeLocationText }: Props, refs) => {
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -32,6 +32,17 @@ const MarkLocationModal = forwardRef(({ searchText, onClose }: Props, refs) => {
 
   const [{ lat, lng }, setLocation] = useState({ lat: 0, lng: 0 });
   const [makerLocation, setMarkerLocation] = useState({ lat: 0, lng: 0 });
+
+  const searchGeocoder = async ({ lat, lng }: { lat: number; lng: number }) => {
+    const geocoder = new window.google.maps.Geocoder();
+    const { results } = await geocoder.geocode({
+      location: {
+        lat,
+        lng,
+      },
+    });
+    return results[0].formatted_address;
+  };
 
   useEffect(() => {
     const bounds = new window.google.maps.LatLngBounds({
@@ -43,21 +54,15 @@ const MarkLocationModal = forwardRef(({ searchText, onClose }: Props, refs) => {
       map.fitBounds(bounds);
       map.setZoom(DEFAULT_ZOOM_SIZE);
       const center = map.getCenter();
-      const geocoder = new window.google.maps.Geocoder();
 
-      const searchGeocoder = async () => {
-        const { results } = await geocoder.geocode({
-          location: {
-            lat: center?.lat() ?? 0,
-            lng: center?.lng() ?? 0,
-          },
-        });
-      };
-      searchGeocoder().catch();
+      const lat = center?.lat() ?? 0;
+      const lng = center?.lng() ?? 0;
+
+      searchGeocoder({ lat, lng }).then((address) => changeLocationText(address));
 
       setMarkerLocation({
-        lat: center?.lat() ?? 0,
-        lng: center?.lng() ?? 0,
+        lat,
+        lng,
       });
     }
   }, [lat, lng]);
@@ -76,7 +81,7 @@ const MarkLocationModal = forwardRef(({ searchText, onClose }: Props, refs) => {
   };
 
   const onLoad = useCallback(function callback(map: google.maps.Map) {
-    const placesService = new window.google.maps.places.PlacesService(map);
+    const placesService = new google.maps.places.PlacesService(map);
 
     function findPlaces(places: google.maps.places.PlaceResult[] | null) {
       if (!places || !places.length) return;
@@ -94,6 +99,14 @@ const MarkLocationModal = forwardRef(({ searchText, onClose }: Props, refs) => {
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
   }, []);
+
+  const sendAddressSearch = () => {
+    onClose();
+    sendAddress({
+      address: searchText,
+      location: { lat: makerLocation.lat, lng: makerLocation.lng },
+    });
+  };
 
   if (!isLoaded) return null;
 
