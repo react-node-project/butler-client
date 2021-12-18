@@ -7,9 +7,14 @@ import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './styles/theme';
 import CssBaseline from '@mui/material/CssBaseline';
 
+// TODO:: 목서비스 워커 등록
 if (process.env.NODE_ENV === 'development') {
   const { worker } = require('./mocks/handlers');
-  worker.start().catch();
+  worker
+    .start({
+      onUnhandledRequest: 'bypass',
+    })
+    .catch();
 }
 
 ReactDom.render(
