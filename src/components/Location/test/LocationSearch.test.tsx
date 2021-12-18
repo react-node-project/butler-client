@@ -1,11 +1,11 @@
 import React from 'react';
-import AddressSearch from '../AddressSearch';
+import LocationSearch from '../LocationSearch';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '../../../util/testUtil';
 
-describe('AddressSearch', () => {
+describe('LocationSearch', () => {
   it('default rendering check ', () => {
-    render(<AddressSearch />);
+    render(<LocationSearch />);
     const inputBox = screen.getByPlaceholderText('Enter your full address', { exact: true });
     const useCurrentLocationBtn = screen.getByRole('button', { name: 'useCurrentLocation' });
     const searchLocationBtn = screen.getByRole('button', { name: 'Search' });
@@ -19,7 +19,7 @@ describe('AddressSearch', () => {
   });
 
   it('input liverpool in Input box. show optional box ', async () => {
-    render(<AddressSearch />);
+    render(<LocationSearch />);
 
     const inputBox = screen.getByPlaceholderText('Enter your full address', { exact: true });
     userEvent.type(inputBox, 'liverpool');

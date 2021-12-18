@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import appReducer from './features/appSlice';
 import userReducer from './features/userSlice';
-import { addressApi } from './service/address';
+import { locationAPI } from './service/location';
 
 export const store = configureStore({
   reducer: {
     app: appReducer,
     user: userReducer,
-    [addressApi.reducerPath]: addressApi.reducer,
+    [locationAPI.reducerPath]: locationAPI.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([addressApi.middleware]),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([locationAPI.middleware]),
 });

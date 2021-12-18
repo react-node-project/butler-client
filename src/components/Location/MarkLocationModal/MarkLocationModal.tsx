@@ -4,8 +4,8 @@ import { Button, IconButton, Input, InputLabel, Typography } from '@mui/material
 import CloseIcon from '@mui/icons-material/Close';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 
-import { SendAddressProps } from 'src/store/service/address';
-import { MAP_API_KEY } from '../../constants/EnvContant';
+import { SendLocationProps } from 'src/store/service/location';
+import { MAP_API_KEY } from '../../../constants/EnvContant';
 
 import Styled from './markLocationModal.styled';
 import './marker.css';
@@ -14,7 +14,7 @@ interface Props {
   searchText: string;
   onClose(): void;
   changeLocationText(changeText: string): void;
-  sendAddress({ location: { lat, lng }, address }: SendAddressProps): void;
+  sendLocation({ location: { lat, lng }, address }: SendLocationProps): void;
 }
 
 const containerStyle = {
@@ -23,7 +23,7 @@ const containerStyle = {
 };
 const DEFAULT_ZOOM_SIZE = 18;
 
-const MarkLocationModal = forwardRef(({ sendAddress, searchText, onClose, changeLocationText }: Props, refs) => {
+const MarkLocationModal = forwardRef(({ sendLocation, searchText, onClose, changeLocationText }: Props, refs) => {
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -102,7 +102,7 @@ const MarkLocationModal = forwardRef(({ sendAddress, searchText, onClose, change
 
   const sendAddressSearch = () => {
     onClose();
-    sendAddress({
+    sendLocation({
       address: searchText,
       location: { lat: makerLocation.lat, lng: makerLocation.lng },
     });

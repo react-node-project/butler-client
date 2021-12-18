@@ -1,17 +1,17 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { MOCK_API_URL } from '../../constants/EnvContant';
 
-type SendAddressProps = { location: { lat: number; lng: number }; address: string };
+type SendLocationProps = { location: { lat: number; lng: number }; address: string };
 
-export const addressApi = createApi({
+export const locationAPI = createApi({
   reducerPath: 'addressApi',
   baseQuery: fetchBaseQuery({
     baseUrl: MOCK_API_URL,
   }),
   endpoints: (build) => ({
-    sendAddress: build.mutation({
-      query: ({ location, address }: SendAddressProps) => ({
-        url: `/address`,
+    sendLocation: build.mutation({
+      query: ({ location, address }: SendLocationProps) => ({
+        url: `/location`,
         method: 'post',
         body: {
           location,
@@ -22,6 +22,6 @@ export const addressApi = createApi({
   }),
 });
 
-export const { useSendAddressMutation } = addressApi;
+export const { useSendLocationMutation } = locationAPI;
 
-export type { SendAddressProps };
+export type { SendLocationProps };

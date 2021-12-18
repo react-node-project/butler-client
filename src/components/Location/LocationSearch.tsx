@@ -8,11 +8,11 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 import { MAP_API_KEY as apiKey } from '../../constants/EnvContant';
 import { PATH_USER_SIGNIN } from '../../constants/PathConstants';
-import { SendAddressProps, useSendAddressMutation } from '../../store/service/address';
+import { SendLocationProps, useSendLocationMutation } from '../../store/service/location';
 import { StyledLink } from '../../styles/element.styled';
 
-import MarkLocationModal from './MarkLocationModal';
-import DisabledAddressModal from './DisabledAddressModal';
+import MarkLocationModal from './MarkLocationModal/MarkLocationModal';
+import DisabledLocationModal from './DisabledLocationModal/DisabledLocationModal';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
 interface DefinedServerError {
@@ -20,9 +20,9 @@ interface DefinedServerError {
   message: number;
 }
 
-const AddressSearch = () => {
+const LocationSearch = () => {
   let navigate = useNavigate();
-  const [_sendAddress, sendAddressResult] = useSendAddressMutation({});
+  const [_sendLocation, sendLocationResult] = useSendLocationMutation({});
   const [searchText, setSearchText] = useState('');
 
   const [isShow, setIsShow] = useState({
@@ -30,14 +30,14 @@ const AddressSearch = () => {
     disabledAddressModal: false,
   });
 
-  const sendAddress = ({ address, location }: SendAddressProps) => {
-    _sendAddress({ address, location });
+  const sendLocation = ({ address, location }: SendLocationProps) => {
+    _sendLocation({ address, location });
   };
   const onPlaceSelected = (places: google.maps.places.PlaceResult) => {
     if (!places || !places.formatted_address) return;
 
     setSearchText(places.formatted_address);
-    sendAddress({
+    sendLocation({
       address: places.formatted_address,
       location: {
         lat: places.geometry?.location?.lat() || 0,
@@ -78,8 +78,8 @@ const AddressSearch = () => {
 
   const handleSearchText = (e: React.ChangeEvent<HTMLInputElement>) => setSearchText(e.target.value);
   const onChangeLocationText = (text: string) => setSearchText(text);
-  const handleSendAddressResult = () => {
-    const { isError, isSuccess, error } = sendAddressResult;
+  const handleSendLocationResult = () => {
+    const { isError, isSuccess, error } = sendLocationResult;
 
     if (isSuccess) {
       navigate(PATH_USER_SIGNIN);
@@ -101,8 +101,8 @@ const AddressSearch = () => {
   };
 
   useEffect(() => {
-    handleSendAddressResult();
-  }, [sendAddressResult]);
+    handleSendLocationResult();
+  }, [sendLocationResult]);
 
   return (
     <>
@@ -124,7 +124,7 @@ const AddressSearch = () => {
             </IconButton>
 
             <LoadingButton
-              loading={sendAddressResult.isLoading}
+              loading={sendLocationResult.isLoading}
               variant="contained"
               name="searchLocation"
               onClick={showMarkLocationModal}
@@ -143,7 +143,7 @@ const AddressSearch = () => {
         open={isShow.markLocationModal}
         children={
           <MarkLocationModal
-            sendAddress={sendAddress}
+            sendLocation={sendLocation}
             searchText={searchText}
             onClose={handleClose}
             changeLocationText={onChangeLocationText}
@@ -152,9 +152,9 @@ const AddressSearch = () => {
         onClose={handleClose}
       />
 
-      <Modal open={isShow.disabledAddressModal} children={<DisabledAddressModal />} onClose={handleClose} />
+      <Modal open={isShow.disabledAddressModal} children={<DisabledLocationModal />} onClose={handleClose} />
     </>
   );
 };
 
-export default AddressSearch;
+export default LocationSearch;
