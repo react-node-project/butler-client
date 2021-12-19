@@ -22,7 +22,7 @@ export default function Home() {
       <Button onClick={() => onClickButton()} variant="outlined">
       </Button> */}
           <ThemeMenu />
-          <Footer />
+          {/* <Footer /> */}
         </Paper>
       </StyledContainer>
     </div>
