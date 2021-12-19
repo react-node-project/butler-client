@@ -64,13 +64,12 @@ export default function StoreHeader(props) {
                   <ArrowForwardIosIcon style={{ fontSize: 'small' }} />
                 </Button>
               </ListItem>
+              <ListItem disablePadding>
+                <Typography variant="h8">Deliver in 20 - 35 min</Typography>
+              </ListItem>
             </List>
           </Grid>
-          <Grid item sx={2}>
-            <ListItem disablePadding>
-              <Typography variant="h8">Deliver in 20 - 35 min</Typography>
-            </ListItem>
-          </Grid>
+          <Grid itme sx={2}></Grid>
         </Grid>
       </StyledHeader>
 

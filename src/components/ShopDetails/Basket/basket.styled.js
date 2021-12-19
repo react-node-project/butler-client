@@ -1,16 +1,10 @@
 import { styled } from '@mui/styles';
+import { Box } from '@mui/material';
 
-export const StyledtBasket = styled('div')(({ theme }) => ({
-  [theme.breakpoints.down('sm')]: {
-    maxWidth: '100%',
-    padding: '1rem',
-  },
-  [theme.breakpoints.between('md', 'lg')]: {
-    maxWidth: '90%',
-    padding: '1rem',
-  },
-  '@media (min-width: 1200px)': {
-    maxWidth: '100%',
-    padding: '0 10rem',
-  },
+export const StyledtBasket = styled(Box)(({ theme }) => ({
+  backgroundColor: '#eeeee4',
+  position: '-webkit-sticky',
+  postiion: 'sticky',
+  height: '20rem',
+  marginTop: '0',
 }));
