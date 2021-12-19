@@ -1,17 +1,16 @@
 import React from 'react';
 import ShopHeader from './ShopHeader/index';
 import MenuItem from './MenuItem/index';
-import Basket from './Basket/index';
 import { StyledWrapper } from './shopDetail.styled';
 import {
+  Button,
   Dialog,
-  DialogTitle,
   DialogActions,
   DialogContent,
   DialogContentText,
-  Slide,
-  Button,
+  DialogTitle,
   Grid,
+  Slide
 } from '@mui/material';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -52,10 +51,10 @@ export default function ShopDetail() {
         </Dialog>
       </StyledWrapper>
 
-      <Grid container display="flex" justifySelf="center" spacing={{ xs: 2 }} columns={{ xs: 4, sm: 8, md: 8 }}>
+      <Grid container display="flex" justifySelf="center" spacing={1}>
         {Array.from(Array(16)).map((_, index) => (
-          <Grid item xs={4} sm={4} md={4} key={index}>
-            <MenuItem spacing={4} key={index} />
+          <Grid item xs={10} sm={5} md={5} key={index}>
+            <MenuItem key={index} />
           </Grid>
         ))}
       </Grid>
