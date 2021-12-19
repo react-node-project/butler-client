@@ -1,10 +1,10 @@
 import React from 'react';
-import { CheckoutBasket } from './basket.styled';
+import { StyledtBasket } from './basket.styled';
 
 export default function Basket() {
   return (
-    <CheckoutBasket empty>
+    <StyledtBasket empty>
       <div>Testing</div>
-    </CheckoutBasket>
+    </StyledtBasket>
   );
 }

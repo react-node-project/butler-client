@@ -1,12 +1,7 @@
 import React from 'react';
 import ShopHeader from './ShopHeader/index';
-import { Wrapper } from './styled.shopDetail';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import { Slide, Button } from '@mui/material';
+import { StyledWrapper } from './shopDetail.styled';
+import { Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText, Slide, Button } from '@mui/material';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -25,7 +20,7 @@ export default function ShopDetail() {
 
   return (
     <>
-      <Wrapper>
+      <StyledWrapper>
         <ShopHeader slideDialog={handleClickOpen} />
         <Dialog
           open={open}
@@ -44,7 +39,7 @@ export default function ShopDetail() {
             <Button onClick={handleClose}>Close</Button>
           </DialogActions>
         </Dialog>
-      </Wrapper>
+      </StyledWrapper>
     </>
   );
 }

@@ -1,28 +1,21 @@
 import React from 'react';
-import { HeaderImage, Header } from './styled.shopHeader';
+import { StyledHeaderImage, StyledHeader, MenuProps } from './shopHedaer.styled';
 import burgerImg from '../../../asset/img/burger.png';
-import { Grid, Button, List } from '@mui/material';
-import Typography from '@mui/material/Typography';
-import InfoIcon from '@mui/icons-material/Info';
-import ListItem from '@mui/material/ListItem';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import { useTheme } from '@mui/material/styles';
-import OutlinedInput from '@mui/material/OutlinedInput';
+import {
+  Grid,
+  Button,
+  List,
+  Typography,
+  ListItem,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+  useTheme,
+  OutlinedInput,
+} from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
+import InfoIcon from '@mui/icons-material/Info';
 
 const menuCategory = [
   'Detroit Pizza',
@@ -36,7 +29,7 @@ const menuCategory = [
 
 function getStyles(name, menuName, theme) {
   return {
-    fontWeight: menuName.indexOf(name) === -1 ? theme.typography.fontWeightRegular : theme.typography.fontWeightMedium,
+    fontWeight: menuName.indexOf(name) === -1 ? theme.typography.fontWeightRegular : theme.typography.fontWeightBold,
   };
 }
 
@@ -48,20 +41,16 @@ export default function StoreHeader(props) {
     const {
       target: { value },
     } = event;
-    setMenuName(
-      value,
-      // On autofill we get a the stringified value.
-      //typeof value === 'string' ? value.split(',') : value,
-    );
+    setMenuName(value);
   };
   return (
     <>
-      <Header>
+      <StyledHeader>
         <Grid container spacing={8} alignItems="center" justifyContent="center">
           <Grid item sx={6}>
-            <HeaderImage src={burgerImg} />
+            <StyledHeaderImage src={burgerImg} />
           </Grid>
-          <Grid item sx={4} sx={{ justifyContent: 'flex-start' }}>
+          <Grid item sx={4}>
             <List>
               <ListItem disablePadding>
                 <Typography variant="h4">Grease Monkey</Typography>
@@ -72,7 +61,7 @@ export default function StoreHeader(props) {
               <ListItem disablePadding>
                 <Button onClick={props.slideDialog} color="primary" startIcon={<InfoIcon />}>
                   Info
-                  <ArrowForwardIosIcon style={{ fontSize: 'small' }}></ArrowForwardIosIcon>
+                  <ArrowForwardIosIcon style={{ fontSize: 'small' }} />
                 </Button>
               </ListItem>
             </List>
@@ -83,15 +72,13 @@ export default function StoreHeader(props) {
             </ListItem>
           </Grid>
         </Grid>
-      </Header>
+      </StyledHeader>
 
       <Grid container direction="row-reverse">
         <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="demo-multiple-menu-category">Greasy's Burgers</InputLabel>
+          <InputLabel id="input-menu-category">Greasy's Burgers</InputLabel>
           <Select
-            labelId="multiple-menu-category"
-            id="multiple-category"
-            multiple
+            id="menu-category"
             value={menuName}
             onChange={handleChange}
             input={<OutlinedInput label="Name" />}

@@ -1,6 +1,6 @@
 import { styled } from '@mui/styles';
 
-export const CheckoutBasket = styled('div')(({ theme }) => ({
+export const StyledtBasket = styled('div')(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
     maxWidth: '100%',
     padding: '1rem',
