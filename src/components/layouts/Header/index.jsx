@@ -11,7 +11,7 @@ import { PATH_ROOT, PATH_USER_SIGNIN } from '../../../constants/PathConstants';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../../store/features/userSlice';
 import { Link } from 'react-router-dom';
-import { LinkButton } from './styled.header';
+import { LinkButton } from './header.styled';
 import { IconButton } from '@mui/material';
 
 export default function Header({ showSideNav }) {
