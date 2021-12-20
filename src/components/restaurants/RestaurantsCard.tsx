@@ -1,7 +1,8 @@
 import { Box } from '@mui/system';
 import React from 'react';
 import StarIcon from '@mui/icons-material/Star';
-import { StyledText, StyledThumb } from './RestaurantsCard.styled';
+import { StyledButton, StyledText, StyledThumb } from './RestaurantsCard.styled';
+import { StyledLayout } from '../../pages/restaurants/restaurants.styled';
 
 export type RestaurantsCardProps = {
   imageUrl: string;
@@ -12,14 +13,17 @@ export type RestaurantsCardProps = {
   };
   description: string;
   distanceText: string;
+  isOpen?: boolean;
 };
 
 const RestaurantsCard = (props: RestaurantsCardProps) => {
-  const { imageUrl, title, review, description, distanceText } = props;
+  const { imageUrl, title, review, description, distanceText, isOpen = true } = props;
   return (
-    <Box className={'card_item'}>
-      <Box component="button">
-        <StyledThumb className="thumb" url={imageUrl} />
+    <StyledLayout className={'card_item'}>
+      <StyledButton component="button">
+        <StyledThumb className="thumb" url={imageUrl}>
+          {!isOpen && <span>Back soon</span>}
+        </StyledThumb>
         <StyledText>
           <Box className="title">{title}</Box>
           <Box className="description">
@@ -36,8 +40,8 @@ const RestaurantsCard = (props: RestaurantsCardProps) => {
           </Box>
           <Box className="distance">{distanceText}</Box>
         </StyledText>
-      </Box>
-    </Box>
+      </StyledButton>
+    </StyledLayout>
   );
 };
 

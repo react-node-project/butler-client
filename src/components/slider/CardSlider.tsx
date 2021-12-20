@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { StyledLayout, StyledNextButton, StyledPrevButton, StyledSlider, StyledTitle } from './CardSlider.styled';
+import {
+  StyledContents,
+  StyledLayout,
+  StyledNextButton,
+  StyledPrevButton,
+  StyledSlider,
+  StyledTitle,
+} from './CardSlider.styled';
 import useWindowSize from '@hooks/useWindowSize';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { Box } from '@mui/system';
 
 export type CardSliderProps = {
   title: string;
@@ -52,9 +58,9 @@ const CardSlider = (props: CardSliderProps) => {
   }, [moveWidth]);
 
   return (
-    <Box>
+    <StyledLayout>
       <StyledTitle variant="h3">{title}</StyledTitle>
-      <StyledLayout>
+      <StyledContents>
         <StyledSlider>
           {prevIndex > 0 && (
             <StyledPrevButton className="arrow" onClick={onClickPrev}>
@@ -68,8 +74,8 @@ const CardSlider = (props: CardSliderProps) => {
             </StyledNextButton>
           )}
         </StyledSlider>
-      </StyledLayout>
-    </Box>
+      </StyledContents>
+    </StyledLayout>
   );
 };
 

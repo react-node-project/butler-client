@@ -1,7 +1,8 @@
 import React from 'react';
 import CategorySlider from './CategorySlider';
 import { StyledLayout } from './index.styled';
-import RestaurantsSlider from './RestaurantsSlider';
+import RestaurantsList from './RestaurantsList';
+// import RestaurantsSlider from './RestaurantsSlider';
 
 export type RestaurantsProps = {};
 
@@ -11,7 +12,8 @@ const Restaurants = (props: RestaurantsProps) => {
   return (
     <StyledLayout sx={{ flexGrow: 1 }}>
       <CategorySlider />
-      <RestaurantsSlider />
+      {/* <RestaurantsSlider /> */}
+      <RestaurantsList />
     </StyledLayout>
   );
 };

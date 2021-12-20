@@ -29,7 +29,6 @@ const initialState = {
           reviewCount: 67,
         },
         distanceText: '0.3 km away · Free delivery',
-        eventText: 'Spend $30, get 15% off',
       },
       {
         imageUrl:
@@ -37,7 +36,6 @@ const initialState = {
         title: 'Subway',
         description: 'Sandwiches · Wraps · Breakfast · Healthy',
         distanceText: '0.7 km away · Free delivery',
-        eventText: 'Spend $25, get 20% off',
       },
     ],
   },
