@@ -11,7 +11,7 @@ export default function Home() {
       <StyledContainer maxWidth="xs">
         <Paper sx={{ px: 5, py: 8 }}>
           <ThemeMenu />
-          <Footer />
+          {/* <Footer /> */}
         </Paper>
       </StyledContainer>
     </div>
