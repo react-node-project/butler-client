@@ -4,9 +4,9 @@ import React from 'react';
 import { Grid } from '@mui/material';
 import { StyledLayout } from './restaurants.styled';
 
-export type RestaurantsProps = {};
+export type RestaurantsPageProps = {};
 
-const RestaurantsPage = (props: RestaurantsProps) => {
+const RestaurantsPage = (props: RestaurantsPageProps) => {
   return (
     <StyledLayout container wrap="nowrap">
       <Grid item>
