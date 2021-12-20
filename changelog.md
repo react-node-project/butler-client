@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Installed` for installing new dependencies
 - `Setting` for adding/changing the general settings
 
-### [0.0.7] - 2021-12-13
+### [0.0.8] - 2021-12-13
 written by Hoin
 
 `Installed`
@@ -36,7 +36,7 @@ written by Hoin
 
 
  
-### [0.0.5] - 2021-12-11
+### [0.0.7] - 2021-12-11
  written by Hoin
  Added
  * add Header.jsx
@@ -47,7 +47,7 @@ written by Hoin
 
 
 
-## [0.0.5] - 2021-12-12
+## [0.0.6] - 2021-12-12
 
 written by 조효형
 
@@ -56,7 +56,10 @@ written by 조효형
 - add restaurants Page
 - add typescript
 
-#### written by minju
+
+## [0.0.5] - 2021-12-06
+
+written by minju
 
 `Added` 
 
@@ -67,9 +70,9 @@ written by 조효형
 
 `Installed`
 
-
 * file-loader
 *  url-loader
+*  
 ## [0.0.4] - 2021-12-06
 
 written by esther615kim
