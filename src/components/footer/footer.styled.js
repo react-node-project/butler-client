@@ -1,14 +1,14 @@
 import { styled } from '@mui/styles';
-import { Accordion, Box,Link } from '@mui/material';
+import { Accordion, Box, Link } from '@mui/material';
 export const StyledAccordion = styled(Accordion)({
-    backgroundColor: '#eee',
-})
+  backgroundColor: '#eee',
+});
 
 export const StyledBox = styled(Box)({
-    display: 'flex',
-    flexDirection: 'column',
+  display: 'flex',
+  flexDirection: 'column',
 });
 
 export const StyledLink = styled(Link)({
-    textDecoration:'none'
+  textDecoration: 'none',
 });
