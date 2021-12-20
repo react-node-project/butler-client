@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { Typography } from '@mui/material';
 function CategoryMenu() {
-  const [category, setCategory] = useState(null);
-  useEffect(() => {}, []);
+  // const [category, setCategory] = useState(null);
+  // useEffect(() => {}, []);
 
   return (
     <>
