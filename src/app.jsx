@@ -9,6 +9,7 @@ import AuthFlip from './pages/user/AuthFlip';
 import ShopDetail from './components/ShopDetails/index';
 import RestaurantsPage from './components/restaurants';
 import { KAKAO_API_KEY } from './constants/EnvContant';
+import Home from './pages/Home';
 
 const Main = styled(Box)({
   padding: '74px 10px 10px 10px',
