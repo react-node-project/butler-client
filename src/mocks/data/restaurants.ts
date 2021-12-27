@@ -1,5 +1,15 @@
 export const CATEGORY_LIST = {
-  title: '타이틀 영역 입니다.',
+  title: 'Delivery',
+  list: ['offers', 'offers2', 'offers3', 'offers4', 'offers5', 'offers6', 'offers7', 'offers8', 'offers9', 'offers10'],
+};
+
+export const CATEGORY_LIST_PICK_UP = {
+  title: 'Pick Up',
+  list: ['offers', 'offers2', 'offers3', 'offers4', 'offers5', 'offers6', 'offers7', 'offers8', 'offers9', 'offers10'],
+};
+
+export const CATEGORY_LIST_TABLE_SERVICE = {
+  title: 'Table Service',
   list: ['offers', 'offers2', 'offers3', 'offers4', 'offers5', 'offers6', 'offers7', 'offers8', 'offers9', 'offers10'],
 };
 

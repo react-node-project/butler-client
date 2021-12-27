@@ -3,6 +3,8 @@ import { THEMEMENU } from './data/landing';
 import { MOCK_API_URL } from '../constants/EnvContant';
 import {
   CATEGORY_LIST,
+  CATEGORY_LIST_PICK_UP,
+  CATEGORY_LIST_TABLE_SERVICE,
   RESTAURANTS_LIST,
   RESTAURANTS_LIST_PICK_UP,
   RESTAURANTS_LIST_TABLE_SERVICE,
@@ -39,20 +41,20 @@ export const handlers = [
       }),
     );
   }),
-  rest.get(`${MOCK_API_URL}/categories`, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({ ...CATEGORY_LIST }));
-  }),
-  rest.get(`${MOCK_API_URL}/restauranrs`, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json([...RESTAURANTS_LIST]));
-  }),
   rest.get(`${MOCK_API_URL}/restauranrs/delivery`, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json([...RESTAURANTS_LIST]));
+    return res(ctx.status(200), ctx.json({ categories: { ...CATEGORY_LIST }, restaurants: [...RESTAURANTS_LIST] }));
   }),
   rest.get(`${MOCK_API_URL}/restauranrs/pick-up`, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json([...RESTAURANTS_LIST_PICK_UP]));
+    return res(
+      ctx.status(200),
+      ctx.json({ categories: { ...CATEGORY_LIST_PICK_UP }, restaurants: [...RESTAURANTS_LIST_PICK_UP] }),
+    );
   }),
   rest.get(`${MOCK_API_URL}/restauranrs/table-service`, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json([...RESTAURANTS_LIST_TABLE_SERVICE]));
+    return res(
+      ctx.status(200),
+      ctx.json({ categories: { ...CATEGORY_LIST_TABLE_SERVICE }, restaurants: [...RESTAURANTS_LIST_TABLE_SERVICE] }),
+    );
   }),
 ];
 

@@ -1,21 +1,15 @@
-import { useGetRestaurantsQuery } from '@store/service/restaurants';
+import { GetRestaurantsProps } from '@store/service/restaurants';
 import React from 'react';
-import { useSelector } from 'react-redux';
 import RestaurantsCard from './RestaurantsCard';
 import { StyledLayout } from './RestaurantsList.styled';
-import { RootState } from '@store/index';
 
-export type RestaurantsListProps = {};
+export type RestaurantsListProps = {
+  restaurants: GetRestaurantsProps['restaurants'];
+};
 
 const RestaurantsList = (props: RestaurantsListProps) => {
-  const filter = useSelector((state: RootState) => state.restaurants.filter);
-  const { data: restaurants, error, isLoading } = useGetRestaurantsQuery(filter);
+  const { restaurants } = props;
 
-  if (error) {
-    console.log('error', error);
-    return null;
-  }
-  if (!restaurants || isLoading) return null;
   return (
     <StyledLayout>
       {restaurants.map((item) => (

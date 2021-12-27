@@ -2,20 +2,16 @@ import React, { useRef } from 'react';
 import { StyledCardItem, StyledList } from './CategorySlider.styled';
 import { Box } from '@mui/system';
 import CardSlider from '@components/slider/CardSlider';
-import { useGetCategoriesQuery } from '@store/service/restaurants';
+import { GetRestaurantsProps } from '@store/service/restaurants';
 
-export type CategorySliderProps = {};
+export type CategorySliderProps = {
+  categories: GetRestaurantsProps['categories'];
+};
 
 const CategorySlider = (props: CategorySliderProps) => {
-  const { data: categories, error, isLoading } = useGetCategoriesQuery(null);
-  const sliderRef = useRef<HTMLUListElement>(null);
-
-  if (error) {
-    console.log('error', error);
-    return null;
-  }
-  if (!categories || isLoading) return null;
+  const { categories } = props;
   const { title, list } = categories;
+  const sliderRef = useRef<HTMLUListElement>(null);
   return (
     <CardSlider title={title} list={list} cardWidth={167} sliderRef={sliderRef}>
       <StyledList component="ul" ref={sliderRef} className="slide_list">

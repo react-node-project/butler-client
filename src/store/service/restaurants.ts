@@ -2,11 +2,11 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { MOCK_API_URL } from '../../constants/EnvContant';
 
 type GetRestaurantsProps = {
-  categoryList: {
+  categories: {
     title: string;
     list: string[];
   };
-  restaruranst: {
+  restaurants: {
     imageUrl: string;
     title: string;
     description: string;
@@ -22,13 +22,7 @@ export const restaurantsAPI = createApi({
   reducerPath: 'restaurantsApi',
   baseQuery: fetchBaseQuery({ baseUrl: MOCK_API_URL }),
   endpoints: (build) => ({
-    getCategories: build.query<GetRestaurantsProps['categoryList'], null>({
-      query: () => ({
-        url: `/categories`,
-        method: 'get',
-      }),
-    }),
-    getRestaurants: build.query<GetRestaurantsProps['restaruranst'], string>({
+    getRestaurants: build.query<GetRestaurantsProps, string>({
       query: (filter) => ({
         url: `/restauranrs/${filter}`,
         method: 'get',
@@ -37,6 +31,6 @@ export const restaurantsAPI = createApi({
   }),
 });
 
-export const { useGetCategoriesQuery, useGetRestaurantsQuery } = restaurantsAPI;
+export const { useGetRestaurantsQuery } = restaurantsAPI;
 
 export type { GetRestaurantsProps };
