@@ -4,7 +4,7 @@ import { MOCK_API_URL } from '../../constants/EnvContant';
 type SendLocationProps = { location: { lat: number; lng: number }; address: string };
 
 export const locationAPI = createApi({
-  reducerPath: 'addressApi',
+  reducerPath: 'locationAPI',
   baseQuery: fetchBaseQuery({
     baseUrl: MOCK_API_URL,
   }),
