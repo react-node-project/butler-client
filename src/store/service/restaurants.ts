@@ -6,21 +6,37 @@ type GetRestaurantsProps = {
     title: string;
     list: string[];
   };
+  restaruranst: {
+    imageUrl: string;
+    title: string;
+    description: string;
+    review: {
+      reviewText: string;
+      reviewCount: number;
+    };
+    distanceText: string;
+  }[];
 };
 
 export const restaurantsAPI = createApi({
   reducerPath: 'restaurantsApi',
   baseQuery: fetchBaseQuery({ baseUrl: MOCK_API_URL }),
   endpoints: (build) => ({
-    getRestaurants: build.query({
+    getCategories: build.query<GetRestaurantsProps['categoryList'], null>({
       query: () => ({
-        url: `/restauranrs`,
+        url: `/categories`,
+        method: 'get',
+      }),
+    }),
+    getRestaurants: build.query<GetRestaurantsProps['restaruranst'], string>({
+      query: (filter) => ({
+        url: `/restauranrs/${filter}`,
         method: 'get',
       }),
     }),
   }),
 });
 
-export const { useGetRestaurantsQuery } = restaurantsAPI;
+export const { useGetCategoriesQuery, useGetRestaurantsQuery } = restaurantsAPI;
 
 export type { GetRestaurantsProps };

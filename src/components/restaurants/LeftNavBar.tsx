@@ -19,6 +19,9 @@ import {
   StyledRadioGroup,
 } from './LeftNavBar.styled';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@store/index';
+import { setFilter } from '@store/features/restaurants';
 
 export type LeftNavBarProps = {
   cityName?: string;
@@ -38,12 +41,15 @@ const style = {
 
 const LeftNavBar = (props: LeftNavBarProps) => {
   const { cityName = 'Liverpool City Centre' } = props;
-  const [value, setValue] = useState<string>('Delivery');
+  const dispatch = useDispatch();
+  const filter = useSelector((state: RootState) => state.restaurants.filter);
   const [modalOpen, setModalOPen] = useState<boolean>(false);
 
   const handleChangeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value);
-    console.log('v', (event.target as HTMLInputElement).value);
+    const filterValue = (event.target as HTMLInputElement).value;
+    if (filter !== filterValue) {
+      dispatch(setFilter(filterValue));
+    }
   };
 
   const handleSetModalOpen = () => {
@@ -87,12 +93,12 @@ const LeftNavBar = (props: LeftNavBarProps) => {
           <StyledRadioGroup
             aria-label="filter"
             name="controlled-radio-buttons-group"
-            value={value}
+            value={filter}
             onChange={handleChangeFilter}
           >
-            <FormControlLabel value="Delivery" control={<Radio size="small" />} label="Delivery" />
-            <FormControlLabel value="Pickup" control={<Radio size="small" />} label="Pickup" />
-            <FormControlLabel value="Table Service" control={<Radio size="small" />} label="Table Service" />
+            <FormControlLabel value="delivery" control={<Radio size="small" />} label="Delivery" />
+            <FormControlLabel value="pick-up" control={<Radio size="small" />} label="Pickup" />
+            <FormControlLabel value="table-service" control={<Radio size="small" />} label="Table Service" />
           </StyledRadioGroup>
         </FormControl>
       </div>
