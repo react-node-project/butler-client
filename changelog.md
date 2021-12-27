@@ -18,6 +18,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Installed` for installing new dependencies
 - `Setting` for adding/changing the general settings
 
+## [0.0.9] - 2021-12-xx
+
+written by 조효형
+
+`Added`
+- Kakao dotEnv 카카오 env 설정
+- LeftNavBar 추가
+
+`Changed`
+- restaurants 카드리스트 ui 수정
+
+`Remove`
+- restaurtsSlider 상점 상단노출 이벤트 관련 슬라이더 제거
+
 ### [0.0.8] - 2021-12-13
 written by Hoin
 
