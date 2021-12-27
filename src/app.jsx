@@ -16,7 +16,7 @@ export default function App() {
   const hideSideNav = () => setIsShowSideNav(false);
   const { Kakao } = window;
 
-  if (Kakao) {
+  if (Kakao && !Kakao.isInitialized()) {
     Kakao.init(KAKAO_API_KEY);
   }
 

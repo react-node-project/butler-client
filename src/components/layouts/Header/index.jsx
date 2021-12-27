@@ -20,7 +20,7 @@ export default function Header({ showSideNav }) {
   const { user } = useSelector((state) => state.user);
 
   const onClickLogout = () => {
-    Kakao.Auth.logout();
+    Kakao?.Auth.logout();
     dispatch(setUser(null));
   };
   return (

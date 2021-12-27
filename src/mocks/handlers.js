@@ -1,6 +1,7 @@
 import { rest, setupWorker } from 'msw';
 import { THEMEMENU } from './data/landing';
 import { MOCK_API_URL } from '../constants/EnvContant';
+import { DELEVERING_CITY_LIST } from './data/restaurants';
 
 const sleep = (ms) => {
   return new Promise((resolve) => {
@@ -32,6 +33,9 @@ export const handlers = [
         message: 'ok',
       }),
     );
+  }),
+  rest.get(`${MOCK_API_URL}/restauranrs`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ categories: DELEVERING_CITY_LIST }));
   }),
 ];
 

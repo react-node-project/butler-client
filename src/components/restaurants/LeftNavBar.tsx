@@ -21,7 +21,7 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export type LeftNavBarProps = {
-  cityName: string;
+  cityName?: string;
 };
 
 const style = {
