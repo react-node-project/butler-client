@@ -16,7 +16,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 
 import MarkLocationModal from './MarkLocationModal/MarkLocationModal';
-import DisabledLocationModal from './InactiveLocationModal/InativeLocationModal';
+import DisabledLocationModal from './InactiveLocationModal/InactiveLocationModal';
 
 interface DefinedServerError {
   code: number;
