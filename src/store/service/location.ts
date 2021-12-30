@@ -3,6 +3,8 @@ import { MOCK_API_URL } from '../../constants/EnvContant';
 
 type SendLocationProps = { location: { lat: number; lng: number }; address: string };
 
+type InactiveLocationProps = { location: { lat: number; lng: number }; email: string };
+
 export const locationAPI = createApi({
   reducerPath: 'locationAPI',
   baseQuery: fetchBaseQuery({
@@ -19,9 +21,19 @@ export const locationAPI = createApi({
         },
       }),
     }),
+    sendInactiveLocation: build.mutation({
+      query: ({ email, location }: InactiveLocationProps) => ({
+        url: `/inactiveLocation`,
+        method: 'post',
+        body: {
+          email,
+          location,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useSendLocationMutation } = locationAPI;
+export const { useSendLocationMutation, useSendInactiveLocationMutation } = locationAPI;
 
 export type { SendLocationProps };
