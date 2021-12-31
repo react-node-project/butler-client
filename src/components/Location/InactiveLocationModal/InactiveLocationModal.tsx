@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { Box, Button, IconButton, TextField, Typography } from '@mui/material';
 import Styled from '../MarkLocationModal/markLocationModal.styled';
 import CloseIcon from '@mui/icons-material/Close';
@@ -19,7 +19,7 @@ const InactiveLocationModal = forwardRef(({ location, onClose }: Props, ref) => 
   const [inputEmail, setInputEmail] = useState('');
   const [isError, setIsError] = useState(false);
   const [helperText, setHelperText] = useState('');
-  const schema = new StringSchema().required('이메일 입력은 필수 입니다').email('이메일 형식으로 입력해주세요');
+  const schema = new StringSchema().required('Please enter in email').email('Please enter in email format');
 
   const handleInputEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputEmail(e.target.value);
@@ -28,8 +28,10 @@ const InactiveLocationModal = forwardRef(({ location, onClose }: Props, ref) => 
     try {
       await schema.validate(inputEmail);
       setIsError(false);
-    } catch (e) {
+      setHelperText('');
+    } catch (e: any) {
       setIsError(true);
+      setHelperText(e.message ?? 'unknown Error');
       throw e;
     }
   };
@@ -37,6 +39,7 @@ const InactiveLocationModal = forwardRef(({ location, onClose }: Props, ref) => 
 
   const sendEmail = async () => {
     if (!inputEmail.length) return await checkValidInputEmail();
+    if (isError) return;
 
     try {
       await sendInactiveLocation({
@@ -49,11 +52,6 @@ const InactiveLocationModal = forwardRef(({ location, onClose }: Props, ref) => 
       onCloseDelay();
     }
   };
-
-  useEffect(() => {
-    if (!isError) return setHelperText('');
-    setHelperText(inputEmail.length ? 'Please enter in email format' : 'Please enter your email');
-  }, [isError]);
 
   return (
     <Styled.Wrapper>

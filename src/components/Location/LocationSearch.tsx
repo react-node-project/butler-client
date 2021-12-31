@@ -33,7 +33,7 @@ const LocationSearch = () => {
 
   const [isShow, setIsShow] = useState({
     markLocationModal: false,
-    disabledAddressModal: true,
+    disabledAddressModal: false,
   });
 
   const sendLocation = ({ address, location }: SendLocationProps) => {
