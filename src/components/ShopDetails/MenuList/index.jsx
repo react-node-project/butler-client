@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { StyledMenuWrapper, MenuProps } from './menuList.styled';
 import { Grid, Typography, InputLabel, MenuItem, FormControl, Select, useTheme, OutlinedInput } from '@mui/material';
-import MenuItemCard from '../MenuItemCard/index';
+import MenuCard from '../MenuCard/index';
 
 function getStyles(name, menuName, theme) {
   return {
@@ -62,11 +62,11 @@ export default function MenuList(props) {
               {menu.foodList.map((food, idx) =>
                 idx % 2 === 0 ? (
                   <Grid item align="right" sm={10} md={10} lg={5} key={idx}>
-                    <MenuItemCard key={idx} title={food.title} desc={food.desc} url={food.url} price={food.price} />
+                    <MenuCard key={idx} title={food.title} desc={food.desc} url={food.url} price={food.price} />
                   </Grid>
                 ) : (
                   <Grid item align="left" sm={10} md={10} lg={5} key={idx}>
-                    <MenuItemCard key={idx} title={food.title} desc={food.desc} url={food.url} price={food.price} />
+                    <MenuCard key={idx} title={food.title} desc={food.desc} url={food.url} price={food.price} />
                   </Grid>
                 ),
               )}

@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Card, CardContent, CardMedia, Typography, ButtonBase } from '@mui/material';
 import { StyledText } from './menuItem.styled';
 
-export default function MenuItemCard(props) {
+export default function MenuCard(props) {
   return (
     <ButtonBase
       onClick={(event) => {
