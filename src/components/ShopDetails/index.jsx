@@ -1,17 +1,9 @@
 import React from 'react';
 import ShopHeader from './ShopHeader/index';
-import MenuItem from './MenuItem/index';
-import { StyledWrapper } from './shopDetail.styled';
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Grid,
-  Slide
-} from '@mui/material';
+import { StyledText } from './shopDetail.styled';
+import MenuList from './MenuList/index';
+import { menu } from './data';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide } from '@mui/material';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -30,7 +22,7 @@ export default function ShopDetail() {
 
   return (
     <>
-      <StyledWrapper>
+      <StyledText>
         <ShopHeader slideDialog={handleClickOpen} />
         <Dialog
           open={open}
@@ -49,15 +41,8 @@ export default function ShopDetail() {
             <Button onClick={handleClose}>Close</Button>
           </DialogActions>
         </Dialog>
-      </StyledWrapper>
-
-      <Grid container display="flex" justifySelf="center" spacing={1}>
-        {Array.from(Array(16)).map((_, index) => (
-          <Grid item xs={10} sm={5} md={5} key={index}>
-            <MenuItem key={index} />
-          </Grid>
-        ))}
-      </Grid>
+        <MenuList menuSample={menu} menuCategory={menu.map((item) => item.category)} />
+      </StyledText>
     </>
   );
 }

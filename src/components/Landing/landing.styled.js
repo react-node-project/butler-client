@@ -1,7 +1,7 @@
 
 import { styled } from '@mui/styles';
 
-export const StyledDiv = styled.div({
+export const StyledDiv = styled('div')({
   position: 'relative',
   '& .title': {
     position: 'absolute',
