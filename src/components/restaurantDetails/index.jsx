@@ -1,6 +1,6 @@
 import React from 'react';
-import ShopHeader from './ShopHeader/index';
-import { StyledText } from './shopDetail.styled';
+import RestaurantHeader from '../restaurantDetails/RestaurantHeader/index';
+import { StyledText } from './restaurantDetail.styled';
 import MenuList from './MenuList/index';
 import { menu } from './data';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide } from '@mui/material';
@@ -9,26 +9,26 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function ShopDetail() {
+export default function RestaurantDetail() {
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
+  const InfohandleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const InfohandleClose = () => {
     setOpen(false);
   };
 
   return (
     <>
       <StyledText>
-        <ShopHeader slideDialog={handleClickOpen} />
+        <RestaurantHeader slideDialog={InfohandleClickOpen} />
         <Dialog
           open={open}
           TransitionComponent={Transition}
           keepMounted
-          onClose={handleClose}
+          onClose={InfohandleClose}
           aria-describedby="shop-info-description"
         >
           <DialogTitle>{'Info'}</DialogTitle>
@@ -38,10 +38,10 @@ export default function ShopDetail() {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Close</Button>
+            <Button onClick={InfohandleClose}>Close</Button>
           </DialogActions>
         </Dialog>
-        <MenuList menuSample={menu} menuCategory={menu.map((item) => item.category)} />
+        <MenuList menu={menu} menuCategory={menu.map((item) => item.category)} />
       </StyledText>
     </>
   );

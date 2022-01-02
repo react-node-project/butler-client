@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyledHeaderImage, StyledHeader } from './shopHedaer.styled';
+import { StyledHeaderImage, StyledHeader } from './restaurantHedaer.styled';
 import burgerImg from '../../../asset/img/burger.png';
 import { Grid, Button, List, Typography, ListItem } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import InfoIcon from '@mui/icons-material/Info';
 
-export default function StoreHeader(props) {
+export default function RestaurantHeader(props) {
   return (
     <>
       <StyledHeader>
