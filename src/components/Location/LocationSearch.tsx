@@ -11,9 +11,12 @@ import { PATH_USER_SIGNIN } from '../../constants/PathConstants';
 import { SendLocationProps, useSendLocationMutation } from '../../store/service/location';
 import { StyledLink } from '../../styles/element.styled';
 
-import MarkLocationModal from './MarkLocationModal/MarkLocationModal';
-import DisabledLocationModal from './DisabledLocationModal/DisabledLocationModal';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+
+import MarkLocationModal from './MarkLocationModal/MarkLocationModal';
+import DisabledLocationModal from './InactiveLocationModal/InactiveLocationModal';
 
 interface DefinedServerError {
   code: number;
@@ -22,6 +25,9 @@ interface DefinedServerError {
 
 const LocationSearch = () => {
   let navigate = useNavigate();
+  let _location = { lat: 0, lng: 0 };
+  const { country } = useSelector((state: RootState) => state.config);
+
   const [_sendLocation, sendLocationResult] = useSendLocationMutation({});
   const [searchText, setSearchText] = useState('');
 
@@ -31,6 +37,7 @@ const LocationSearch = () => {
   });
 
   const sendLocation = ({ address, location }: SendLocationProps) => {
+    _location = { ...location };
     _sendLocation({ address, location });
   };
   const onPlaceSelected = (places: google.maps.places.PlaceResult) => {
@@ -46,7 +53,16 @@ const LocationSearch = () => {
     });
   };
 
-  const { ref } = usePlacesWidget({ apiKey, onPlaceSelected, libraries: ['places', 'geometry'] });
+  const { ref } = usePlacesWidget({
+    apiKey,
+    onPlaceSelected,
+    libraries: ['places', 'geometry'],
+    options: {
+      componentRestrictions: {
+        country,
+      },
+    },
+  });
 
   const showMarkLocationModal = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -106,7 +122,9 @@ const LocationSearch = () => {
 
   return (
     <>
-      <Card sx={{ width: '800px', display: 'flex', justifyContent: 'center' }}>
+      <Card
+        sx={{ width: '100%', display: 'flex', justifyContent: 'flexStart', textAlign: 'start', marginBottom: '1rem' }}
+      >
         <CardContent sx={{ width: '100%' }}>
           <p>Enter your address to find local restaurants</p>
           <div>
@@ -133,7 +151,7 @@ const LocationSearch = () => {
             </LoadingButton>
           </div>
 
-          <div>
+          <div style={{ padding: '5px' }}>
             <StyledLink to={PATH_USER_SIGNIN}>Log in </StyledLink>
             for your recent address
           </div>
@@ -152,7 +170,11 @@ const LocationSearch = () => {
         onClose={handleClose}
       />
 
-      <Modal open={isShow.disabledAddressModal} children={<DisabledLocationModal />} onClose={handleClose} />
+      <Modal
+        open={isShow.disabledAddressModal}
+        children={<DisabledLocationModal location={_location} onClose={handleClose} />}
+        onClose={handleClose}
+      />
     </>
   );
 };

@@ -13,7 +13,7 @@ export default function ThemeMenu() {
       <ImageList>
         <Grid container sx={{ flexGrow: 1 }} spacing={3}>
           {THEMEMENU.map((item) => (
-            <Grid item xs={4} sm={6} md={6}>
+            <Grid item xs={12} sm={6} md={6}>
               <StyledDiv>
                 <ImageListItem key={item.url}>
                   <img
