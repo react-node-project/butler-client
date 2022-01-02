@@ -74,7 +74,7 @@ const Main = styled(Box)`
 
 const Footer = styled(Box)`
   width: 100%;
-  height: 10%;
+  height: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
