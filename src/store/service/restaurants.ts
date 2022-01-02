@@ -9,7 +9,7 @@ type GetRestaurantsProps = {
   restaurants: {
     imageUrl: string;
     title: string;
-    description: string;
+    descriptions: string[];
     review: {
       reviewText: string;
       reviewCount: number;

@@ -17,7 +17,7 @@ const RestaurantsList = (props: RestaurantsListProps) => {
           key={item.title}
           imageUrl={item.imageUrl}
           title={item.title}
-          description={item.description}
+          descriptions={item.descriptions}
           review={item.review}
           distanceText={item.distanceText}
         />

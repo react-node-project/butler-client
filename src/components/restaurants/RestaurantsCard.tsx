@@ -11,13 +11,14 @@ export type RestaurantsCardProps = {
     reviewText: string;
     reviewCount: number;
   };
-  description: string;
+  descriptions: string[];
   distanceText: string;
   isOpen?: boolean;
 };
 
 const RestaurantsCard = (props: RestaurantsCardProps) => {
-  const { imageUrl, title, review, description, distanceText, isOpen = true } = props;
+  const { imageUrl, title, review, descriptions, distanceText, isOpen = true } = props;
+  const descrition = descriptions.join('· ');
   return (
     <StyledLayout className={'card_item'}>
       <StyledButton component="button">
@@ -36,7 +37,7 @@ const RestaurantsCard = (props: RestaurantsCardProps) => {
                 <Box component="span"> ({review.reviewCount})</Box>
               </>
             )}
-            <Box component="span">{description}</Box>
+            <Box component="span"> {descrition}</Box>
           </Box>
           <Box className="distance">{distanceText}</Box>
         </StyledText>

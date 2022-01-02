@@ -41,19 +41,29 @@ export const handlers = [
       }),
     );
   }),
-  rest.get(`${MOCK_API_URL}/restauranrs/delivery`, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({ categories: { ...CATEGORY_LIST }, restaurants: [...RESTAURANTS_LIST] }));
-  }),
-  rest.get(`${MOCK_API_URL}/restauranrs/pick-up`, (req, res, ctx) => {
+  rest.get(`${MOCK_API_URL}/restauranrs/:filter`, (req, res, ctx) => {
+    if (req.params.filter === 'delivery') {
+      return res(ctx.status(200), ctx.json({ categories: { ...CATEGORY_LIST }, restaurants: [...RESTAURANTS_LIST] }));
+    }
+    if (req.params.filter === 'pick-up') {
+      return res(
+        ctx.status(200),
+        ctx.json({ categories: { ...CATEGORY_LIST_PICK_UP }, restaurants: [...RESTAURANTS_LIST_PICK_UP] }),
+      );
+    }
+    if (req.params.filter === 'table-service') {
+      return res(
+        ctx.status(200),
+        ctx.json({ categories: { ...CATEGORY_LIST_TABLE_SERVICE }, restaurants: [...RESTAURANTS_LIST_TABLE_SERVICE] }),
+      );
+    }
+
     return res(
-      ctx.status(200),
-      ctx.json({ categories: { ...CATEGORY_LIST_PICK_UP }, restaurants: [...RESTAURANTS_LIST_PICK_UP] }),
-    );
-  }),
-  rest.get(`${MOCK_API_URL}/restauranrs/table-service`, (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json({ categories: { ...CATEGORY_LIST_TABLE_SERVICE }, restaurants: [...RESTAURANTS_LIST_TABLE_SERVICE] }),
+      ctx.status(403),
+      ctx.json({
+        code: 2000,
+        message: 'not supported filter',
+      }),
     );
   }),
 ];
