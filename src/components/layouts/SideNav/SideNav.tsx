@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Button,
   Divider,
@@ -8,20 +8,32 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  SelectChangeEvent,
   Typography
 } from '@mui/material';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { PATH_USER_SIGNIN } from '../../../constants/PathConstants';
 import { StyledSideNavContainer, StyledSideNavHeader, StyledSideNavMain } from './sideNav.styled';
 import { StyledLink } from '../../../styles/element.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { Country, Language, setCountry, setLanguage } from '../../../store/features/configSlice';
+import { RootState } from '../../../store';
 
-export default ({ isShowSideNav, hideSideNav }) => {
-  const [selected, setSelected] = useState({
-    language: 'EN',
-    country: 'GBR',
-  });
+interface Props {
+  isShowSideNav: boolean;
+  hideSideNav(): void;
+}
 
-  const onChangeSelect = (e) => setSelected((prevState) => ({ ...prevState, [e.target.name]: e.target.value }));
+const SideNav = ({ isShowSideNav, hideSideNav }: Props) => {
+  const dispatch = useDispatch();
+  const { language, country } = useSelector((state: RootState) => state.config);
+
+  const onChangeSelect = (e: SelectChangeEvent<string>) => {
+    dispatch(
+      e.target.name === 'country' ? setCountry(e.target.value as Country) : setLanguage(e.target.value as Language),
+    );
+  };
+
   const list = () => (
     <>
       <StyledSideNavContainer role="presentation">
@@ -40,11 +52,11 @@ export default ({ isShowSideNav, hideSideNav }) => {
           </Button>
           <FormGroup className="sidenav-selected-buttons">
             <InputLabel id="select-language-label">Language</InputLabel>
-            <Select
+            <Select<string>
               labelId="select-language-label"
               id="language-select"
               name="language"
-              value={selected.language}
+              value={language}
               label="Age"
               onChange={onChangeSelect}
             >
@@ -53,11 +65,11 @@ export default ({ isShowSideNav, hideSideNav }) => {
             </Select>
 
             <InputLabel id="select-language-label">Country</InputLabel>
-            <Select
+            <Select<string>
               labelId="select-country-label"
               id="language-country"
               name="country"
-              value={selected.country}
+              value={country}
               label="country"
               onChange={onChangeSelect}
             >
@@ -77,3 +89,5 @@ export default ({ isShowSideNav, hideSideNav }) => {
     </Drawer>
   );
 };
+
+export default SideNav;

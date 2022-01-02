@@ -12,6 +12,15 @@ export const handlers = [
   rest.get(`${MOCK_API_URL}/theme-menus`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json([...THEMEMENU]));
   }),
+  rest.post(`${MOCK_API_URL}/inactiveLocation`, async (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        code: 1000,
+        message: 'ok',
+      }),
+    );
+  }),
   rest.post(`${MOCK_API_URL}/location`, async (req, res, ctx) => {
     await sleep(3000);
     const whiteList = ['영국 리버풀'];
