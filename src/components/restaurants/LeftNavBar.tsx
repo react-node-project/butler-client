@@ -1,15 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Box,
-  Button,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Modal,
-  Radio,
-  RadioGroup,
-  Typography,
-} from '@mui/material';
+import { Box, Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from '@mui/material';
 import {
   StyledAccordion,
   StyledAccordionDetails,
@@ -22,21 +12,10 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store/index';
 import { setFilter } from '@store/features/restaurants';
+import LeftNavModal from './LeftNavModal';
 
 export type LeftNavBarProps = {
   cityName?: string;
-};
-
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
 };
 
 const LeftNavBar = (props: LeftNavBarProps) => {
@@ -46,7 +25,7 @@ const LeftNavBar = (props: LeftNavBarProps) => {
   const [modalOpen, setModalOPen] = useState<boolean>(false);
 
   const handleChangeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const filterValue = (event.target as HTMLInputElement).value;
+    const filterValue = (event.target as HTMLInputElement).value as 'delivery' | 'pick-up' | 'table-service';
     if (filter !== filterValue) {
       dispatch(setFilter(filterValue));
     }
@@ -73,21 +52,7 @@ const LeftNavBar = (props: LeftNavBarProps) => {
               <Button size="small" onClick={handleSetModalOpen}>
                 Change
               </Button>
-              <Modal
-                open={modalOpen}
-                onClose={handleSetModalOpen}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <Box sx={style}>
-                  <Typography id="modal-modal-title" variant="h6" component="h2">
-                    Text in a modal
-                  </Typography>
-                  <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                  </Typography>
-                </Box>
-              </Modal>
+              <LeftNavModal filter={filter} open={modalOpen} onClose={handleSetModalOpen} />
             </StyledFilterTitle>
           </FormLabel>
           <StyledRadioGroup
