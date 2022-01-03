@@ -2,7 +2,7 @@ import { Box } from '@mui/system';
 import React from 'react';
 import StarIcon from '@mui/icons-material/Star';
 import { StyledButton, StyledText, StyledThumb } from './RestaurantsCard.styled';
-import { StyledLayout } from '../../pages/restaurants/restaurants.styled';
+import { StyledLayout } from '../../pages/restaurants/RestaurantsPage.styled';
 
 export type RestaurantsCardProps = {
   imageUrl: string;

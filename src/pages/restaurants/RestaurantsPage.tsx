@@ -2,7 +2,7 @@ import RestaurantsContents from '@components/restaurants';
 import LeftNavBar from '@components/restaurants/LeftNavBar';
 import React from 'react';
 import { Grid } from '@mui/material';
-import { StyledLayout } from './restaurants.styled';
+import { StyledLayout } from './RestaurantsPage.styled';
 
 export type RestaurantsPageProps = {};
 

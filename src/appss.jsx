@@ -7,8 +7,8 @@ import Home from './pages/Home';
 import Box from '@mui/material/Box';
 import { PATH_ROOT, PATH_USER_SIGNIN, PATH_RESTAURANTS, PATH_RESTAURANTS_DETAIL } from './constants/PathConstants';
 import AuthFlip from './pages/user/AuthFlip';
+import RestaurantsPage from './pages/restaurants/RestaurantsPage';
 import RestaurantDetail from './components/restaurantDetails/index';
-import RestaurantsPage from './components/restaurants';
 import { KAKAO_API_KEY } from './constants/EnvContant';
 
 export default function App() {
