@@ -1,8 +1,8 @@
 import React from 'react';
-import { Typography, Link, Box, AccordionSummary, AccordionDetails, IconButton } from '@mui/material';
+import { Typography, Box, AccordionSummary, AccordionDetails, IconButton } from '@mui/material';
 import { ExpandMore, Facebook, Instagram, Twitter } from '@mui/icons-material';
 import { FOOTERDATA } from '../Landing/data';
-import { StyledAccordion, StyledBox,StyledLink } from './footer.styled';
+import { StyledAccordion, StyledBox, StyledLink } from './footer.styled';
 
 const SOCIALS = [<Facebook />, <Twitter />, <Instagram />];
 
