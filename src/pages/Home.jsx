@@ -4,7 +4,7 @@ import { StyledContainer } from '../styles/element.styled';
 import ThemeMenu from './../components/Landing/ThemeMenu';
 import { Paper } from '@mui/material';
 import LocationSearch from '@components/Location/LocationSearch';
-import Footer from '../components/Footer';
+import Footer from '../components/footer';
 
 export default function Home() {
   return (
