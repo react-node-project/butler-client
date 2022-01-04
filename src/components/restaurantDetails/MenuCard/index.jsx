@@ -3,11 +3,11 @@ import { Box, Card, CardContent, CardMedia, Typography, ButtonBase } from '@mui/
 import { StyledText } from './menuItem.styled';
 
 export default function MenuCard(props) {
-  const { title, desc, ingridients, url, price } = props;
+  const { title, desc, ingredients, url, price } = props;
   return (
     <ButtonBase
       onClick={(event) => {
-        props.handleCardClick(title, desc, ingridients, url);
+        props.handleCardClick(title, desc, ingredients, url);
       }}
     >
       <Card sx={{ display: 'flex', maxWidth: '650px', maxHeight: '180px' }}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Button,
   Dialog,
@@ -19,9 +19,33 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 export default function MenuModal(props) {
-  const { open, menuName, menuDesc, menuIngri, imgUrl } = props;
+  const [ingredients, setingredients] = React.useState([]);
+  const { open, menu, menuName, menuDesc, menuIngri, imgUrl } = props;
+  const [totalPrice, setTotalPrice] = React.useState(0);
+  const [checked, setChecked] = React.useState([]);
+
+  useEffect(() => {
+    // console.log(props.menu[0].foodList[0].ingredients);
+    let checkList = props.menu.map((category, categoryIdx) =>
+      category.foodList.map((food, foodIdx) => {
+        return food.ingredients;
+      }),
+    );
+
+    console.log(checkList);
+  }, []);
+
   const handleClose = () => {
     props.handleClose();
+    // clear out selected options
+    setingredients([]);
+    // let tmpchecked = [];
+    // tmpchecked = checked.map((item) => ({ item: false }));
+    // console.log(tmpchecked);
+  };
+  const addIngredients = (e, idx, item) => {
+    ingredients.push(item);
+    setTotalPrice(totalPrice + item[1]);
   };
 
   return (
@@ -38,19 +62,19 @@ export default function MenuModal(props) {
             {menuDesc}
           </DialogContentText>
           <FormGroup>
-            {menuIngri.map((el, idx) => (
+            {menuIngri.map((item, idx) => (
               <FormControlLabel
                 key={idx}
-                control={<Checkbox />}
+                control={<Checkbox checked={checked[idx]} onChange={(e) => addIngredients(e, idx, item)} />}
                 sx={{ display: 'flex', float: 'left' }}
-                label={el[0]}
+                label={item[0]}
               />
             ))}
           </FormGroup>
         </DialogContent>
         <DialogActions>
           <Button sx={{ m: 1, px: 6, width: '100%' }} type="submit" variant="contained">
-            Add for $price
+            Add for $ {totalPrice}
           </Button>
         </DialogActions>
       </Dialog>

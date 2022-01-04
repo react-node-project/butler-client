@@ -13,10 +13,10 @@ function getStyles(name, menuName, theme) {
 export default function MenuList(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [menuName, setMenuName] = React.useState([]);
-  const [menuDesc, setMenuDesc] = React.useState([]);
+  const [menuName, setMenuName] = React.useState('');
+  const [menuDesc, setMenuDesc] = React.useState('');
   const [menuIngri, setMenuIngri] = React.useState([]);
-  const [imgUrl, setImgUrl] = React.useState([]);
+  const [imgUrl, setImgUrl] = React.useState('');
 
   let refs = [useRef(null), useRef(null)];
 
@@ -49,6 +49,7 @@ export default function MenuList(props) {
     <>
       <MenuModal
         open={open}
+        menu={props.menu}
         menuName={menuName}
         menuDesc={menuDesc}
         menuIngri={menuIngri}
@@ -91,7 +92,7 @@ export default function MenuList(props) {
                       key={idx}
                       title={food.title}
                       desc={food.desc}
-                      ingridients={food.ingredients}
+                      ingredients={food.ingredients}
                       url={food.url}
                       price={food.price}
                       handleCardClick={handleCardClick}
@@ -103,7 +104,7 @@ export default function MenuList(props) {
                       key={idx}
                       title={food.title}
                       desc={food.desc}
-                      ingridients={food.ingredients}
+                      ingredients={food.ingredients}
                       url={food.url}
                       price={food.price}
                       handleCardClick={handleCardClick}
