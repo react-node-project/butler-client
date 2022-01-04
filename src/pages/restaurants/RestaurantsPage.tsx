@@ -2,11 +2,11 @@ import RestaurantsContents from '@components/restaurants';
 import LeftNavBar from '@components/restaurants/LeftNavBar';
 import React from 'react';
 import { Grid } from '@mui/material';
-import { StyledLayout } from './restaurants.styled';
+import { StyledLayout } from './RestaurantsPage.styled';
 
-export type RestaurantsProps = {};
+export type RestaurantsPageProps = {};
 
-const RestaurantsPage: React.FC<RestaurantsProps> = (props) => {
+const RestaurantsPage = (props: RestaurantsPageProps) => {
   return (
     <StyledLayout container wrap="nowrap">
       <Grid item>

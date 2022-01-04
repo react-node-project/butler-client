@@ -1,17 +1,41 @@
 import { styled } from '@mui/styles';
 import { Box, Theme } from '@mui/material';
 
+export const StyledLayout = styled(Box)({ marginBottom: '16px' });
+
 export const StyledThumb = styled(Box)((props: { url: string }) => ({
+  position: 'relative',
   width: '100%',
   paddingTop: '56.25%',
   backgroundImage: `url(${props.url})`,
   backgroundSize: 'cover',
   backgroundPosition: '50%',
+  '& span': {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '100%',
+    background: 'rgba(46, 51, 51, 0.8)',
+    fontSize: '14px',
+    fontWeight: 600,
+    color: '#fff',
+  },
 }));
 
+export const StyledButton = styled(Box)({
+  border: 'none',
+  background: 'none',
+  padding: 0,
+});
+
 export const StyledText = styled(Box)((props: { theme: Theme }) => ({
-  padding: '0 16px 16px',
-  marginTop: '16px',
+  marginTop: '8px',
   color: '#828285',
   textAlign: 'left',
   fontSize: '14px',

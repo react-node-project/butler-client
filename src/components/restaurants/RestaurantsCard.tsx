@@ -1,26 +1,30 @@
 import { Box } from '@mui/system';
 import React from 'react';
 import StarIcon from '@mui/icons-material/Star';
-import { StyledText, StyledThumb } from './CardItem.styled';
+import { StyledButton, StyledText, StyledThumb } from './RestaurantsCard.styled';
+import { StyledLayout } from '../../pages/restaurants/RestaurantsPage.styled';
 
-export type CardItemProps = {
+export type RestaurantsCardProps = {
   imageUrl: string;
   title: string;
   review?: {
     reviewText: string;
     reviewCount: number;
   };
-  description: string;
+  descriptions: string[];
   distanceText: string;
-  eventText: string;
+  isOpen?: boolean;
 };
 
-const CardItem: React.FC<CardItemProps> = (props) => {
-  const { imageUrl, title, review, description, distanceText, eventText } = props;
+const RestaurantsCard = (props: RestaurantsCardProps) => {
+  const { imageUrl, title, review, descriptions, distanceText, isOpen = true } = props;
+  const descrition = descriptions.join('· ');
   return (
-    <Box className={'card_item'}>
-      <Box component="button">
-        <StyledThumb className="thumb" url={imageUrl} />
+    <StyledLayout className={'card_item'}>
+      <StyledButton component="button">
+        <StyledThumb className="thumb" url={imageUrl}>
+          {!isOpen && <span>Back soon</span>}
+        </StyledThumb>
         <StyledText>
           <Box className="title">{title}</Box>
           <Box className="description">
@@ -33,14 +37,13 @@ const CardItem: React.FC<CardItemProps> = (props) => {
                 <Box component="span"> ({review.reviewCount})</Box>
               </>
             )}
-            <Box component="span">{description}</Box>
+            <Box component="span"> {descrition}</Box>
           </Box>
           <Box className="distance">{distanceText}</Box>
-          <Box className="event">{eventText}</Box>
         </StyledText>
-      </Box>
-    </Box>
+      </StyledButton>
+    </StyledLayout>
   );
 };
 
-export default CardItem;
+export default RestaurantsCard;

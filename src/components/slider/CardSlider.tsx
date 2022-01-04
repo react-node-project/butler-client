@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { StyledLayout, StyledNextButton, StyledPrevButton, StyledSlider, StyledTitle } from './CardSlider.styled';
+import {
+  StyledContents,
+  StyledLayout,
+  StyledNextButton,
+  StyledPrevButton,
+  StyledSlider,
+  StyledTitle,
+} from './CardSlider.styled';
 import useWindowSize from '@hooks/useWindowSize';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { Box } from '@mui/system';
 
 export type CardSliderProps = {
   title: string;
   list: any[];
   cardWidth: number;
   sliderRef: any;
+  children: React.ReactChild;
 };
 
-const CardSlider: React.FC<CardSliderProps> = (props) => {
+const CardSlider = (props: CardSliderProps) => {
   const { title, list, cardWidth, children, sliderRef } = props;
   const windowSize = useWindowSize();
   const [index, setIndex] = useState<number>(1);
@@ -22,16 +29,18 @@ const CardSlider: React.FC<CardSliderProps> = (props) => {
   const nextIndex = index + count;
   const prevIndex = index - count;
   const cardMargin = 16;
+  const nowWidth = cardWidth * count;
+  const nowMargin = cardMargin * count;
 
   const onClickNext = () => {
     if (sliderRef.current) {
-      setMoveWidth((prev) => prev + cardWidth * count + count * cardMargin);
+      setMoveWidth((prev) => prev + nowWidth + nowMargin);
       setIndex((prev) => prev + count);
     }
   };
   const onClickPrev = () => {
     if (sliderRef.current) {
-      setMoveWidth((prev) => prev - cardWidth * count - count * cardMargin);
+      setMoveWidth((prev) => prev - nowWidth - nowMargin);
       setIndex((prev) => prev - count);
     }
   };
@@ -49,9 +58,9 @@ const CardSlider: React.FC<CardSliderProps> = (props) => {
   }, [moveWidth]);
 
   return (
-    <Box>
+    <StyledLayout>
       <StyledTitle variant="h3">{title}</StyledTitle>
-      <StyledLayout>
+      <StyledContents>
         <StyledSlider>
           {prevIndex > 0 && (
             <StyledPrevButton className="arrow" onClick={onClickPrev}>
@@ -65,8 +74,8 @@ const CardSlider: React.FC<CardSliderProps> = (props) => {
             </StyledNextButton>
           )}
         </StyledSlider>
-      </StyledLayout>
-    </Box>
+      </StyledContents>
+    </StyledLayout>
   );
 };
 

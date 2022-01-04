@@ -1,6 +1,14 @@
 import { rest, setupWorker } from 'msw';
 import { THEMEMENU } from './data/landing';
 import { MOCK_API_URL } from '../constants/EnvContant';
+import {
+  CATEGORY_LIST,
+  CATEGORY_LIST_PICK_UP,
+  CATEGORY_LIST_TABLE_SERVICE,
+  RESTAURANTS_LIST,
+  RESTAURANTS_LIST_PICK_UP,
+  RESTAURANTS_LIST_TABLE_SERVICE,
+} from './data/restaurants';
 
 const sleep = (ms) => {
   return new Promise((resolve) => {
@@ -39,6 +47,31 @@ export const handlers = [
       ctx.json({
         code: 1000,
         message: 'ok',
+      }),
+    );
+  }),
+  rest.get(`${MOCK_API_URL}/restauranrs/:filter`, (req, res, ctx) => {
+    if (req.params.filter === 'delivery') {
+      return res(ctx.status(200), ctx.json({ categories: { ...CATEGORY_LIST }, restaurants: [...RESTAURANTS_LIST] }));
+    }
+    if (req.params.filter === 'pick-up') {
+      return res(
+        ctx.status(200),
+        ctx.json({ categories: { ...CATEGORY_LIST_PICK_UP }, restaurants: [...RESTAURANTS_LIST_PICK_UP] }),
+      );
+    }
+    if (req.params.filter === 'table-service') {
+      return res(
+        ctx.status(200),
+        ctx.json({ categories: { ...CATEGORY_LIST_TABLE_SERVICE }, restaurants: [...RESTAURANTS_LIST_TABLE_SERVICE] }),
+      );
+    }
+
+    return res(
+      ctx.status(403),
+      ctx.json({
+        code: 2000,
+        message: 'not supported filter',
       }),
     );
   }),

@@ -35,7 +35,7 @@ const SignIn = (props) => {
                 margin="normal"
                 required
                 fullWidth
-                id="email"
+                id="email-signup"
                 label="Enter email"
                 name="email"
                 autoComplete="email"
@@ -54,7 +54,7 @@ const SignIn = (props) => {
                 name="password"
                 label="Enter password"
                 type="password"
-                id="password"
+                id="password-signup"
                 autoComplete="current-password"
                 helperText={errors.password?.message}
                 {...register('password', { required: { value: true, message: '필수입력사항입니다.' } })}

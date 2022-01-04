@@ -3,11 +3,15 @@ import { Box, Typography } from '@mui/material';
 
 export const StyledLayout = styled(Box)({
   position: 'relative',
-  width: '100%',
+  padding: '0 8px',
 });
 
 export const StyledTitle = styled(Typography)({
   marginBottom: '24px',
+});
+
+export const StyledContents = styled(Box)({
+  position: 'relative',
 });
 
 export const StyledSlider = styled(Box)({
