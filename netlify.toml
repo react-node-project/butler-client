@@ -1,0 +1,11 @@
+# A basic redirect rule
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# You can also define custom headers within your redirects blocks.
+[[headers]]
+  X-From = "Netlify"
+  X-Api-Key = "1234"
+
