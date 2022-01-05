@@ -57,11 +57,11 @@ export default function StoreHeader(props) {
   return (
     <>
       <Header>
-        <Grid container spacing={8} alignItems="center" justifyContent="center">
-          <Grid item sx={6}>
+        <Grid p={2} container spacing={2} alignItems="start" justifyContent="center">
+          <Grid item sx={10} md={4} >
             <HeaderImage src={burgerImg} />
           </Grid>
-          <Grid item sx={4} sx={{ justifyContent: 'flex-start' }}>
+          <Grid item sx={10} md={6}>
             <List>
               <ListItem disablePadding>
                 <Typography variant="h4">Grease Monkey</Typography>
@@ -79,7 +79,7 @@ export default function StoreHeader(props) {
           </Grid>
           <Grid item sx={2}>
             <ListItem disablePadding>
-              <Typography variant="h8">Deliver in 20 - 35 min</Typography>
+              <Typography mt={1} variant="h8">Deliver in 20 - 35 min</Typography>
             </ListItem>
           </Grid>
         </Grid>
@@ -87,6 +87,7 @@ export default function StoreHeader(props) {
 
       <Grid container direction="row-reverse">
         <FormControl sx={{ m: 1, width: 300 }}>
+
           <InputLabel id="demo-multiple-menu-category">Greasy's Burgers</InputLabel>
           <Select
             labelId="multiple-menu-category"
@@ -103,6 +104,7 @@ export default function StoreHeader(props) {
               </MenuItem>
             ))}
           </Select>
+
         </FormControl>
       </Grid> 
     </>

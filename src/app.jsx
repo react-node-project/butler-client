@@ -34,5 +34,5 @@ export default function App() {
 }
 
 const Main = styled(Box)({
-  padding: '74px 10px 10px 10px',
+  padding: '10px',
 });

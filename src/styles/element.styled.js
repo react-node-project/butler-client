@@ -1,5 +1,5 @@
 import { styled } from '@mui/styles';
-import { Container,Paper,Grid } from '@mui/material';
+import { Container, Paper, Grid, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { theme } from './theme';
 
@@ -19,9 +19,11 @@ export const StyledLink = styled(Link)({
 });
 
 export const StyledPaper = styled(Paper)({
-  padding:"3rem"
+  padding:"3rem",
+  alignItems: 'center',
+  justifyContent: 'center',
 })
 
-export const StyledGridContainer = styled(Grid)({
-
+export const StyledGrid = styled(Grid)({
+  height:"60vh"
 })

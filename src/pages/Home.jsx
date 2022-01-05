@@ -17,6 +17,7 @@ export default function Home() {
 
   return (
     <div>
+      
       <StyledContainer maxWidth="xs">
         <StyledPaper>
           <LocationSearch />
