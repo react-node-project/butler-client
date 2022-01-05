@@ -56,7 +56,7 @@ const LeftNavModal = (props: LeftNavModalProps) => {
   const dispatch = useDispatch();
 
   const handleChangeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const filterValue = (event.target as HTMLInputElement).value as 'delivery' | 'pick-up' | 'table-service';
+    const filterValue = (event.target as HTMLInputElement).value as LeftNavModalProps['filter'];
     if (filter !== filterValue) {
       setFilter(filterValue);
     }

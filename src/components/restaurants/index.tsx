@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import CategorySlider from './CategorySlider';
 import { StyledLayout } from './index.styled';
 import RestaurantsList from './RestaurantsList';
-// import RestaurantsSlider from './RestaurantsSlider';
 
 export type RestaurantsProps = {};
 
@@ -23,7 +22,6 @@ const Restaurants = (props: RestaurantsProps) => {
   return (
     <StyledLayout sx={{ flexGrow: 1 }}>
       <CategorySlider categories={categories} />
-      {/* <RestaurantsSlider /> */}
       <RestaurantsList restaurants={restaurants} />
     </StyledLayout>
   );

@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store/index';
 import { setFilter } from '@store/features/restaurants';
 import LeftNavModal from './LeftNavModal';
+import { LeftNavModalProps } from '@components/restaurants/LeftNavModal';
 
 export type LeftNavBarProps = {
   cityName?: string;
@@ -25,7 +26,7 @@ const LeftNavBar = (props: LeftNavBarProps) => {
   const [modalOpen, setModalOPen] = useState<boolean>(false);
 
   const handleChangeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const filterValue = (event.target as HTMLInputElement).value as 'delivery' | 'pick-up' | 'table-service';
+    const filterValue = (event.target as HTMLInputElement).value as LeftNavModalProps['filter'];
     if (filter !== filterValue) {
       dispatch(setFilter(filterValue));
     }

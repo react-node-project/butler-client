@@ -1,3 +1,4 @@
+import { LeftNavModalProps } from '@components/restaurants/LeftNavModal';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { MOCK_API_URL } from '../../constants/EnvContant';
 
@@ -22,7 +23,7 @@ export const restaurantsAPI = createApi({
   reducerPath: 'restaurantsApi',
   baseQuery: fetchBaseQuery({ baseUrl: MOCK_API_URL }),
   endpoints: (build) => ({
-    getRestaurants: build.query<GetRestaurantsProps, string>({
+    getRestaurants: build.query<GetRestaurantsProps, LeftNavModalProps['filter']>({
       query: (filter) => ({
         url: `/restauranrs/${filter}`,
         method: 'get',
