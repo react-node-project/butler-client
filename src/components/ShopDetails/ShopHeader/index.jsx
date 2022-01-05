@@ -58,7 +58,7 @@ export default function StoreHeader(props) {
     <>
       <Header>
         <Grid p={2} container spacing={2} alignItems="start" justifyContent="center">
-          <Grid item sx={10} md={4} >
+          <Grid item sx={10} m={4} >
             <HeaderImage src={burgerImg} />
           </Grid>
           <Grid item sx={10} md={6}>

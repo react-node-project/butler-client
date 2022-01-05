@@ -9,9 +9,12 @@ export const theme = createTheme({
       contrastText: '#fff',
     },
     primary: {
-      light: '#f2cbbf',
-      main: '#f56656',
+      main:"#319e6b",
+      light:"#41d1c3",
       contrastText: '#fff',
+      // light: '#f2cbbf',
+      // main: '#f56656',
+      // contrastText: '#fff',
     },
   },
   tyopography: {

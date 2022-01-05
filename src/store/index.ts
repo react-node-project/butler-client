@@ -4,11 +4,13 @@ import userReducer from './features/userSlice';
 import restaurantsReducer from './features/restaurantsSlice';
 import { locationAPI } from './service/location';
 import configReducer from './features/configSlice';
+import cartReducer from './features/cartSlicer';
 
 const rootReducer = combineReducers({
   app: appReducer,
   user: userReducer,
   restaurants: restaurantsReducer,
+  cart:cartReducer,
   config: configReducer,
   locationAPI: locationAPI.reducer,
 });

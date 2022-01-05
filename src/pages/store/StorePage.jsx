@@ -10,6 +10,7 @@ export default function StorePage() {
 <ShopDetail />
 </Container>
 <Box sx={{margin:0,background:"#eee"}}>
+  <Container>
   <Grid m={2} container spacing={1}>
   {/* <StyledDiv flex={2} width={"70%"}> */}
   <StyledGrid item sx={12} md={8}> 
@@ -22,6 +23,7 @@ export default function StorePage() {
   </StyledGrid>
   {/* </StyledDiv> */}
   </Grid>
+  </Container>
 </Box>
 
     </>
