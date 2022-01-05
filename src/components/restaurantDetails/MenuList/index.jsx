@@ -78,7 +78,7 @@ export default function MenuList(props) {
       <StyledMenuWrapper>
         <Grid container display="flex" justifyContent="center" alignItems="center" spacing={2}>
           {props.menu.map((menu, index) => (
-            <div key={index}>
+            <React.Fragment key={index}>
               <Grid item marginTop="1rem" marginLeft="2rem" sm={12}>
                 <Typography ref={refs[index]} component="span" className="category">
                   {menu.category}
@@ -111,7 +111,7 @@ export default function MenuList(props) {
                   </Grid>
                 ),
               )}
-            </div>
+            </React.Fragment>
           ))}
         </Grid>
       </StyledMenuWrapper>

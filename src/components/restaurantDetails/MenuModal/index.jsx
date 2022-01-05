@@ -22,7 +22,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 export default function MenuModal(props) {
   const [checkedItems, setCheckedItems] = React.useState({});
-  const [ingredients, setingredients] = React.useState([]);
+  const [ingredients, setingredients] = React.useState({});
   const { open, menuName, menuDesc, menuIngri, imgUrl } = props;
   const [price, setPrice] = React.useState(0);
   const dispatch = useDispatch();
@@ -35,27 +35,38 @@ export default function MenuModal(props) {
 
     dispatch(addMenuOption(ingredients));
     // clear checkbox, options, price
-    setCheckedItems([]);
-    setingredients([]);
+    setCheckedItems({});
+    setingredients({});
     setPrice(0);
   };
 
-  const handleIngredients = (e, idx, item) => {
-    ingredients.push(item);
+  const addIngredients = (menuName, item) => {
+    let currentIngredients = ingredients[menuName] || [];
+    setingredients({ ...ingredients, [menuName]: [...currentIngredients, item] });
+  };
 
+  const removeIngredients = (menuName, item) => {
+    let updatedIngredients = ingredients[menuName].filter((ingredient) => ingredient[0] !== item[0]);
+    setingredients(updatedIngredients);
+  };
+
+  const handleIngredients = (e, idx, item, menuName) => {
     // if already checked, uncheck and remove item's price from the total
     // if not add item and its price
     if (item[0] in checkedItems) {
       if (checkedItems[item[0]]) {
         setCheckedItems({ ...checkedItems, [item[0]]: false });
         setPrice(price - item[1]);
+        removeIngredients(menuName, item);
       } else {
         setCheckedItems({ ...checkedItems, [item[0]]: true });
         setPrice(price + item[1]);
+        addIngredients(menuName, item);
       }
     } else {
       setCheckedItems({ ...checkedItems, [item[0]]: true });
       setPrice(price + item[1]);
+      addIngredients(menuName, item);
     }
   };
 
@@ -81,7 +92,7 @@ export default function MenuModal(props) {
                 control={
                   <Checkbox
                     checked={checkedItems[item[0]] || false}
-                    onChange={(e) => handleIngredients(e, idx, item)}
+                    onChange={(e) => handleIngredients(e, idx, item, menuName)}
                   />
                 }
                 sx={{ display: 'flex', float: 'left' }}
