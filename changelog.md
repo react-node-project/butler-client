@@ -20,16 +20,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [latest] - 2022-01-05
 written by esther615kim
-
  `Added`
-
-
+- Basket.jsx, basket.test.js and cartSlicer.js 
   `Changed`
 - StorePage.jsx to add layout and imported components from ShopDetails folder
 - App.tsx to fix shopPage path
-
+- Landing page components to amend for better responsive layout.
   `Deleted`
 - unused files from Landing folder
+ `Bug`
+- cartSlicer.js does not increment Amt(open issue)
 
 ### [0.0.8] - 2021-12-13
 written by Hoin
