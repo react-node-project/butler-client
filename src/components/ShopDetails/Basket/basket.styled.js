@@ -4,19 +4,6 @@ import { Card, Button, Box, Stack, Paper } from "@mui/material";
 export const StyledDiv = styled("div")(({ theme }) => ({
   display: "flex",
   padding: "1.5rem 3rem",
-
-  // [theme.breakpoints.down('sm')]: {
-  //   maxWidth: '100%',
-  //   padding: '1rem',
-  // },
-  // [theme.breakpoints.between('md', 'lg')]: {
-  //   maxWidth: '90%',
-  //   padding: '1rem',
-  // },
-  // '@media (min-width: 1200px)': {
-  //   maxWidth: '100%',
-  //   padding: '0 10rem',
-  // },
 }));
 
 export const StyledPaper = styled(Paper)({

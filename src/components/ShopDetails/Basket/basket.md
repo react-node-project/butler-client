@@ -1,26 +1,23 @@
 
-### 장바구니앱 To-dos
-- ui 그리기
-- test 코드 5개
-- 리덕스 연결
-- 장바구니 CRUD
+### Basket To-dos
+- ✅ refactor layout & responsive
+- ✅ set redux slicers
+- basket CRUD (after menu is done)
+- test codes
 
+`additional`
 - TS refactoring
 
 ### Test codes
 initial status(empty)
-- [] right description message
-- [] no item component
+- [✅] right description message
+- [✅] no item component
 
 functionality 
 - [] should be able to add items in the basket
 - [] should be able to remove items
 - [] should be able to add number of items
 
-async funcs
-- [] 
-- [] 
-
-expected output
-- [] 
+async funcs(data fetching)
+- []
 - [] 
