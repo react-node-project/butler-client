@@ -9,15 +9,16 @@ export default function ThemeMenu() {
       <Typography data-testid="header" align="left" variant="h4">
         What's on the menu?
       </Typography>
+
       <ImageList>
-        <Grid container sx={{ flexGrow: 1 }} spacing={3}>
+        <Grid container spacing={3}>
           {THEMEMENU.map((item) => (
-            <Grid item xs={12} sm={6} md={6}>
+            <Grid item xs={12} sm={12} md={6}>
               <StyledDiv>
                 <ImageListItem key={item.url}>
                   <img
-                    style={{ height: 120 }}
-                    src={`${item.url}?w=128&fit=crop&auto=format`}
+                    style={{ height: 140 }}
+                    src={`${item.url}?w=168&fit=crop&auto=format`}
                     alt={item.title}
                     loading="lazy"
                   />

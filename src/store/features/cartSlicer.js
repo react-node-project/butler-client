@@ -7,11 +7,10 @@ const initialState = {
 };
 
 const cartSlice = createSlice({
-  name: "cart",
+  name: 'cart',
   initialState,
   reducers: {
     // add item to cart
-    //action.payload = product
     addToCart(state, action) {
       const itemIndex = state.cartItems.findIndex(
         (item) => item.id === action.payload.id
@@ -28,8 +27,8 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart } = cartSlice.actions; // individual reducers
+export const { addToCart } = cartSlice.actions; 
 
 export default cartSlice.reducer;
 
-// (item) => item.id === action.payload.id //이슈?
+// (item) => item.id === action.payload.id

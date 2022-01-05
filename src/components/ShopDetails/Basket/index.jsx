@@ -1,3 +1,6 @@
+// 민주님 이 컴포넌트는 메뉴 페이지 기능에 장바구니 담기 클릭 버튼까지 진행되면 더 할게요. 
+// 장바구니용 cartSlice는 만들어 두었는데요 + orderSlice 만드셔야 할 것 같아요. 
+
 import React, { useState } from 'react';
 import { StyledCard, StyledButton } from './basket.styled';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';

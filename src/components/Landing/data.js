@@ -4,30 +4,30 @@ export const FOOTERDATA = [
     // link1~3 중복 obj => footer iteration 방법
     link1: {
       title: 'Signin',
-      url: '#',
+      url: '/login',
     },
     link2: {
       title: 'Signup',
-      url: '#',
+      url: '/dist',
     },
     link3: {
         title: 'About us',
-        url: '#',
+        url: '/',
       },
   },
   {
     heading: 'Customer Service',
     link1: {
       title: 'My account',
-      url: '#',
+      url: '/',
     },
     link2: {
       title: 'More',
-      url: '#',
+      url: '/',
     },
     link3: {
         title: 'Contact us',
-        url: '#',
+        url: '/',
       },
   },
   {

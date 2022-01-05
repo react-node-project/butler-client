@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Link, Box, AccordionSummary, AccordionDetails, IconButton } from '@mui/material';
+import { Typography,Box, AccordionSummary, AccordionDetails, IconButton } from '@mui/material';
 import { ExpandMore, Facebook, Instagram, Twitter } from '@mui/icons-material';
 import { FOOTERDATA } from '../Landing/data';
 import { StyledAccordion, StyledBox,StyledLink } from './footer.styled';
@@ -26,9 +26,9 @@ export default function Footer() {
           </StyledAccordion>
         ))}
         {/* socials */}
-        <Box mt={2}>
+        <Box mt={2} textAlign="center">
           {SOCIALS.map((item) => (
-            <IconButton>{item}</IconButton>
+            <IconButton size="large">{item}</IconButton>
           ))}
         </Box>
         <Box pt={2} textAlign="center">

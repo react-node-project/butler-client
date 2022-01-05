@@ -1,10 +1,10 @@
 // import { Button } from '@mui/material';
 import React from 'react';
-import { StyledContainer,StyledPaper } from '../styles/element.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsLoading } from '../store/features/appSlice';
+import { StyledContainer } from './../styles/sharedElement.styled';
+import { Container } from '@mui/material';
 import ThemeMenu from './../components/Landing/ThemeMenu';
-import { Paper } from '@mui/material';
 import LocationSearch from '@components/Location/LocationSearch';
 import Footer from '../components/Footer';
 
@@ -17,14 +17,13 @@ export default function Home() {
 
   return (
     <div>
-      
-      <StyledContainer maxWidth="xs">
-        <StyledPaper>
+      <Container align="center">
+        <StyledContainer>
           <LocationSearch />
           <ThemeMenu />
           <Footer />
-        </StyledPaper>
-      </StyledContainer>
+        </StyledContainer>
+      </Container>
     </div>
   );
 }
