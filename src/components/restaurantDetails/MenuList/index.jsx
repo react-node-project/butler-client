@@ -49,7 +49,6 @@ export default function MenuList(props) {
     <>
       <MenuModal
         open={open}
-        menu={props.menu}
         menuName={menuName}
         menuDesc={menuDesc}
         menuIngri={menuIngri}

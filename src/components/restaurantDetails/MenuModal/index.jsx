@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   Button,
   Dialog,
@@ -14,38 +14,51 @@ import {
 } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { StyledImg } from './menuModel.styled';
+import { setTotalPrice as setTotalPriceStore, addMenuOption } from '../../../store/features/menuSelectSlice';
+import { useDispatch } from 'react-redux';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 export default function MenuModal(props) {
+  const [checkedItems, setCheckedItems] = React.useState({});
   const [ingredients, setingredients] = React.useState([]);
-  const { open, menu, menuName, menuDesc, menuIngri, imgUrl } = props;
-  const [totalPrice, setTotalPrice] = React.useState(0);
-  const [checked, setChecked] = React.useState([]);
-
-  useEffect(() => {
-    // console.log(props.menu[0].foodList[0].ingredients);
-    let checkList = props.menu.map((category, categoryIdx) =>
-      category.foodList.map((food, foodIdx) => {
-        return food.ingredients;
-      }),
-    );
-
-    console.log(checkList);
-  }, []);
+  const { open, menuName, menuDesc, menuIngri, imgUrl } = props;
+  const [price, setPrice] = React.useState(0);
+  const dispatch = useDispatch();
 
   const handleClose = () => {
     props.handleClose();
-    // clear out selected options
+    // dispatch selected items and total
+    let priceToAdd = Math.abs(parseFloat(price).toFixed(2));
+    dispatch(setTotalPriceStore(priceToAdd));
+
+    dispatch(addMenuOption(ingredients));
+    // clear checkbox, options, price
+    setCheckedItems([]);
     setingredients([]);
-    // let tmpchecked = [];
-    // tmpchecked = checked.map((item) => ({ item: false }));
-    // console.log(tmpchecked);
+    setPrice(0);
+
+    console.log(checkedItems);
   };
-  const addIngredients = (e, idx, item) => {
+
+  const handleIngredients = (e, idx, item) => {
     ingredients.push(item);
-    setTotalPrice(totalPrice + item[1]);
+
+    // if already checked, uncheck and remove item's price from the total
+    // if not add item and its price
+    if (item[0] in checkedItems) {
+      if (checkedItems[item[0]]) {
+        setCheckedItems({ ...checkedItems, [item[0]]: false });
+        setPrice(price - item[1]);
+      } else {
+        setCheckedItems({ ...checkedItems, [item[0]]: true });
+        setPrice(price + item[1]);
+      }
+    } else {
+      setCheckedItems({ ...checkedItems, [item[0]]: true });
+      setPrice(price + item[1]);
+    }
   };
 
   return (
@@ -65,7 +78,12 @@ export default function MenuModal(props) {
             {menuIngri.map((item, idx) => (
               <FormControlLabel
                 key={idx}
-                control={<Checkbox checked={checked[idx]} onChange={(e) => addIngredients(e, idx, item)} />}
+                control={
+                  <Checkbox
+                    checked={checkedItems[item[0]] || false}
+                    onChange={(e) => handleIngredients(e, idx, item)}
+                  />
+                }
                 sx={{ display: 'flex', float: 'left' }}
                 label={item[0]}
               />
@@ -74,7 +92,7 @@ export default function MenuModal(props) {
         </DialogContent>
         <DialogActions>
           <Button sx={{ m: 1, px: 6, width: '100%' }} type="submit" variant="contained">
-            Add for $ {totalPrice}
+            Add for $ {Math.abs(parseFloat(price).toFixed(2))}
           </Button>
         </DialogActions>
       </Dialog>
