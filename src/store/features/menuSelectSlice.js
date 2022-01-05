@@ -16,7 +16,7 @@ export const menuSelectSlice = createSlice({
       state.selectedMenuOption = state.selectedMenuOption.filter((el) => el !== action.payload);
     },
     setTotalPrice: (state, action) => {
-      state.totalPrice = action.payload;
+      state.totalPrice = state.totalPrice + action.payload;
     },
   },
 });

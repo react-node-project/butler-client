@@ -38,8 +38,6 @@ export default function MenuModal(props) {
     setCheckedItems([]);
     setingredients([]);
     setPrice(0);
-
-    console.log(checkedItems);
   };
 
   const handleIngredients = (e, idx, item) => {
