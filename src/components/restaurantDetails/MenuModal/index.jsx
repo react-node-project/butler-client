@@ -13,7 +13,7 @@ import {
   IconButton,
 } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';
-import { StyledImg } from './menuModel.styled';
+import { StyledImg, StyledButton } from './menuModel.styled';
 import { setTotalPrice as setTotalPriceStore, addMenuOption } from '../../../store/features/menuSelectSlice';
 import { useDispatch } from 'react-redux';
 
@@ -64,9 +64,11 @@ export default function MenuModal(props) {
   return (
     <div>
       <Dialog open={open} TransitionComponent={Transition} keepMounted onClose={handleClose}>
-        <IconButton sx={{ position: 'absolute', right: '0' }} onClick={handleClose}>
-          <CancelIcon sx={{ fontSize: '45px', color: 'white' }} />
-        </IconButton>
+        <StyledButton>
+          <IconButton sx={{ position: 'absolute', right: '0' }} onClick={handleClose}>
+            <CancelIcon span="component" className="cancelBtn" sx={{ fontSize: '45px' }} />
+          </IconButton>
+        </StyledButton>
 
         <StyledImg src={imgUrl} />
         <DialogTitle>{menuName}</DialogTitle>
