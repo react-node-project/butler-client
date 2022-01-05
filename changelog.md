@@ -18,6 +18,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Installed` for installing new dependencies
 - `Setting` for adding/changing the general settings
 
+## [latest] - 2022-01-05
+written by esther615kim
+
+ `Added`
+
+
+  `Changed`
+- StorePage.jsx to add layout and imported components from ShopDetails folder
+- App.tsx to fix shopPage path
+
+  `Deleted`
+- unused files from Landing folder
+
 ### [0.0.8] - 2021-12-13
 written by Hoin
 

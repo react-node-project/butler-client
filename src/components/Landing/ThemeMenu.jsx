@@ -1,12 +1,11 @@
+import React from 'react';
 import { THEMEMENU } from './data';
 import { StyledDiv } from './landing.styled';
-import React from 'react';
 import { Grid, Typography, ImageListItem, ImageList, ImageListItemBar } from '@mui/material';
 
 export default function ThemeMenu() {
   return (
     <>
-      {/* fontFamily theme 적용 안됨 */}
       <Typography data-testid="header" align="left" variant="h4">
         What's on the menu?
       </Typography>

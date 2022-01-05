@@ -104,7 +104,7 @@ export default function StoreHeader(props) {
             ))}
           </Select>
         </FormControl>
-      </Grid>
+      </Grid> 
     </>
   );
 }

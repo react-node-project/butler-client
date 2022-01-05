@@ -1,6 +1,6 @@
 // import { Button } from '@mui/material';
 import React from 'react';
-import { StyledContainer } from '../styles/element.styled';
+import { StyledContainer,StyledPaper } from '../styles/element.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsLoading } from '../store/features/appSlice';
 import ThemeMenu from './../components/Landing/ThemeMenu';
@@ -18,11 +18,11 @@ export default function Home() {
   return (
     <div>
       <StyledContainer maxWidth="xs">
-        <Paper sx={{ px: 5, py: 5 }}>
+        <StyledPaper>
           <LocationSearch />
           <ThemeMenu />
           <Footer />
-        </Paper>
+        </StyledPaper>
       </StyledContainer>
     </div>
   );

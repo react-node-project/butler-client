@@ -1,7 +1,7 @@
 export const FOOTERDATA = [
   {
     heading: 'Discover Butler',
-    // link1~3 중복 obj => footer iteration 방법 고민중입니다.
+    // link1~3 중복 obj => footer iteration 방법
     link1: {
       title: 'Signin',
       url: '#',
@@ -32,7 +32,6 @@ export const FOOTERDATA = [
   },
   {
     heading: 'Legal',
-    // link1~3 중복 obj => footer iteration 방법 고민중입니다.
     link1: {
       title: 'Terms and Conditions',
       url: '#',

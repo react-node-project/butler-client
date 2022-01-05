@@ -1,6 +1,6 @@
 import React from 'react';
 import ShopHeader from './ShopHeader/index';
-import { Wrapper } from './styled.shopDetail';
+import { StyledDiv } from './styled.shopDetail';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -25,7 +25,7 @@ export default function ShopDetail() {
 
   return (
     <>
-      <Wrapper>
+      <StyledDiv>
         <ShopHeader slideDialog={handleClickOpen} />
         <Dialog
           open={open}
@@ -44,7 +44,7 @@ export default function ShopDetail() {
             <Button onClick={handleClose}>Close</Button>
           </DialogActions>
         </Dialog>
-      </Wrapper>
+      </StyledDiv>
     </>
   );
 }

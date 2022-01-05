@@ -12,7 +12,7 @@ const RestaurantsPage: React.FC<RestaurantsProps> = (props) => {
       <Grid item>
         <LeftNavBar />
       </Grid>
-      <Grid item flex="3" sx={{ minWidth: 0 }}>
+      <Grid item flex="3" sx={{ minWidth: 0 }}> 
         <RestaurantsContents />
       </Grid>
     </StyledLayout>
