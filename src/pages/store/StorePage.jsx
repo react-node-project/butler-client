@@ -2,7 +2,7 @@ import React from 'react';
 import ShopDetail from '../../components/ShopDetails/index';
 import { Container,Box,Grid} from '@mui/material';
 import {StyledGrid} from "../../styles/element.styled";
-
+import Basket from './../../components/ShopDetails/Basket/index';
 export default function StorePage() {
   return (
     <>
@@ -19,7 +19,7 @@ export default function StorePage() {
   {/* </StyledDiv> */}
   {/* <StyledDiv flex={1} width={"30%"}> */}
   <StyledGrid item sx={12} md={4}> 
-  <p>Basket</p>
+  <Basket/>
   </StyledGrid>
   {/* </StyledDiv> */}
   </Grid>

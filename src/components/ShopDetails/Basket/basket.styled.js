@@ -28,13 +28,13 @@ export const StyledBox = styled(Box)({
 });
 
 export const StyledCard = styled(Card)(({ theme }) => ({
-  flex: 2,
+  paddingt:5,
   justifyContent: "center",
   alignItems: "center",
   textAlign: "center",
   minWidth: 240,
   padding: "1rem 1.5rem",
-  margin: "0 1rem",
+  margin: "1rem",
   color: "#aaa",
 }));
 
