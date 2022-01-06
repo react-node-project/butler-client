@@ -27,12 +27,14 @@ export default function MenuModal(props) {
   const [price, setPrice] = React.useState(0);
   const dispatch = useDispatch();
 
+  const floatToFixed = (price) => {
+    return Math.abs(parseFloat(price).toFixed(2));
+  };
   const handleClose = () => {
     props.handleClose();
     // dispatch selected items and total
-    let priceToAdd = Math.abs(parseFloat(price).toFixed(2));
+    let priceToAdd = floatToFixed(price);
     dispatch(setTotalPriceStore(priceToAdd));
-
     dispatch(addMenuOption(ingredients));
     // clear checkbox, options, price
     setCheckedItems({});
@@ -103,7 +105,7 @@ export default function MenuModal(props) {
         </DialogContent>
         <DialogActions>
           <Button sx={{ m: 1, px: 6, width: '100%' }} type="submit" variant="contained">
-            Add for $ {Math.abs(parseFloat(price).toFixed(2))}
+            Add for $ {floatToFixed(price)}
           </Button>
         </DialogActions>
       </Dialog>
