@@ -62,7 +62,7 @@ module.exports = {
       template: './public/index.html',
     }),
     new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
-    new Dotenv(),
+    new Dotenv({ systemvars: true }),
     new CopyPlugin({
       patterns: [
         isDevelopment && {
