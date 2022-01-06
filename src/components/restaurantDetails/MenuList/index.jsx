@@ -13,10 +13,10 @@ function getStyles(name, menuName, theme) {
 export default function MenuList(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [menuName, setMenuName] = React.useState([]);
-  const [menuDesc, setMenuDesc] = React.useState([]);
+  const [menuName, setMenuName] = React.useState('');
+  const [menuDesc, setMenuDesc] = React.useState('');
   const [menuIngri, setMenuIngri] = React.useState([]);
-  const [imgUrl, setImgUrl] = React.useState([]);
+  const [imgUrl, setImgUrl] = React.useState('');
 
   let refs = [useRef(null), useRef(null)];
 
@@ -78,9 +78,9 @@ export default function MenuList(props) {
       <StyledMenuWrapper>
         <Grid container display="flex" justifyContent="center" alignItems="center" spacing={2}>
           {props.menu.map((menu, index) => (
-            <>
-              <Grid key={index} item marginTop="1rem" marginLeft="2rem" sm={12}>
-                <Typography key={index} ref={refs[index]} component="span" className="category">
+            <React.Fragment key={index}>
+              <Grid item marginTop="1rem" marginLeft="2rem" sm={12}>
+                <Typography ref={refs[index]} component="span" className="category">
                   {menu.category}
                 </Typography>
               </Grid>
@@ -91,7 +91,7 @@ export default function MenuList(props) {
                       key={idx}
                       title={food.title}
                       desc={food.desc}
-                      ingridients={food.ingredients}
+                      ingredients={food.ingredients}
                       url={food.url}
                       price={food.price}
                       handleCardClick={handleCardClick}
@@ -103,7 +103,7 @@ export default function MenuList(props) {
                       key={idx}
                       title={food.title}
                       desc={food.desc}
-                      ingridients={food.ingredients}
+                      ingredients={food.ingredients}
                       url={food.url}
                       price={food.price}
                       handleCardClick={handleCardClick}
@@ -111,7 +111,7 @@ export default function MenuList(props) {
                   </Grid>
                 ),
               )}
-            </>
+            </React.Fragment>
           ))}
         </Grid>
       </StyledMenuWrapper>

@@ -12,23 +12,23 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function RestaurantDetail() {
   const [open, setOpen] = React.useState(false);
 
-  const InfohandleClickOpen = () => {
+  const infohandleClickOpen = () => {
     setOpen(true);
   };
 
-  const InfohandleClose = () => {
+  const infohandleClose = () => {
     setOpen(false);
   };
 
   return (
     <>
       <StyledText>
-        <RestaurantHeader slideDialog={InfohandleClickOpen} />
+        <RestaurantHeader slideDialog={infohandleClickOpen} />
         <Dialog
           open={open}
           TransitionComponent={Transition}
           keepMounted
-          onClose={InfohandleClose}
+          onClose={infohandleClose}
           aria-describedby="shop-info-description"
         >
           <DialogTitle>{'Info'}</DialogTitle>
@@ -38,7 +38,7 @@ export default function RestaurantDetail() {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={InfohandleClose}>Close</Button>
+            <Button onClick={infohandleClose}>Close</Button>
           </DialogActions>
         </Dialog>
         <MenuList menu={menu} menuCategory={menu.map((item) => item.category)} />
