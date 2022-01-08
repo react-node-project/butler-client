@@ -13,7 +13,7 @@ export default function ThemeMenu() {
       <ImageList>
         <Grid container spacing={3}>
           {THEMEMENU.map((item) => (
-            <Grid item xs={12} sm={12} md={6}>
+            <Grid key={item.title} item xs={12} sm={12} md={6}>
               <StyledDiv>
                 <ImageListItem key={item.url}>
                   <img

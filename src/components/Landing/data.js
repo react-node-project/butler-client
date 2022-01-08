@@ -1,5 +1,5 @@
-export const FOOTERDATA = [
-  {
+export const FOOTERDATA = [{
+  id:1,
     heading: 'Discover Butler',
     // link1~3 중복 obj => footer iteration 방법
     link1: {
@@ -11,11 +11,12 @@ export const FOOTERDATA = [
       url: '/dist',
     },
     link3: {
-        title: 'About us',
-        url: '/',
-      },
+      title: 'About us',
+      url: '/',
+    },
   },
   {
+    id:2,
     heading: 'Customer Service',
     link1: {
       title: 'My account',
@@ -26,11 +27,11 @@ export const FOOTERDATA = [
       url: '/',
     },
     link3: {
-        title: 'Contact us',
-        url: '/',
-      },
+      title: 'Contact us',
+      url: '/',
+    },
   },
-  {
+  {id:3,
     heading: 'Legal',
     link1: {
       title: 'Terms and Conditions',
@@ -41,14 +42,13 @@ export const FOOTERDATA = [
       url: '#',
     },
     link3: {
-        title: 'Cookies',
-        url: '#',
-      },
+      title: 'Cookies',
+      url: '#',
+    },
   },
 ];
 
-export const THEMEMENU = [
-  {
+export const THEMEMENU = [{
     title: 'comfort food',
     url: 'https://f.roocdn.com/images/menu_tags/288/menu-tag-image.jpg?width',
     desc: 'Classic, comforting dishes that always hit the spot.',

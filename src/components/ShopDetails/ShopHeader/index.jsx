@@ -58,10 +58,10 @@ export default function StoreHeader(props) {
     <>
       <Header>
         <Grid p={2} container spacing={2} alignItems="start" justifyContent="center">
-          <Grid item sx={10} m={4} >
+          <Grid item xs={10} md={4} >
             <HeaderImage src={burgerImg} />
           </Grid>
-          <Grid item sx={10} md={6}>
+          <Grid item xs={10} md={6}>
             <List>
               <ListItem disablePadding>
                 <Typography variant="h4">Grease Monkey</Typography>
