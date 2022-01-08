@@ -48,7 +48,9 @@ const LeftNavBar = (props: LeftNavBarProps) => {
               <Box className="thumb" />
               <Box className="text">
                 <span>Now</span>
-                <span className="city">{cityName}</span>
+                <span className="city" onClick={handleSetModalOpen}>
+                  {cityName}
+                </span>
               </Box>
               <Button size="small" onClick={handleSetModalOpen}>
                 Change

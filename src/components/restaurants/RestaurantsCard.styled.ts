@@ -28,11 +28,14 @@ export const StyledThumb = styled(Box)((props: { url?: string }) => ({
   },
 }));
 
-export const StyledButton = styled(Box)({
+export const StyledButton = styled(Box)((props: { theme: Theme }) => ({
   border: 'none',
   background: 'none',
   padding: 0,
-});
+  [props.theme.breakpoints.down(768)]: {
+    width: '100%',
+  },
+}));
 
 export const StyledText = styled(Box)((props: { theme: Theme }) => ({
   marginTop: '8px',
