@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   cartItems: [],
@@ -12,23 +12,24 @@ const cartSlice = createSlice({
   reducers: {
     // add item to cart
     addToCart(state, action) {
-      const itemIndex = state.cartItems.findIndex(
-        (item) => item.id === action.payload.id
-      );
-      // increment qty
-      if (0 <= itemIndex) {
-        state.cartTotalQty += 1;
-        // state.cartItems[itemIndex].cartTotalQty += 1;
+      const selectedProduct = { ...action.payload, qty: 1 };
+      const itemIndex = state.cartItems.findIndex((item) => item.id === action.payload.id);
+
+      if (itemIndex < 0) {
+        // new to cart
+        state.cartItems.push(selectedProduct);
       } else {
-        const addedProduct = { ...action.payload, cartTotalQty: 1 };
-        state.cartItems.push(addedProduct);
+        state.cartItems[itemIndex].qty++;
       }
+      state.cartTotalQty++;
+      state.cartTotalAmt += selectedProduct.price; //toFixed(2);
+
+      console.log('subtotal', state.cartTotalAmt, state.cartTotalQty);
+      // toast.success(`${action.payload.name} is added`, {position:"bottom-left"})
     },
   },
 });
 
-export const { addToCart } = cartSlice.actions; 
+export const { addToCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
-
-// (item) => item.id === action.payload.id

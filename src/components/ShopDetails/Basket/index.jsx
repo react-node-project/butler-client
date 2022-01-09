@@ -1,33 +1,57 @@
 import React, { useState } from 'react';
-import { StyledCard, StyledButton } from './basket.styled';
+import {
+  StyledCard,
+  StyledButton,
+  StyledBasketBox,
+  StyledItemBox,
+  StyledRemoveIcon,
+  StyledAddIcon,
+  StyledSubtotalBox,
+} from './basket.styled';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import { Divider, Typography } from '@mui/material';
+import { Divider, Typography, Switch,FormControlLabel } from '@mui/material';
 // import { useGetAllProductListQuery } from '../../redux/features/productApi';
-import { useEffect } from 'react';
 
 const Basket = () => {
-  // item => redux
   // const { data, error, isLoading } = useGetAllProductListQuery();
   const [items, setItems] = useState([]);
-
-  // useEffect(()=>{
-  //   setItems(prev=>[prev,...data])
-  //   console.log("fetched data",items)
-  // },[items]);
 
   return (
     <StyledCard>
       <ShoppingBasketIcon sx={{ fontSize: '2.5rem' }} />
-      {!items ? (
+      {!items? (
         <Typography pb={2} gutterBottom variant="subtitle1">
           Your basket is empty
         </Typography>
       ) : (
         <>
-          <Divider />
-          <Typography align="right" p={2} pt={5} gutterBottom variant="subtitle1">
-            Subtotal <span>£ 0.0</span>
-          </Typography>
+          <StyledBasketBox>
+            <h3>Your order</h3>
+            {/* item */}
+            <StyledItemBox>
+              <h5>Item name</h5>
+              <div className="itemPriceAndQty">
+                <h5>
+                  <StyledAddIcon color="primary" />
+                  3
+                  <StyledRemoveIcon color="warning" />
+                  <span>£ 11.30</span>
+                </h5>
+              </div>
+            </StyledItemBox>
+
+            <Divider />
+            <div>
+              <h3>
+                Tip <FormControlLabel control={<Switch defaultChecked />} label="£0.69" />
+              </h3>
+            </div>
+            <Divider />
+            <StyledSubtotalBox>
+              <h3>Subtotal</h3>
+              <h5>£ 11.30</h5>
+            </StyledSubtotalBox>
+          </StyledBasketBox>
         </>
       )}
       <StyledButton fullWidth>Go to Checkout</StyledButton>
