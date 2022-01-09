@@ -1,7 +1,6 @@
 import { rest, setupWorker } from 'msw';
 import { THEMEMENU } from './data/landing';
 import { MOCK_API_URL } from '../constants/EnvContant';
-import swagger from './data/swagger.json';
 import {
   CATEGORY_LIST,
   CATEGORY_LIST_PICK_UP,
@@ -75,9 +74,6 @@ export const handlers = [
         message: 'not supported filter',
       }),
     );
-  }),
-  rest.get(`${MOCK_API_URL}/document`, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({ ...swagger }));
   }),
 ];
 
