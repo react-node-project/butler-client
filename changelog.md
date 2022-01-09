@@ -18,18 +18,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Installed` for installing new dependencies
 - `Setting` for adding/changing the general settings
 
-## [latest] - 2022-01-05
+## [latest] - 2022-01-08
 written by esther615kim
  `Added`
 - Basket.jsx, basket.test.js and cartSlicer.js 
   `Changed`
+- CartSlice.js to fix addToCart and add RemoveFromCart slicers
 - StorePage.jsx to add layout and imported components from ShopDetails folder
 - App.tsx to fix shopPage path
 - Landing page components to amend for better responsive layout.
   `Deleted`
 - unused files from Landing folder
  `Bug`
-- cartSlicer.js does not increment Amt(open issue)
+- fixed devtool 3 errors
+- cartSlicer.js does not increment Amt(closed)
 
 ### [0.0.8] - 2021-12-13
 written by Hoin
