@@ -3,14 +3,14 @@ import { Box, Theme } from '@mui/material';
 
 export const StyledLayout = styled(Box)({ marginBottom: '16px' });
 
-export const StyledThumb = styled(Box)((props: { url: string }) => ({
+export const StyledThumb = styled(Box)((props: { url?: string }) => ({
   position: 'relative',
   width: '100%',
   paddingTop: '56.25%',
   backgroundImage: `url(${props.url})`,
   backgroundSize: 'cover',
   backgroundPosition: '50%',
-  '& span': {
+  '& > span': {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -28,11 +28,14 @@ export const StyledThumb = styled(Box)((props: { url: string }) => ({
   },
 }));
 
-export const StyledButton = styled(Box)({
+export const StyledButton = styled(Box)((props: { theme: Theme }) => ({
   border: 'none',
   background: 'none',
   padding: 0,
-});
+  [props.theme.breakpoints.down(768)]: {
+    width: '100%',
+  },
+}));
 
 export const StyledText = styled(Box)((props: { theme: Theme }) => ({
   marginTop: '8px',

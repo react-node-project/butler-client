@@ -18,6 +18,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Installed` for installing new dependencies
 - `Setting` for adding/changing the general settings
 
+## [0.1.1] - 2022-01-08
+
+written by 조효형
+
+`Added`
+- 스켈레톤 추가
+- env_sample 추가
+
+`Changed`
+- restaurants 모바일 ui 작업
+
 ## [0.1.0] - 2022-01-05
 
 written by Minju

@@ -3,9 +3,10 @@ import { useGetRestaurantsQuery } from '@store/service/restaurants';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import CategorySlider from './CategorySlider';
+import CategorySliderSkeleton from './CategorySliderSkeleton';
 import { StyledLayout } from './index.styled';
 import RestaurantsList from './RestaurantsList';
-// import RestaurantsSlider from './RestaurantsSlider';
+import RestaurantsListSkeleton from './RestaurantsListSkeleton';
 
 export type RestaurantsProps = {};
 
@@ -17,14 +18,19 @@ const Restaurants = (props: RestaurantsProps) => {
     console.log('error', error);
     return null;
   }
-  if (!data || isLoading) return null;
-  const { categories, restaurants } = data;
+
+  if (!data || isLoading)
+    return (
+      <StyledLayout sx={{ flexGrow: 1 }}>
+        <CategorySliderSkeleton count={6} />
+        <RestaurantsListSkeleton count={6} />
+      </StyledLayout>
+    );
 
   return (
     <StyledLayout sx={{ flexGrow: 1 }}>
-      <CategorySlider categories={categories} />
-      {/* <RestaurantsSlider /> */}
-      <RestaurantsList restaurants={restaurants} />
+      <CategorySlider categories={data.categories} />
+      <RestaurantsList restaurants={data.restaurants} />
     </StyledLayout>
   );
 };

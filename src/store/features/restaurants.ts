@@ -1,7 +1,8 @@
+import { LeftNavModalProps } from '@components/restaurants/LeftNavModal';
 import { createSlice } from '@reduxjs/toolkit';
 
 type InitialState = {
-  filter: 'delivery' | 'pick-up' | 'table-service';
+  filter: LeftNavModalProps['filter'];
 };
 const initialState: InitialState = {
   filter: 'delivery',
