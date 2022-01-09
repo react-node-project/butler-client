@@ -2,6 +2,7 @@ import { styled } from '@mui/styles';
 import { Card, Button, Box, Stack, Paper } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 export const StyledDiv = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -74,4 +75,9 @@ export const StyledRemoveIcon = styled(RemoveCircleOutlineIcon)({
 export const StyledSubtotalBox = styled(Box)({
   flexDirection: 'row',
   textAlign: 'right',
+});
+
+export const StyledDeleteItemIcon = styled(DeleteForeverIcon)({
+  fontSize: '12px',
+  paddingLeft: '6px',
 });

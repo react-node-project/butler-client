@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   StyledCard,
   StyledButton,
@@ -7,55 +8,66 @@ import {
   StyledRemoveIcon,
   StyledAddIcon,
   StyledSubtotalBox,
+  StyledDeleteItemIcon,
 } from './basket.styled';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import { Divider, Typography, Switch,FormControlLabel } from '@mui/material';
+import { Divider, Switch, FormControlLabel,IconButton } from '@mui/material';
+
+import { removeFromCart } from '../../../store/features/cartSlicer';
 // import { useGetAllProductListQuery } from '../../redux/features/productApi';
 
 const Basket = () => {
   // const { data, error, isLoading } = useGetAllProductListQuery();
-  const [items, setItems] = useState([]);
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  const handleRemoveFromCart = (item) => {
+    dispatch(removeFromCart(item));
+  };
 
   return (
-    <StyledCard>
-      <ShoppingBasketIcon sx={{ fontSize: '2.5rem' }} />
-      {!items? (
-        <Typography pb={2} gutterBottom variant="subtitle1">
-          Your basket is empty
-        </Typography>
-      ) : (
-        <>
-          <StyledBasketBox>
-            <h3>Your order</h3>
-            {/* item */}
-            <StyledItemBox>
-              <h5>Item name</h5>
+    <>
+      <StyledCard>
+        <ShoppingBasketIcon sx={{ fontSize: '2.5rem' }} />
+        <StyledBasketBox>
+          <h3>Your order</h3>
+          {/* cart items */}
+          {cart.cartItems?.map((cartItem) => (
+            <StyledItemBox key={cartItem.id}>
+              <h5>
+                {cartItem.title}
+                <IconButton onClick={() => handleRemoveFromCart(cartItem)}>
+                  <StyledDeleteItemIcon />
+                </IconButton>
+              </h5>
               <div className="itemPriceAndQty">
                 <h5>
                   <StyledAddIcon color="primary" />
-                  3
+                  {cartItem.qty}
                   <StyledRemoveIcon color="warning" />
-                  <span>£ 11.30</span>
+                  <span>£ {cartItem.price * cartItem.qty}</span>
                 </h5>
               </div>
             </StyledItemBox>
+          ))}
 
-            <Divider />
-            <div>
-              <h3>
-                Tip <FormControlLabel control={<Switch defaultChecked />} label="£0.69" />
-              </h3>
-            </div>
-            <Divider />
-            <StyledSubtotalBox>
-              <h3>Subtotal</h3>
-              <h5>£ 11.30</h5>
-            </StyledSubtotalBox>
-          </StyledBasketBox>
-        </>
-      )}
-      <StyledButton fullWidth>Go to Checkout</StyledButton>
-    </StyledCard>
+          <Divider />
+          <div>
+            <h3>
+              Tip <FormControlLabel control={<Switch defaultChecked />} label="£0.69" />
+            </h3>
+          </div>
+          <Divider />
+          <StyledSubtotalBox>
+            <h3>Subtotal</h3>
+            <h5>£ {cart.cartTotalAmt}</h5>
+          </StyledSubtotalBox>
+        </StyledBasketBox>
+        <StyledButton fullWidth>Go to Checkout</StyledButton>
+      </StyledCard>
+    </>
+    // )
+    // }
   );
 };
 

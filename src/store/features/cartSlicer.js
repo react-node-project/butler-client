@@ -1,7 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  cartItems: [],
+  cartItems: [
+    {
+      id: 0,
+      title: 'Hungry cheese burger',
+      price: 6.2,
+      qty: 1,
+    },
+  ],
   cartTotalQty: 0,
   cartTotalAmt: 0,
 };
@@ -27,9 +34,15 @@ const cartSlice = createSlice({
       console.log('subtotal', state.cartTotalAmt, state.cartTotalQty);
       // toast.success(`${action.payload.name} is added`, {position:"bottom-left"})
     },
+    // remove item from cart
+    removeFromCart(state, action) {
+      const newCartItems = state.cartItems.filter((item) => item.id !== action.payload.id);
+
+      state.cartItems = newCartItems;
+    },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
