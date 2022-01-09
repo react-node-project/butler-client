@@ -21,6 +21,10 @@ module.exports = {
       '@utils': path.resolve(__dirname, 'utils'),
       '@typings': path.resolve(__dirname, 'typings'),
     },
+    fallback: {
+      stream: false,
+      buffer: require.resolve('buffer/'),
+    },
   },
   entry: './src/index',
   module: {
@@ -70,6 +74,9 @@ module.exports = {
           to: './mockServiceWorker.js',
         },
       ],
+    }),
+    new webpack.ProvidePlugin({
+      Buffer: ['buffer', 'Buffer'],
     }),
   ],
   output: {

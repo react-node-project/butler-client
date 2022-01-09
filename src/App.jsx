@@ -5,11 +5,12 @@ import { Header, SideNav } from './components/layouts';
 import Home from './pages/Home';
 
 import Box from '@mui/material/Box';
-import { PATH_ROOT, PATH_USER_SIGNIN, PATH_RESTAURANTS, PATH_RESTAURANTS_DETAIL } from './constants/PathConstants';
+import { PATH_RESTAURANTS, PATH_RESTAURANTS_DETAIL, PATH_ROOT, PATH_USER_SIGNIN } from './constants/PathConstants';
 import AuthFlip from './pages/user/AuthFlip';
 import RestaurantsPage from './pages/restaurants/RestaurantsPage';
 import RestaurantDetail from './components/restaurantDetails/index';
 import { KAKAO_API_KEY } from './constants/EnvContant';
+import { Document } from './pages/document';
 
 export default function App() {
   const [isShowSideNav, setIsShowSideNav] = useState(false);
@@ -32,6 +33,7 @@ export default function App() {
             <Route path={PATH_ROOT} element={<Home />} />
             <Route path={PATH_RESTAURANTS} element={<RestaurantsPage />} />
             <Route path={PATH_RESTAURANTS_DETAIL} element={<RestaurantDetail />} />
+            <Route path={'document'} element={<Document />} />
           </Routes>
         </Box>
       </Router>
