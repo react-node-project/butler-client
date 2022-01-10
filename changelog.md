@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Bug` for any issue/error occurred
 - `Installed` for installing new dependencies
 - `Setting` for adding/changing the general settings
+          
+## [0.1.1] - 2022-01-09
+`Setting`
+ - swagger api 문서 추가
 
 ## [0.1.1] - 2022-01-08
 

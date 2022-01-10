@@ -15,6 +15,7 @@
     "noImplicitThis": true, // mui
     "strictNullChecks": true, // mui
     "baseUrl": ".", // baseurl
+    "resolveJsonModule": true,
     "paths": {
       "@components/*": ["src/components/*"],
       "@hooks/*": ["src/hooks/*"],

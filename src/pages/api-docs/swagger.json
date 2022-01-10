@@ -1,0 +1,27 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Butler API",
+    "description": "Butler App open api 설명서 입니다",
+    "version": "1.0.0"
+  },
+  "host": "www",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/location": {
+      "post": {
+        "description": "지역 정보를 보내서 서비스 중인 지역인지 확인한다",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok"
+          }
+        }
+      }
+    }
+  }
+}
