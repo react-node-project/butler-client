@@ -16,9 +16,147 @@
         "produces": [
           "application/json"
         ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "보내는 값들",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "address": {
+                  "type": "string",
+                  "description": "주소이름",
+                  "example": "영국 리버풀"
+                },
+                "location": {
+                  "type": "object",
+                  "properties": {
+                    "lat": {
+                      "type": "number",
+                      "description": "위도",
+                      "example": 53.4083714
+                    },
+                    "lng": {
+                      "type": "number",
+                      "description": "경도",
+                      "example": -2.9915726
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "example": 1000
+                },
+                "message": {
+                  "type": "string",
+                  "example": "ok"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "필수 데이터가 누락되어있을때",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "example": 2000
+                },
+                "message": {
+                  "type": "string",
+                  "example": "missed latitude or longitude or address"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "서비스 중인 장소가 아닐때",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "example": 3000
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Not a serviced place"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inactiveLocation": {
+      "post": {
+        "description": "비활성화 지역에 대한 서비스 장소를 이메일로 보내기",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "description": "이메일",
+                  "example": "butler@gmail.com"
+                },
+                "location": {
+                  "type": "object",
+                  "properties": {
+                    "lat": {
+                      "type": "number",
+                      "description": "위도",
+                      "example": 53.4083714
+                    },
+                    "lng": {
+                      "type": "number",
+                      "description": "경도",
+                      "example": -2.9915726
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "ok"
+          },
+          "400": {
+            "description": "필수 데이터가 누락되어있을때",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "example": 2000
+                },
+                "message": {
+                  "type": "string",
+                  "example": "missed latitude or longitude or email"
+                }
+              }
+            }
           }
         }
       }
