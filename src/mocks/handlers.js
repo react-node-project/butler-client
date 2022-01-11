@@ -13,7 +13,13 @@ import { RESTAURANT_MENU } from './data/restaurantMenu';
 import { locationHandler } from './location.handler';
 import { authHandler } from './auth.handler';
 import { userHandler } from './user.handler';
-import { getQueryParams } from './../util/utills';
+import { getUrlParams } from './../util/utills';
+
+const sleep = (ms) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+};
 
 export const handlers = [
   rest.get(`${MOCK_API_URL}/theme-menus`, (req, res, ctx) => {
@@ -21,7 +27,7 @@ export const handlers = [
   }),
 
   rest.get(`${MOCK_API_URL}/getstores`, (req, res, ctx) => {
-    const filter = getQueryParams(req.url, 'filter');
+    const filter = getUrlParams(req.url, 'filter');
 
     if (filter === 'delivery') {
       return res(ctx.status(200), ctx.json({ categories: { ...CATEGORY_LIST }, restaurants: [...RESTAURANTS_LIST] }));

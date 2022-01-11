@@ -40,7 +40,7 @@ export const restaurantsAPI = createApi({
     getRestaurants: build.query<GetRestaurantsProps, LeftNavModalProps['filter']>({
       query: (filter) => ({
         url: `/getstores`,
-        method: 'get',
+        method: 'GET',
         params: {
           filter,
         },
