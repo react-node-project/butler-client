@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useCallback} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   StyledCard,
@@ -16,14 +16,14 @@ import { Divider, Switch, FormControlLabel,IconButton } from '@mui/material';
 import { removeFromCart } from '../../../store/features/cartSlicer';
 // import { useGetAllProductListQuery } from '../../redux/features/productApi';
 
-const Basket = () => {
+const Basket = React.memo(() => {
   // const { data, error, isLoading } = useGetAllProductListQuery();
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
-  const handleRemoveFromCart = (item) => {
+  const handleRemoveFromCart =useCallback((item) => {
     dispatch(removeFromCart(item));
-  };
+  },[]); // cart
 
   return (
     <>
@@ -69,6 +69,6 @@ const Basket = () => {
     // )
     // }
   );
-};
+});
 
 export default Basket;

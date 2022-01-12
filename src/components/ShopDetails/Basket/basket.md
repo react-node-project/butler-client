@@ -2,8 +2,8 @@
 ### Basket To-dos
 - ✅ refactor layout & responsive
 - ✅ set redux slicers
-- ✅ basket CRUD (after menu is done)
-- ✅ test codes
+-   basket CRUD (after menu is done)
+-   test codes
 
 `additional`
 - TS refactoring
@@ -21,3 +21,17 @@ functionality
 async funcs(data fetching)
 - []
 - [] 
+
+
+
+### Refactoring
+```js
+  const handleRemoveFromCart = (item) => {
+    dispatch(removeFromCart(item));
+  };
+
+...
+              <h5>
+                {cartItem.title}
+                <IconButton onClick={() => handleRemoveFromCart(cartItem)}>
+```
