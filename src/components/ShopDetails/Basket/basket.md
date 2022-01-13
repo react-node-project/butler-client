@@ -25,6 +25,7 @@ async funcs(data fetching)
 
 
 ### Refactoring
+`before`
 ```js
   const handleRemoveFromCart = (item) => {
     dispatch(removeFromCart(item));
@@ -34,4 +35,15 @@ async funcs(data fetching)
               <h5>
                 {cartItem.title}
                 <IconButton onClick={() => handleRemoveFromCart(cartItem)}>
+```
+`after` 
+```js
+const Basket = React.memo(() => {
+  // const { data, error, isLoading } = useGetAllProductListQuery();
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  const handleRemoveFromCart =useCallback((item) => {
+    dispatch(removeFromCart(item));
+  },[]); // cart
 ```

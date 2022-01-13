@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  cartItems: [
+  cartItems: [ //naming 고민중
     {
       id: 0,
       title: 'Hungry cheese burger',
