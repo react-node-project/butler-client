@@ -18,6 +18,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Installed` for installing new dependencies
 - `Setting` for adding/changing the general settings
 
+## [latest2]- 2022-01-13 (작성중)
+written by esther615kim
+ `Added`
+- Favourites.jsx and FavListSlicer.js
+ `Changed`
+- Basket.jsx to refactor using useCallback hook to reduce re-rendering.
+
 ## [latest] - 2022-01-08
 written by esther615kim
  `Added`

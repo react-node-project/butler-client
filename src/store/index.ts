@@ -5,12 +5,14 @@ import restaurantsReducer from './features/restaurantsSlice';
 import { locationAPI } from './service/location';
 import configReducer from './features/configSlice';
 import cartReducer from './features/cartSlicer';
+import favListReducer from './features/favouritesSlicer';
 
 const rootReducer = combineReducers({
   app: appReducer,
   user: userReducer,
   restaurants: restaurantsReducer,
-  cart:cartReducer,
+  cart: cartReducer,
+  favList: favListReducer,
   config: configReducer,
   locationAPI: locationAPI.reducer,
 });
