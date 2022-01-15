@@ -2,14 +2,9 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
-const CopyPlugin = require('copy-webpack-plugin');
-
-const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   name: 'butler-web',
-  mode: isDevelopment ? 'development' : 'production',
-  devtool: !isDevelopment ? 'hidden-source-map' : 'eval',
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     alias: {
@@ -65,16 +60,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
-    new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
     new Dotenv({ systemvars: true }),
-    new CopyPlugin({
-      patterns: [
-        isDevelopment && {
-          from: './public/mockServiceWorker.js',
-          to: './mockServiceWorker.js',
-        },
-      ],
-    }),
     new webpack.ProvidePlugin({
       Buffer: ['buffer', 'Buffer'],
     }),
@@ -82,18 +68,5 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
-  },
-  devServer: {
-    historyApiFallback: true, // react router
-    port: 3000,
-    static: './dist',
-    liveReload: true,
-    open: true,
-    proxy: {
-      '/api/': {
-        target: 'http://localhost:3095',
-        changeOrigin: true,
-      },
-    },
   },
 };

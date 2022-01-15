@@ -9,8 +9,8 @@
   },
   "scripts": {
     "test": "jest --watch",
-    "dev": "webpack-dev-server --open",
-    "build": "webpack --config webpack.config.js"
+    "dev": "webpack serve --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
   },
   "eslintConfig": {
     "extends": [
@@ -90,7 +90,8 @@
     "webpack": "^5.64.4",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.6.0"
+    "webpack-dev-server": "^4.6.0",
+    "webpack-merge": "^5.8.0"
   },
   "msw": {
     "workerDirectory": "public"
