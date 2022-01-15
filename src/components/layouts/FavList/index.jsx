@@ -1,8 +1,9 @@
 import React from 'react';
-import { Divider, Drawer, IconButton, Typography } from '@mui/material';
+import { Divider, Drawer, IconButton, Typography, Box } from '@mui/material';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import { StyledSideNavContainer, StyledSideNavHeader } from './favlist.styled';
+import { StyledSideNavContainer, StyledSideNavHeader, StyledBox } from './favlist.styled';
 import { useDispatch } from 'react-redux';
+import FavShopCard from './FavCard';
 
 // interface Props {
 //   isShowSideNav: boolean;
@@ -16,14 +17,21 @@ const FavList = ({ isShowSideNav, hideSideNav }) => {
     <>
       <StyledSideNavContainer role="presentation">
         <StyledSideNavHeader>
-          <Typography color="text.primary">Favourites</Typography>
+          <Typography variant="h6" color="text.primary">
+            Favourites
+          </Typography>
           <IconButton onClick={hideSideNav}>
             <CloseOutlinedIcon />
           </IconButton>
         </StyledSideNavHeader>
         <Divider />
-        <h5>Recently added</h5>
-        {/* LIST 여기 */}
+        <StyledBox>
+          <Typography gutterBottom color="text.primary">
+            Recently Added
+          </Typography>
+          {/* LIST */}
+          <FavShopCard />
+        </StyledBox>
       </StyledSideNavContainer>
     </>
   );

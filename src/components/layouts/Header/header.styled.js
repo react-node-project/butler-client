@@ -2,6 +2,7 @@ import { styled, alpha } from '@mui/material/styles';
 import { Button, Box, Toolbar, InputBase } from '@mui/material';
 
 export const StyledLinkButton = styled(Button)({
+  marginRight:15,
   '& a': {
     fontWeight: 600,
     color: '#fff',
@@ -15,6 +16,7 @@ export const StyledToolbar = styled(Toolbar)({
 
 export const StyledSearchBox = styled(Box)(({ theme }) => ({
   position: 'relative',
+  minWidth: '18rem',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   '&:hover': {
@@ -22,10 +24,9 @@ export const StyledSearchBox = styled(Box)(({ theme }) => ({
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
-  // minWidth: '2rem',
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(3),
-    width: 'auto',
+    // width: 'auto',
   },
 }));
 
@@ -43,7 +44,6 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -53,9 +53,17 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+export const StyledResponsiveBox = styled(Box)(({ theme }) => ({
+  display: 'none',
+  [theme.breakpoints.up('md')]: {
+    display: 'block',
+  },
+}));
+
 export const StyledBtn = styled(Button)({
   border: '1px solid #eee',
   background: '#eee',
+  marginLeft: 10,
   opacity: 0.92,
   color: '#212121',
   '& a': {
@@ -63,6 +71,8 @@ export const StyledBtn = styled(Button)({
     color: 'inherit',
   },
   '&:hover': {
-    color: '#fff',
+    // 여기 배경을 theme.palette.primary.main 으로 할 방법 아실까요
+    background: '#fff',
+    fontWeight: 600,
   },
 });

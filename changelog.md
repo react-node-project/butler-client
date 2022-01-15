@@ -26,14 +26,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 written by esther615kim
 
+`Summary`
+- Navbar 검색창 & responsive 추가
+- FavList 추가 
+
  `Changed`
 - path={PATH_RESTAURANTS_DETAIL} to <StorePage />
+- App.jsx to add FavList and status
 - Header/index.jsx to add responosive styling, rename components('Styled-element') and add menu buttons
 
 `Added`
 - cartSlicer
 - FavList component
 - Basket folder in src/components
+- 
 
 ## [0.1.1] - 2022-01-09
 `Setting`
