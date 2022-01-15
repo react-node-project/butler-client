@@ -28,10 +28,11 @@ written by esther615kim
 
  `Changed`
 - path={PATH_RESTAURANTS_DETAIL} to <StorePage />
-- Header/index.jsx to add responosive styling and rename components('Styled-element')
+- Header/index.jsx to add responosive styling, rename components('Styled-element') and add menu buttons
 
 `Added`
 - cartSlicer
+- FavList component
 - Basket folder in src/components
 
 ## [0.1.1] - 2022-01-09

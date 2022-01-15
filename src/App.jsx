@@ -15,9 +15,9 @@ import {
 import AuthFlip from './pages/user/AuthFlip';
 import RestaurantsPage from './pages/restaurants/RestaurantsPage';
 import StorePage from './pages/store/StorePage';
-// import RestaurantDetail from './components/restaurantDetails/index';
 import { KAKAO_API_KEY } from './constants/EnvContant';
 import { ApiDocs } from './pages/api-docs/ApiDocs';
+import FavList from './components/layouts/FavList';
 
 export default function App() {
   const [isShowSideNav, setIsShowSideNav] = useState(false);
@@ -34,6 +34,7 @@ export default function App() {
       <Router>
         <Header showSideNav={showSideNav} />
         <SideNav isShowSideNav={isShowSideNav} hideSideNav={hideSideNav} />
+        <FavList isShowSideNav={isShowSideNav} hideSideNav={hideSideNav} />
         <Box component="main">
           <Routes>
             <Route path={PATH_USER_SIGNIN} element={<AuthFlip />} />

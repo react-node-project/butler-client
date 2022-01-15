@@ -4,7 +4,6 @@ import { Button, Box, Toolbar, InputBase } from '@mui/material';
 export const StyledLinkButton = styled(Button)({
   '& a': {
     fontWeight: 600,
-    fontSize: '1em',
     color: '#fff',
     textDecoration: 'none',
   },
@@ -23,7 +22,7 @@ export const StyledSearchBox = styled(Box)(({ theme }) => ({
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
-  width: '100%',
+  // minWidth: '2rem',
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(3),
     width: 'auto',
@@ -49,7 +48,21 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: '20ch',
+      // width: '20ch',
     },
   },
 }));
+
+export const StyledBtn = styled(Button)({
+  border: '1px solid #eee',
+  background: '#eee',
+  opacity: 0.92,
+  color: '#212121',
+  '& a': {
+    textDecoration: 'none',
+    color: 'inherit',
+  },
+  '&:hover': {
+    color: '#fff',
+  },
+});
