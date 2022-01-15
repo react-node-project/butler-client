@@ -275,6 +275,21 @@
           }
         }
       }
+    },
+    "/":{        
+      "description": "landing page",
+      "produces": [
+        "application/json"
+      ],
+      "responses":{
+        "200":{
+          "description":"OK"
+        }
+,        "404":{
+          "description":"Page Not Found"
+        }
+      }
+
     }
   }
 }

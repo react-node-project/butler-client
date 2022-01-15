@@ -14,7 +14,8 @@ import {
 } from './constants/PathConstants';
 import AuthFlip from './pages/user/AuthFlip';
 import RestaurantsPage from './pages/restaurants/RestaurantsPage';
-import RestaurantDetail from './components/restaurantDetails/index';
+import StorePage from './pages/store/StorePage';
+// import RestaurantDetail from './components/restaurantDetails/index';
 import { KAKAO_API_KEY } from './constants/EnvContant';
 import { ApiDocs } from './pages/api-docs/ApiDocs';
 
@@ -38,7 +39,7 @@ export default function App() {
             <Route path={PATH_USER_SIGNIN} element={<AuthFlip />} />
             <Route path={PATH_ROOT} element={<Home />} />
             <Route path={PATH_RESTAURANTS} element={<RestaurantsPage />} />
-            <Route path={PATH_RESTAURANTS_DETAIL} element={<RestaurantDetail />} />
+            <Route path={PATH_RESTAURANTS_DETAIL} element={<StorePage />} />
             <Route path={PATH_API_DOCS} element={<ApiDocs />} />
           </Routes>
         </Box>

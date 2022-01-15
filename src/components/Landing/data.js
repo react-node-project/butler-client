@@ -1,38 +1,40 @@
 export const FOOTERDATA = [
   {
+    id: 1,
     heading: 'Discover Butler',
-    // link1~3 중복 obj => footer iteration 방법 고민중입니다.
+    // link1~3 중복 obj => footer iteration 방법
     link1: {
       title: 'Signin',
-      url: '#',
+      url: '/login',
     },
     link2: {
       title: 'Signup',
-      url: '#',
+      url: '/',
     },
     link3: {
-        title: 'About us',
-        url: '#',
-      },
+      title: 'About us',
+      url: '/',
+    },
   },
   {
+    id: 2,
     heading: 'Customer Service',
     link1: {
       title: 'My account',
-      url: '#',
+      url: '/',
     },
     link2: {
       title: 'More',
-      url: '#',
+      url: '/',
     },
     link3: {
-        title: 'Contact us',
-        url: '#',
-      },
+      title: 'Contact us',
+      url: '/',
+    },
   },
   {
+    id: 3,
     heading: 'Legal',
-    // link1~3 중복 obj => footer iteration 방법 고민중입니다.
     link1: {
       title: 'Terms and Conditions',
       url: '#',
@@ -42,9 +44,9 @@ export const FOOTERDATA = [
       url: '#',
     },
     link3: {
-        title: 'Cookies',
-        url: '#',
-      },
+      title: 'Cookies',
+      url: '#',
+    },
   },
 ];
 

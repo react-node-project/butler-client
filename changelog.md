@@ -17,7 +17,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Bug` for any issue/error occurred
 - `Installed` for installing new dependencies
 - `Setting` for adding/changing the general settings
-          
+
+## [0.1.2] - 2022-01-15
+
+written by esther615kim
+
+ `Changed`
+- path={PATH_RESTAURANTS_DETAIL} to <StorePage />
+
+`Added`
+- cartSlicer
+- Basket folder in src/components
+
 ## [0.1.1] - 2022-01-09
 `Setting`
  - swagger api 문서 추가
