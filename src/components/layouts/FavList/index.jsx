@@ -20,7 +20,7 @@ const FavList = ({ isShowSideNav, hideSideNav }) => {
             Favourites
           </Typography>
           <IconButton onClick={hideSideNav}>
-            <CloseOutlinedIcon />
+            <CloseOutlinedIcon color="primary"/>
           </IconButton>
         </StyledSideNavHeader>
         <Divider />

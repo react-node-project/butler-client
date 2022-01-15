@@ -36,7 +36,7 @@ border:1px solid blue,
 export const StyledPaper = styled(Paper)`
   maxwidth: 345;
   position: relative;
-  padding-top: 5px;
+  margin-top: 5px;
   border: none;
   div: {
     height: 100;

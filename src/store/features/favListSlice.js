@@ -44,6 +44,6 @@ const favListSlice = createSlice({
   },
 });
 
-export const { addToFavList, removeFromFavList } = FavListSlicer.actions;
+export const { addToFavList, removeFromFavList } = favListSlice.actions;
 
-export default FavListSlicer.reducer;
+export default favListSlice.reducer;
