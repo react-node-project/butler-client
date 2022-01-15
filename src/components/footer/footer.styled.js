@@ -1,8 +1,6 @@
 import { styled } from '@mui/styles';
-import { Accordion, Box, Link } from '@mui/material';
-export const StyledAccordion = styled(Accordion)({
-  backgroundColor: '#eee',
-});
+import { Box, Link } from '@mui/material';
+
 
 export const StyledBox = styled(Box)({
   display: 'flex',

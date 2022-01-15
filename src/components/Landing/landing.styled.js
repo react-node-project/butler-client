@@ -12,7 +12,6 @@ export const StyledDiv = styled('div')({
     justifyContent: 'center',
   },
   '& .MuiImageListItemBar': {
-    border: '1px solid blue',
     textAlign: 'left',
   },
 });
