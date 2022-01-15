@@ -6,13 +6,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import SearchIcon from '@mui/icons-material/Search';
 
-import { PATH_ROOT, PATH_USER_SIGNIN,PATH_FAVLIST } from '../../../constants/PathConstants';
+import { PATH_ROOT, PATH_USER_SIGNIN } from '../../../constants/PathConstants';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../../store/features/userSlice';
 import { Link } from 'react-router-dom';
 import {
   StyledToolbar,
   StyledLinkButton,
+  StyledResponsiveBox,
   StyledSearchBox,
   StyledIconWrapperBox,
   StyledBtn,
@@ -20,7 +21,7 @@ import {
 } from './header.styled';
 import { IconButton } from '@mui/material';
 
-export default function Header({ showSideNav }) {
+export default function Header({ showSideNav, showFavList }) {
   const { Kakao } = window;
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
@@ -33,7 +34,6 @@ export default function Header({ showSideNav }) {
     <Box>
       <AppBar position="sticky">
         <StyledToolbar>
-          {/* logo */}
           <StyledLinkButton>
             <Link to={PATH_ROOT} href="#">
               Butler
@@ -45,28 +45,30 @@ export default function Header({ showSideNav }) {
             <StyledIconWrapperBox>
               <SearchIcon />
             </StyledIconWrapperBox>
-            <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
+            <StyledInputBase placeholder="Search for a restaurant" inputProps={{ 'aria-label': 'search' }} />
           </StyledSearchBox>
           <Stack direction="row" justifyContent="flex-end" alignItems="center" spacing={2}>
-            {/* favList */}
-            <StyledBtn onClick={showSideNav} variant="contained" startIcon={<FavoriteBorderIcon color="warning" />}>
-                  Favorites
-            </StyledBtn>
+            <StyledResponsiveBox>
+              {/* favList */}
+              <StyledBtn onClick={showFavList} variant="contained" startIcon={<FavoriteBorderIcon color="warning" />}>
+                Favorites
+              </StyledBtn>
 
-            {/* login/signup */}
-            {user ? (
-              <StyledBtn onClick={onClickLogout} variant="contained" startIcon={<LogoutIcon color="primary" />}>
-                <Typography mt={0.5} variant="subtitle2">
-                  Logout
-                </Typography>
-              </StyledBtn>
-            ) : (
-              <StyledBtn onClick={onClickLogout} variant="contained" startIcon={<LoginIcon color="primary" />}>
-                <Link to={PATH_USER_SIGNIN} href="#">
-                  Login
-                </Link>
-              </StyledBtn>
-            )}
+              {/* login/signup */}
+              {user ? (
+                <StyledBtn onClick={onClickLogout} variant="contained" startIcon={<LogoutIcon color="primary" />}>
+                  <Typography mt={0.5} variant="subtitle2">
+                    Logout
+                  </Typography>
+                </StyledBtn>
+              ) : (
+                <StyledBtn onClick={onClickLogout} variant="contained" startIcon={<LoginIcon color="primary" />}>
+                  <Link to={PATH_USER_SIGNIN} href="#">
+                    Login
+                  </Link>
+                </StyledBtn>
+              )}
+            </StyledResponsiveBox>
 
             {/* sidemenu */}
             <IconButton onClick={showSideNav}>

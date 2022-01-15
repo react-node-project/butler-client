@@ -23,6 +23,10 @@ export default function App() {
   const [isShowSideNav, setIsShowSideNav] = useState(false);
   const showSideNav = () => setIsShowSideNav(true);
   const hideSideNav = () => setIsShowSideNav(false);
+
+  const [isShowFavList, setIsShowFavList] = useState(false);
+  const showFavList = () => setIsShowFavList(true);
+  const hideFavList = () => setIsShowFavList(false);
   const { Kakao } = window;
 
   if (Kakao && !Kakao.isInitialized()) {
@@ -32,9 +36,9 @@ export default function App() {
   return (
     <>
       <Router>
-        <Header showSideNav={showSideNav} />
+        <Header showSideNav={showSideNav} showFavList={showFavList} />
         <SideNav isShowSideNav={isShowSideNav} hideSideNav={hideSideNav} />
-        <FavList isShowSideNav={isShowSideNav} hideSideNav={hideSideNav} />
+        <FavList isShowSideNav={isShowFavList} hideSideNav={hideFavList} />
         <Box component="main">
           <Routes>
             <Route path={PATH_USER_SIGNIN} element={<AuthFlip />} />
