@@ -43,7 +43,7 @@ const Basket = React.memo(() => {
               <div className="itemPriceAndQty">
                 <h5>
                   <StyledAddIcon color="primary" />
-                  {cartItem.qty}
+                  {cartItem?.qty}
                   <StyledRemoveIcon color="warning" />
                   <span>£ {cartItem.price * cartItem.qty}</span>
                 </h5>
@@ -61,6 +61,7 @@ const Basket = React.memo(() => {
           <StyledSubtotalBox>
             <h3>Subtotal</h3>
             {/* <h5>£ {cart.cartTotalAmt}</h5> */}
+            {/* <h5>£ {cart?.cartTotalAmt}</h5> */}
           </StyledSubtotalBox>
         </StyledBasketBox>
         <StyledButton fullWidth>Go to Checkout</StyledButton>

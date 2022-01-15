@@ -28,6 +28,7 @@ written by esther615kim
 
  `Changed`
 - path={PATH_RESTAURANTS_DETAIL} to <StorePage />
+- Header/index.jsx to add responosive styling and rename components('Styled-element')
 
 `Added`
 - cartSlicer
@@ -58,7 +59,7 @@ written by Minju
 - 메뉴 카테고리 선택시 그 섹션으로 스크롤 이동
 
 `Changed`
-
+- changed component name from ShopDetail to RestaurantDetail
 - 모달창 x 버튼 색깔이 가려져서 변경
 
 ## [0.0.9] - 2022-01-03
