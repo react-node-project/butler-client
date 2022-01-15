@@ -14,7 +14,6 @@ const FavList = ({ isShowSideNav, hideSideNav }) => {
   const dispatch = useDispatch();
 
   const list = () => (
-    <>
       <StyledSideNavContainer role="presentation">
         <StyledSideNavHeader>
           <Typography variant="h6" color="text.primary">
@@ -33,7 +32,6 @@ const FavList = ({ isShowSideNav, hideSideNav }) => {
           <FavShopCard />
         </StyledBox>
       </StyledSideNavContainer>
-    </>
   );
 
   return (

@@ -48,7 +48,7 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      // width: '20ch',
+      // 아직 미정
     },
   },
 }));
@@ -71,7 +71,6 @@ export const StyledBtn = styled(Button)({
     color: 'inherit',
   },
   '&:hover': {
-    // 여기 배경을 theme.palette.primary.main 으로 할 방법 아실까요
     background: '#fff',
     fontWeight: 600,
   },

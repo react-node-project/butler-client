@@ -2,6 +2,7 @@ import { Typography,CardMedia, CardContent } from '@mui/material';
 import React from 'react';
 import { StyledPaper, StyledChip } from './favlist.styled';
 
+// dummy data => 작업1. local storage 저장 &redux 세팅 예정
 const FAV_LIST = [
   {
     shop_id: 34,
@@ -19,8 +20,6 @@ const FAV_LIST = [
     delivery_distance: '10-20 min',
   },
 ];
-
-// todo: local storage 저장 &redux
 
 const FavShopCard = () => {
   return (
@@ -43,4 +42,5 @@ const FavShopCard = () => {
 
 export default FavShopCard;
 
+// 작업2 favlist 없을 때 카드용 이미지
 // https://deliveroo.co.uk/anonymous_user_guid.gif?guid=25b5ceb3-9885-4271-ab3a-2e612c56a056
