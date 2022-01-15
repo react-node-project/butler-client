@@ -32,7 +32,7 @@ const Basket = React.memo(() => {
         <StyledBasketBox>
           <h3>Your order</h3>
           {/* cart items */}
-          {cart.cartItems?.map((cartItem) => (
+          {/* {cart.cartItems?.map((cartItem) => (
             <StyledItemBox key={cartItem.id}>
               <h5>
                 {cartItem.title}
@@ -43,13 +43,13 @@ const Basket = React.memo(() => {
               <div className="itemPriceAndQty">
                 <h5>
                   <StyledAddIcon color="primary" />
-                  {cartItem.qty}
+                  {cartItem?.qty}
                   <StyledRemoveIcon color="warning" />
                   <span>£ {cartItem.price * cartItem.qty}</span>
                 </h5>
               </div>
             </StyledItemBox>
-          ))}
+          ))} */}
 
           <Divider />
           <div>
@@ -60,7 +60,7 @@ const Basket = React.memo(() => {
           <Divider />
           <StyledSubtotalBox>
             <h3>Subtotal</h3>
-            <h5>£ {cart.cartTotalAmt}</h5>
+            {/* <h5>£ {cart?.cartTotalAmt}</h5> */}
           </StyledSubtotalBox>
         </StyledBasketBox>
         <StyledButton fullWidth>Go to Checkout</StyledButton>
