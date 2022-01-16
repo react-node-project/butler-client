@@ -14,24 +14,24 @@ const FavList = ({ isShowSideNav, hideSideNav }) => {
   const dispatch = useDispatch();
 
   const list = () => (
-      <StyledSideNavContainer role="presentation">
-        <StyledSideNavHeader>
-          <Typography variant="h6" color="text.primary">
-            Favourites
-          </Typography>
-          <IconButton onClick={hideSideNav}>
-            <CloseOutlinedIcon color="primary"/>
-          </IconButton>
-        </StyledSideNavHeader>
-        <Divider />
-        <StyledBox>
-          <Typography gutterBottom color="text.primary">
-            Recently Added
-          </Typography>
-          {/* LIST */}
-          <FavShopCard />
-        </StyledBox>
-      </StyledSideNavContainer>
+    <StyledSideNavContainer role="presentation">
+      <StyledSideNavHeader>
+        <Typography variant="h6" color="text.primary">
+          Favourites
+        </Typography>
+        <IconButton onClick={hideSideNav}>
+          <CloseOutlinedIcon color="primary" />
+        </IconButton>
+      </StyledSideNavHeader>
+      <Divider />
+      <StyledBox>
+        <Typography gutterBottom color="text.primary">
+          Recently Added
+        </Typography>
+        {/* LIST */}
+        <FavShopCard />
+      </StyledBox>
+    </StyledSideNavContainer>
   );
 
   return (
