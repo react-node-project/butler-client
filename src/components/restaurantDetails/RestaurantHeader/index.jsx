@@ -1,11 +1,18 @@
-import React from 'react';
-import { StyledHeaderImage, StyledHeader } from './restaurantHedaer.styled';
+import React, { useState } from 'react';
+import { StyledHeaderImage, StyledHeader, StyledHeartIcon } from './restaurantHedaer.styled';
 import burgerImg from '../../../asset/img/burger.png';
-import { Grid, Button, List, Typography, ListItem } from '@mui/material';
+import { Grid, Button, List, Typography, ListItem, IconButton } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import InfoIcon from '@mui/icons-material/Info';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 export default function RestaurantHeader(props) {
+  const [heartClicked, setHeartClicked] = useState(false);
+
+  const handleHeartClick = () => {
+    setHeartClicked(!heartClicked);
+  };
   return (
     <>
       <StyledHeader>
@@ -32,6 +39,13 @@ export default function RestaurantHeader(props) {
               </ListItem>
             </List>
           </Grid>
+          <IconButton onClick={handleHeartClick}>
+            {heartClicked ? (
+              <FavoriteIcon style={{ fontSize: '40' }} />
+            ) : (
+              <FavoriteBorderIcon style={{ fontSize: '40' }} />
+            )}
+          </IconButton>
         </Grid>
       </StyledHeader>
     </>

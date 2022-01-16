@@ -7,7 +7,7 @@ import Basket from './../../components/restaurantDetails/Basket/index';
 export default function StorePage() {
   return (
     <>
-      <Container>
+      {/* <Container>
         <RestaurantDetail /> 
       </Container>
       <Box sx={{ margin: 0, background: '#eee' }}>
@@ -21,7 +21,8 @@ export default function StorePage() {
             </StyledGrid>
           </Grid>
         </Container>
-      </Box>
+      </Box> */}
+      <RestaurantDetail />
     </>
   );
 }
