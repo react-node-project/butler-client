@@ -1,59 +1,59 @@
-import React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import { Container } from '@mui/material';
-
-import Typography from '@mui/material/Typography';
-import FindInPageIcon from '@mui/icons-material/FindInPage';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import React, { useEffect, useState } from 'react';
+import { AppBar, Box, Stack } from '@mui/material';
+import { Link, useLocation } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import { PATH_API_DOCS, PATH_ROOT, PATH_USER_SIGNIN } from '../../../constants/PathConstants';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { LinkButton, StyledMenuItem } from './header.styled';
+import { StyledBtn, StyledLinkButton, StyledToolbar } from './header.styled';
+import Typography from '@mui/material/Typography';
+
+import { PATH_RESTAURANTS, PATH_RESTAURANTS_DETAIL, PATH_ROOT } from '../../../constants/PathConstants';
+import { ApiDocsMenu, Basket, FavMenu, LogInMenu, SearchBar } from '@components/layouts/Header/menus';
 
 interface Props {
   showSideNav: () => {};
+  showFavList: () => {};
 }
 
-export default function Header({ showSideNav }: Props) {
-  let navigate = useNavigate();
-
+export default function Header({ showSideNav, showFavList }: Props) {
+  let location = useLocation();
   const { user } = useSelector((state) => state.user);
-  const goSignIn = () => navigate(PATH_USER_SIGNIN);
-  const goDocs = () => navigate(PATH_API_DOCS);
+  const cart = true;
+  const [isShowSearchBar, setIsShowSearchBar] = useState(false);
 
-  const ReactiveMenuItem = !user ? (
-    <StyledMenuItem onClick={goSignIn}>
-      <HomeOutlinedIcon />
-      <Typography textAlign="center">Sign Up or logIn</Typography>
-    </StyledMenuItem>
-  ) : (
-    <StyledMenuItem onClick={goDocs}>
-      <FindInPageIcon />
-      <Typography textAlign="center">API Docs</Typography>
-    </StyledMenuItem>
-  );
+  useEffect(() => {
+    setIsShowSearchBar([PATH_RESTAURANTS, PATH_RESTAURANTS_DETAIL].includes(location.pathname));
+  }, [location]);
 
   return (
     <Box>
       <AppBar position="sticky">
-        <Container sx={{ width: '70%' }}>
-          <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <LinkButton>
+        <Box>
+          <StyledToolbar>
+            <Typography component="div" sx={{ flexGrow: 1 }}>
+              <StyledLinkButton>
                 <Link to={PATH_ROOT}>Butler</Link>
-              </LinkButton>
+              </StyledLinkButton>
             </Typography>
-            {ReactiveMenuItem}
-            <StyledMenuItem onClick={showSideNav}>
-              <MenuIcon />
-              <Typography textAlign="center">Menu</Typography>
-            </StyledMenuItem>
-          </Toolbar>
-        </Container>
+            <Stack direction="row" justifyContent="flex-end" alignItems="center" spacing={2}>
+              {isShowSearchBar && <SearchBar />}
+              {cart && <Basket />}
+              {user ? (
+                <>
+                  <FavMenu showFavList={showFavList} />
+                  <ApiDocsMenu />
+                </>
+              ) : (
+                <LogInMenu />
+              )}
+
+              {/* side menu */}
+              <StyledBtn startIcon={<MenuIcon />} onClick={showSideNav} aria-label="menu">
+                Menu
+              </StyledBtn>
+            </Stack>
+          </StyledToolbar>
+        </Box>
       </AppBar>
     </Box>
   );
