@@ -7,7 +7,7 @@ import {
   CATEGORY_LIST_TABLE_SERVICE,
   RESTAURANTS_LIST,
   RESTAURANTS_LIST_PICK_UP,
-  RESTAURANTS_LIST_TABLE_SERVICE,
+  RESTAURANTS_LIST_TABLE_SERVICE
 } from './data/restaurants';
 import { RESTAURANT_MENU } from './data/restaurantMenu';
 
@@ -31,18 +31,18 @@ export const handlers = [
     );
   }),
   rest.post(`${MOCK_API_URL}/location`, async (req, res, ctx) => {
-    await sleep(3000);
+    await sleep(1000);
     const whiteList = ['영국 리버풀'];
 
-    if (!whiteList.includes(req.body.address)) {
-      return res(
-        ctx.status(403),
-        ctx.json({
-          code: 2000,
-          message: 'not supported location',
-        }),
-      );
-    }
+    // if (!whiteList.includes(req.body.address)) {
+    //   return res(
+    //     ctx.status(403),
+    //     ctx.json({
+    //       code: 2000,
+    //       message: 'not supported location',
+    //     }),
+    //   );
+    // }
 
     return res(
       ctx.json({
