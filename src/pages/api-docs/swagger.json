@@ -160,6 +160,136 @@
           }
         }
       }
+    },
+    "/getstores": {
+      "get": {
+        "description": "상점 조회",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lastitude",
+            "schema": {
+              "type": "number",
+              "example": 10.8007819
+            },
+            "description": "위도",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "longitude",
+            "schema": {
+              "type": "number",
+              "example": 106.7474015
+            },
+            "description": "경도",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "distance",
+            "schema": {
+              "type": "number",
+              "example": 5
+            },
+            "description": "최대 거리(마일)"
+          },
+          {
+            "in": "query",
+            "name": "filter",
+            "schema": {
+              "type": "string",
+              "example": "delivery"
+            },
+            "description": "리스트 정렬 3가지",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "MESSAGE_CODE": {
+                  "type": "string",
+                  "example": "01"
+                },
+                "MESSAGE_NAME": {
+                  "type": "string",
+                  "example": "Success"
+                },
+                "rowCount": {
+                  "type": "number",
+                  "example": 1
+                },
+                "list": {
+                  "type": "array",
+                  "example": [
+                    {
+                      "store_no":"string",
+                      "store_name":"string",
+                      "service_type_code":"string",
+                      "phone_no":"string",
+                      "minimum_payment_amount":"string",
+                      "sale_from_time":"string",
+                      "sale_to_time":"string",
+                      "delivery_from_time":"string",
+                      "delivery_to_time":"string",
+                      "city_code":"string",
+                      "district_code":"string",	
+                      "address":"string",
+                      "latitude":"string",
+                      "longitude":"string",
+                      "manager_phone_no":"string",
+                      "national_code":"string",
+                      "notify":"string",
+                      "bank_code":"string",
+                      "bank_account_no":"string",
+                      "store_image_url": "string",
+                      "descriptions": ["string", "string", "string"],
+                      "review": "string"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "필수 데이터가 누락되어있을때",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "example": 2000
+                },
+                "message": {
+                  "type": "string",
+                  "example": "missed latitude or longitude"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/":{        
+      "description": "landing page",
+      "produces": [
+        "application/json"
+      ],
+      "responses":{
+        "200":{
+          "description":"OK"
+        }
+,        "404":{
+          "description":"Page Not Found"
+        }
+      }
+
     }
   }
 }

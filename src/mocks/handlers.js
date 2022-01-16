@@ -7,8 +7,9 @@ import {
   CATEGORY_LIST_TABLE_SERVICE,
   RESTAURANTS_LIST,
   RESTAURANTS_LIST_PICK_UP,
-  RESTAURANTS_LIST_TABLE_SERVICE
+  RESTAURANTS_LIST_TABLE_SERVICE,
 } from './data/restaurants';
+import { RESTAURANT_MENU } from './data/restaurantMenu';
 
 const sleep = (ms) => {
   return new Promise((resolve) => {
@@ -74,6 +75,9 @@ export const handlers = [
         message: 'not supported filter',
       }),
     );
+  }),
+  rest.get(`${MOCK_API_URL}/restaurant_detail`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json([...RESTAURANT_MENU]));
   }),
 ];
 

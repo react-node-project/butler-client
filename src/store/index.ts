@@ -5,6 +5,7 @@ import restaurantsReducer from './features/restaurants';
 import menuSelectionReducer from './features/menuSelectSlice';
 import { locationAPI } from './service/location';
 import { restaurantsAPI } from './service/restaurants';
+import { menuAPI } from './service/restaurantMenu';
 import configReducer from './features/configSlice';
 
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   restaurants: restaurantsReducer,
   [restaurantsAPI.reducerPath]: restaurantsAPI.reducer,
+  [menuAPI.reducerPath]: menuAPI.reducer,
   menuSelection: menuSelectionReducer,
   config: configReducer,
   locationAPI: locationAPI.reducer,
@@ -20,7 +22,7 @@ const rootReducer = combineReducers({
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat([locationAPI.middleware, restaurantsAPI.middleware]),
+    getDefaultMiddleware().concat([locationAPI.middleware, restaurantsAPI.middleware, menuAPI.middleware]),
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
