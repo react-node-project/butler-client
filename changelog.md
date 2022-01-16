@@ -18,7 +18,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Installed` for installing new dependencies
 - `Setting` for adding/changing the general settings
 
-## [0.1.2] - 2022-01-15
+
+## [0.1.15] - 2022-01-15
+`Installed` webpack Merge 설정
+
+`Setting` webpack 설정(분리 => dev(devtool 변경),prod,common)
 
 written by esther615kim
 
