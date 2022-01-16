@@ -6,8 +6,6 @@ const ITEM_PADDING_TOP = 8;
 
 export const StyledMenuWrapper = styled(Box)((props) => ({
   display: 'flex',
-  justifyContent: 'flex-start',
-  width: '70%',
 }));
 
 export const MenuProps = {

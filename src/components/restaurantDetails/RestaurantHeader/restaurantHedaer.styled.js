@@ -1,5 +1,6 @@
 import { styled } from '@mui/styles';
 import { Grid } from '@mui/material';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
