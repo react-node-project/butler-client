@@ -26,6 +26,11 @@ export const StyledThumb = styled(Box)((props: { url?: string }) => ({
     fontWeight: 600,
     color: '#fff',
   },
+  '& > button': {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+  },
 }));
 
 export const StyledButton = styled(Box)((props: { theme: Theme }) => ({

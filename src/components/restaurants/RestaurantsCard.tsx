@@ -2,6 +2,7 @@ import { Box } from '@mui/system';
 import React from 'react';
 import StarIcon from '@mui/icons-material/Star';
 import { StyledButton, StyledLayout, StyledText, StyledThumb } from './RestaurantsCard.styled';
+import FavIcon from '@components/Icons/FavIcon';
 
 export type RestaurantsCardProps = {
   imageUrl: string;
@@ -23,6 +24,7 @@ const RestaurantsCard = (props: RestaurantsCardProps) => {
       <StyledButton component="button">
         <StyledThumb className="thumb" url={imageUrl}>
           {!isOpen && <span>Back soon</span>}
+          <FavIcon />
         </StyledThumb>
         <StyledText>
           <Box className="title">{title}</Box>
