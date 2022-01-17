@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 
 import { PATH_RESTAURANTS, PATH_RESTAURANTS_DETAIL, PATH_ROOT } from '../../../constants/PathConstants';
 import { ApiDocsMenu, Basket, FavMenu, LogInMenu, SearchBar } from '@components/layouts/Header/menus';
+import { RootState } from '@store/index';
 
 interface Props {
   showSideNav: () => {};
@@ -17,8 +18,8 @@ interface Props {
 
 export default function Header({ showSideNav, showFavList }: Props) {
   let location = useLocation();
-  const { user } = useSelector((state) => state.user);
-  const cart = true;
+  const user = useSelector((state: RootState) => state.user);
+  const basket = true;
   const [isShowSearchBar, setIsShowSearchBar] = useState(false);
 
   useEffect(() => {
@@ -37,7 +38,7 @@ export default function Header({ showSideNav, showFavList }: Props) {
             </Typography>
             <Stack direction="row" justifyContent="flex-end" alignItems="center" spacing={2}>
               {isShowSearchBar && <SearchBar />}
-              {cart && <Basket />}
+              {basket && <Basket />}
               {user ? (
                 <>
                   <FavMenu showFavList={showFavList} />
