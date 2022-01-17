@@ -10,47 +10,15 @@ import {
   RESTAURANTS_LIST_TABLE_SERVICE
 } from './data/restaurants';
 import { RESTAURANT_MENU } from './data/restaurantMenu';
-
-const sleep = (ms) => {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-};
+import { locationHandler } from './location.handler';
+import { authHandler } from './auth.handler';
+import { userHandler } from './user.handler';
 
 export const handlers = [
   rest.get(`${MOCK_API_URL}/theme-menus`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json([...THEMEMENU]));
   }),
-  rest.post(`${MOCK_API_URL}/inactiveLocation`, async (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json({
-        code: 1000,
-        message: 'ok',
-      }),
-    );
-  }),
-  rest.post(`${MOCK_API_URL}/location`, async (req, res, ctx) => {
-    await sleep(1000);
-    const whiteList = ['영국 리버풀'];
 
-    // if (!whiteList.includes(req.body.address)) {
-    //   return res(
-    //     ctx.status(403),
-    //     ctx.json({
-    //       code: 2000,
-    //       message: 'not supported location',
-    //     }),
-    //   );
-    // }
-
-    return res(
-      ctx.json({
-        code: 1000,
-        message: 'ok',
-      }),
-    );
-  }),
   rest.get(`${MOCK_API_URL}/restauranrs/:filter`, (req, res, ctx) => {
     if (req.params.filter === 'delivery') {
       return res(ctx.status(200), ctx.json({ categories: { ...CATEGORY_LIST }, restaurants: [...RESTAURANTS_LIST] }));
@@ -67,7 +35,6 @@ export const handlers = [
         ctx.json({ categories: { ...CATEGORY_LIST_TABLE_SERVICE }, restaurants: [...RESTAURANTS_LIST_TABLE_SERVICE] }),
       );
     }
-
     return res(
       ctx.status(403),
       ctx.json({
@@ -79,6 +46,9 @@ export const handlers = [
   rest.get(`${MOCK_API_URL}/restaurant_detail`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json([...RESTAURANT_MENU]));
   }),
+  ...locationHandler,
+  ...authHandler,
+  ...userHandler,
 ];
 
 const worker = setupWorker(...handlers);
