@@ -4,7 +4,7 @@ import Styled from '../MarkLocationModal/markLocationModal.styled';
 import CloseIcon from '@mui/icons-material/Close';
 import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
 import { StringSchema } from 'yup';
-import { useSendInactiveLocationMutation } from '../../../store/service/location';
+import { useSendInactiveLocationMutation } from '@store/service/location.api';
 
 type Props = {
   location: {

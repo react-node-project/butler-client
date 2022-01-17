@@ -3,10 +3,20 @@ import appReducer from './features/appSlice';
 import userReducer from './features/userSlice';
 import restaurantsReducer from './features/restaurants';
 import menuSelectionReducer from './features/menuSelectSlice';
-import { locationAPI } from './service/location';
+import { locationAPI } from './service/location.api';
 import { restaurantsAPI } from './service/restaurants';
 import { menuAPI } from './service/restaurantMenu';
 import configReducer from './features/configSlice';
+import { authAPI } from '@store/service/auth.api';
+import { userAPI } from '@store/service/user.api';
+
+const apiReducers = {
+  [restaurantsAPI.reducerPath]: restaurantsAPI.reducer,
+  [menuAPI.reducerPath]: menuAPI.reducer,
+  [locationAPI.reducerPath]: locationAPI.reducer,
+  [authAPI.reducerPath]: authAPI.reducer,
+  [userAPI.reducerPath]: userAPI.reducer,
+};
 
 const rootReducer = combineReducers({
   app: appReducer,
