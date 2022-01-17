@@ -1,8 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { UserInfo } from '../../type/user.type';
 
-// 전역 상태값 설정 ex) isSidebar...
-const initialState = {
-  user: null,
+const initialState: UserInfo & { token: string } = {
+  mobile: '',
+  lastName: '',
+  firstName: '',
+  callingCode: '',
+  email: '',
+  token: '',
 };
 
 export const userSlice = createSlice({
@@ -10,7 +15,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      state.user = action.payload;
+      state = { ...action.payload };
     },
   },
 });

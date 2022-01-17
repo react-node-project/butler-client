@@ -22,17 +22,20 @@ const rootReducer = combineReducers({
   app: appReducer,
   user: userReducer,
   restaurants: restaurantsReducer,
-  [restaurantsAPI.reducerPath]: restaurantsAPI.reducer,
-  [menuAPI.reducerPath]: menuAPI.reducer,
   menuSelection: menuSelectionReducer,
   config: configReducer,
-  locationAPI: locationAPI.reducer,
+  ...apiReducers,
 });
 
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat([locationAPI.middleware, restaurantsAPI.middleware, menuAPI.middleware]),
+    getDefaultMiddleware().concat([
+      locationAPI.middleware,
+      restaurantsAPI.middleware,
+      authAPI.middleware,
+      menuAPI.middleware,
+    ]),
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
