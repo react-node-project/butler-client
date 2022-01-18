@@ -1,13 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { UserInfo } from '../../type/user.type';
 
-const initialState: UserInfo & { token: string } = {
+const initialState: UserInfo & { token: string; isLoggedIn: boolean } = {
   mobile: '',
   lastName: '',
   firstName: '',
   callingCode: '',
   email: '',
   token: '',
+  isLoggedIn: false,
 };
 
 export const userSlice = createSlice({

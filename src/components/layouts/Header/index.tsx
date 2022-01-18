@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { AppBar, Box, Stack } from '@mui/material';
+import { AppBar, Box, Stack, useMediaQuery } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 
@@ -9,21 +9,27 @@ import Typography from '@mui/material/Typography';
 
 import { PATH_RESTAURANTS, PATH_RESTAURANTS_DETAIL, PATH_ROOT } from '../../../constants/PathConstants';
 import { ApiDocsMenu, Basket, FavMenu, LogInMenu, SearchBar } from '@components/layouts/Header/menus';
+import { RootState } from '@store/index';
+import { theme } from '../../../styles/theme';
 
 interface Props {
-  showSideNav: () => {};
-  showFavList: () => {};
+  showSideNav: () => void;
+  showFavList: () => void;
 }
 
 export default function Header({ showSideNav, showFavList }: Props) {
   let location = useLocation();
-  const { user } = useSelector((state) => state.user);
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const cart = true;
+
+  const isBrowserWidth = useMediaQuery(theme.breakpoints.up('md'));
   const [isShowSearchBar, setIsShowSearchBar] = useState(false);
 
   useEffect(() => {
-    setIsShowSearchBar([PATH_RESTAURANTS, PATH_RESTAURANTS_DETAIL].includes(location.pathname));
-  }, [location]);
+    const isShowPage = [PATH_RESTAURANTS, PATH_RESTAURANTS_DETAIL].includes(location.pathname);
+
+    setIsShowSearchBar(isShowPage && isBrowserWidth);
+  }, [location, isBrowserWidth]);
 
   return (
     <Box>
@@ -38,7 +44,7 @@ export default function Header({ showSideNav, showFavList }: Props) {
             <Stack direction="row" justifyContent="flex-end" alignItems="center" spacing={2}>
               {isShowSearchBar && <SearchBar />}
               {cart && <Basket />}
-              {user ? (
+              {isLoggedIn ? (
                 <>
                   <FavMenu showFavList={showFavList} />
                   <ApiDocsMenu />

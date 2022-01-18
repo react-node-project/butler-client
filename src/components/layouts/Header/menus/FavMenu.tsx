@@ -3,7 +3,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { StyledBtn } from '@components/layouts/Header/header.styled';
 
 type Props = {
-  showFavList: () => {};
+  showFavList: () => void;
 };
 const FavMenu = ({ showFavList }: Props) => {
   return (
