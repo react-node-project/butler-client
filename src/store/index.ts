@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import appReducer from './features/appSlice';
 import userReducer from './features/userSlice';
-import restaurantsReducer from './features/restaurants';
+import restaurantsReducer from './features/restaurantsSlice';
 import menuSelectionReducer from './features/menuSelectSlice';
 import cartReducer from './features/cartSlicer';
 import configReducer from './features/configSlice';
@@ -19,6 +19,7 @@ const apiReducers = {
   [authAPI.reducerPath]: authAPI.reducer,
   [userAPI.reducerPath]: userAPI.reducer,
 };
+import paymentsReducer from './features/paymentsSlice';
 
 const rootReducer = combineReducers({
   app: appReducer,
@@ -28,6 +29,8 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   config: configReducer,
   ...apiReducers,
+  locationAPI: locationAPI.reducer,
+  payments: paymentsReducer,
 });
 
 export const store = configureStore({
