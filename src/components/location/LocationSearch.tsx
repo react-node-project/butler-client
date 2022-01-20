@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { usePlacesWidget } from 'react-google-autocomplete';
 
@@ -36,9 +36,22 @@ const LocationSearch = () => {
     disabledAddressModal: false,
   });
 
-  const sendLocation = ({ address, location }: SendLocationProps) => {
+  const sendLocation = async ({ address, location }: SendLocationProps) => {
     _location = { ...location };
-    _sendLocation({ address, location });
+    try {
+      await _sendLocation({ address, location }).unwrap();
+      navigate(`${PATH_RESTAURANTS}?latitude=${location.lat}&longitude=${location.lng}`);
+    } catch (error) {
+      const err = error as FetchBaseQueryError;
+
+      if ('data' in err) {
+        const defineServerError = err.data as DefinedServerError;
+        if (defineServerError.code === 2000) {
+          setIsShow({ disabledAddressModal: true, markLocationModal: false });
+          return;
+        }
+      }
+    }
   };
   const onPlaceSelected = (places: google.maps.places.PlaceResult) => {
     if (!places || !places.formatted_address) return;
@@ -94,31 +107,6 @@ const LocationSearch = () => {
 
   const handleSearchText = (e: React.ChangeEvent<HTMLInputElement>) => setSearchText(e.target.value);
   const onChangeLocationText = (text: string) => setSearchText(text);
-  const handleSendLocationResult = () => {
-    const { isError, isSuccess, error } = sendLocationResult;
-
-    if (isSuccess) {
-      navigate(PATH_RESTAURANTS);
-      return;
-    }
-
-    if (isError) {
-      if (!error) return;
-
-      if ('data' in error) {
-        const err = error as FetchBaseQueryError;
-        const defineServerError = err.data as DefinedServerError;
-        if (defineServerError.code === 2000) {
-          setIsShow({ disabledAddressModal: true, markLocationModal: false });
-          return;
-        }
-      }
-    }
-  };
-
-  useEffect(() => {
-    handleSendLocationResult();
-  }, [sendLocationResult]);
 
   return (
     <>
