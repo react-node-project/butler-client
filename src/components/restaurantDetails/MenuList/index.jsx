@@ -76,7 +76,7 @@ export default function MenuList(props) {
       </Grid>
 
       <StyledMenuWrapper>
-        <Grid container display="flex" justifyContent="center" alignItems="center" spacing={2}>
+        <Grid container justifyContent="center" alignItems="center" spacing={2}>
           {props.menu.map((menu, index) => (
             <React.Fragment key={index}>
               <Grid item marginTop="1rem" marginLeft="2rem" sm={12}>
@@ -86,7 +86,7 @@ export default function MenuList(props) {
               </Grid>
               {menu.foodList.map((food, idx) =>
                 idx % 2 === 0 ? (
-                  <Grid item align="right" sm={10} md={10} lg={5} key={idx}>
+                  <Grid item sm={12} md={12} lg={6} key={idx}>
                     <MenuCard
                       key={idx}
                       title={food.title}
@@ -98,7 +98,7 @@ export default function MenuList(props) {
                     />
                   </Grid>
                 ) : (
-                  <Grid item align="left" sm={10} md={10} lg={5} key={idx}>
+                  <Grid item sm={12} md={12} lg={6} key={idx}>
                     <MenuCard
                       key={idx}
                       title={food.title}

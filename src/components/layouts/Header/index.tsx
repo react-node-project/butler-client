@@ -23,6 +23,7 @@ export default function Header({ showSideNav, showFavList }: Props) {
   const cart = true;
 
   const isBrowserWidth = useMediaQuery(theme.breakpoints.up('md'));
+  const user = useSelector((state: RootState) => state.user);
   const [isShowSearchBar, setIsShowSearchBar] = useState(false);
 
   useEffect(() => {
@@ -45,6 +46,8 @@ export default function Header({ showSideNav, showFavList }: Props) {
               {isShowSearchBar && <SearchBar />}
               {cart && <Basket />}
               {isLoggedIn ? (
+              {basket && <Basket />}
+              {user ? (
                 <>
                   <FavMenu showFavList={showFavList} />
                   <ApiDocsMenu />
