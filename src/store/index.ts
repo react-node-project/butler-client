@@ -4,27 +4,41 @@ import userReducer from './features/userSlice';
 import restaurantsReducer from './features/restaurants';
 import menuSelectionReducer from './features/menuSelectSlice';
 import cartReducer from './features/cartSlicer';
+import configReducer from './features/configSlice';
+
 import { locationAPI } from './service/location';
 import { restaurantsAPI } from './service/restaurants';
 import { menuAPI } from './service/restaurantMenu';
-import configReducer from './features/configSlice';
+import { authAPI } from '@store/service/auth.api';
+import { userAPI } from '@store/service/user.api';
+
+const apiReducers = {
+  [restaurantsAPI.reducerPath]: restaurantsAPI.reducer,
+  [menuAPI.reducerPath]: menuAPI.reducer,
+  [locationAPI.reducerPath]: locationAPI.reducer,
+  [authAPI.reducerPath]: authAPI.reducer,
+  [userAPI.reducerPath]: userAPI.reducer,
+};
 
 const rootReducer = combineReducers({
   app: appReducer,
   user: userReducer,
   restaurants: restaurantsReducer,
-  [restaurantsAPI.reducerPath]: restaurantsAPI.reducer,
-  [menuAPI.reducerPath]: menuAPI.reducer,
   menuSelection: menuSelectionReducer,
   cart: cartReducer,
   config: configReducer,
-  locationAPI: locationAPI.reducer,
+  ...apiReducers,
 });
 
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat([locationAPI.middleware, restaurantsAPI.middleware, menuAPI.middleware]),
+    getDefaultMiddleware().concat([
+      locationAPI.middleware,
+      restaurantsAPI.middleware,
+      authAPI.middleware,
+      menuAPI.middleware,
+    ]),
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

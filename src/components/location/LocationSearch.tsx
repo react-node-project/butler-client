@@ -7,8 +7,8 @@ import { Card, CardContent, IconButton, Modal, TextField } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 import { MAP_API_KEY as apiKey } from '../../constants/EnvContant';
-import { PATH_USER_SIGNIN } from '../../constants/PathConstants';
-import { SendLocationProps, useSendLocationMutation } from '../../store/service/location';
+import { PATH_RESTAURANTS, PATH_USER_SIGNIN } from '../../constants/PathConstants';
+import { SendLocationProps, useSendLocationMutation } from '@store/service/location.api';
 import { StyledLink } from '../../styles/element.styled';
 
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
@@ -98,7 +98,7 @@ const LocationSearch = () => {
     const { isError, isSuccess, error } = sendLocationResult;
 
     if (isSuccess) {
-      navigate(PATH_USER_SIGNIN);
+      navigate(PATH_RESTAURANTS);
       return;
     }
 

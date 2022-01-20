@@ -3,11 +3,9 @@ const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const CopyPlugin = require('copy-webpack-plugin');
 
-console.log('here');
-
 module.exports = merge(common, {
   mode: 'development',
-  devtool: 'eval-cheap-module-source-map',
+  devtool: 'eval-source-map',
   plugins: [
     new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
     new CopyPlugin({

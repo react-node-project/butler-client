@@ -1,9 +1,10 @@
-import { styled, alpha } from '@mui/material/styles';
-import { Button, Box, Toolbar, InputBase } from '@mui/material';
+import { alpha, styled } from '@mui/material/styles';
+import { Box, Button, InputBase, Toolbar } from '@mui/material';
 
 export const StyledLinkButton = styled(Button)({
-  marginRight:15,
+  marginRight: 15,
   '& a': {
+    fontSize: '1.2rem',
     fontWeight: 600,
     color: '#fff',
     textDecoration: 'none',
@@ -12,6 +13,7 @@ export const StyledLinkButton = styled(Button)({
 
 export const StyledToolbar = styled(Toolbar)({
   justifyContent: 'space-between',
+  display: 'flex',
 });
 
 export const StyledSearchBox = styled(Box)(({ theme }) => ({
@@ -52,14 +54,6 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-
-export const StyledResponsiveBox = styled(Box)(({ theme }) => ({
-  display: 'none',
-  [theme.breakpoints.up('md')]: {
-    display: 'block',
-  },
-}));
-
 export const StyledBtn = styled(Button)({
   border: '1px solid #eee',
   background: '#eee',

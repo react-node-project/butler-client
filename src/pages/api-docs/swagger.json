@@ -100,7 +100,7 @@
         }
       }
     },
-    "/inactiveLocation": {
+    "/location/inactive": {
       "post": {
         "description": "비활성화 지역에 대한 서비스 장소를 이메일로 보내기",
         "produces": [
