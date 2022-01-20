@@ -57,7 +57,7 @@ export default function MenuList(props) {
       />
       <Grid container top="0" position="sticky" direction="row-reverse">
         <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="input-menu-category">Greasy's Burgers</InputLabel>
+          <InputLabel>Greasy's Burgers</InputLabel>
           <Select
             id="menu-category"
             value={menuName}

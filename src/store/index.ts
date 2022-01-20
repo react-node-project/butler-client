@@ -3,6 +3,7 @@ import appReducer from './features/appSlice';
 import userReducer from './features/userSlice';
 import restaurantsReducer from './features/restaurants';
 import menuSelectionReducer from './features/menuSelectSlice';
+import cartReducer from './features/cartSlicer';
 import { locationAPI } from './service/location';
 import { restaurantsAPI } from './service/restaurants';
 import { menuAPI } from './service/restaurantMenu';
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   [restaurantsAPI.reducerPath]: restaurantsAPI.reducer,
   [menuAPI.reducerPath]: menuAPI.reducer,
   menuSelection: menuSelectionReducer,
+  cart: cartReducer,
   config: configReducer,
   locationAPI: locationAPI.reducer,
 });

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyledHeaderImage, StyledHeader, StyledHeartIcon } from './restaurantHedaer.styled';
+import { StyledHeaderImage, StyledHeader } from './restaurantHedaer.styled';
 import burgerImg from '../../../asset/img/burger.png';
 import { Grid, Button, List, Typography, ListItem, IconButton } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
