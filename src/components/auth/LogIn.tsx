@@ -1,34 +1,41 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
-import { Box, Button, Link, Paper, Grid, Typography } from '@mui/material';
+import { Box, Button, Grid, Link, Paper, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { StyledContainer } from '../../../styles/element.styled';
-import Glogin from '../Glogin';
-import OnTheWay from '../../../asset/img/ontheway';
-import KaKaoLogin from '../KaKaoLogin/index';
+import { StyledContainer } from '../../styles/element.styled';
+import GoogleLogin from './GoogleLogin';
+import OnTheWay from '../../asset/img/ontheway';
+import KaKaoLogin from './KaKaoLogin';
+import { useLoginMutation } from '@store/service/auth.api';
+import './custom.css';
 
-const SignIn = (props) => {
+interface Props {
+  handleFlip: () => {};
+}
+
+const LogIn = ({ handleFlip }: Props) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
+  const [login] = useLoginMutation();
+
+  const onSubmit = async ({ email, password }: { email: string; password: string }) => {
+    try {
+      await login({ email, password }).unwrap();
+    } catch (e) {}
   };
-  const handleFlip = () => {
-    props.handleFlip();
-  };
+
   return (
     <StyledContainer maxWidth="xs">
       <Paper sx={{ px: 5, py: 8 }}>
         <Grid container spacing={2} justifyContent="center">
           <Grid item>
-            <Typography variant="h5">Sign In</Typography>
+            <Typography variant="h5">Log In</Typography>
             <OnTheWay />
           </Grid>
 
-          {/* 아래는 formcontrol */}
           <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
             <Grid item>
               <TextField
@@ -37,7 +44,6 @@ const SignIn = (props) => {
                 fullWidth
                 id="email-signup"
                 label="Enter email"
-                name="email"
                 autoComplete="email"
                 autoFocus
                 helperText={errors.email?.message}
@@ -51,7 +57,6 @@ const SignIn = (props) => {
                 margin="normal"
                 required
                 fullWidth
-                name="password"
                 label="Enter password"
                 type="password"
                 id="password-signup"
@@ -63,12 +68,14 @@ const SignIn = (props) => {
             </Grid>
             {/* Login buttons */}
             <Grid item>
-              <Button sx={{ m: 1, px: 6 }} type="submit" variant="contained" size="large">
-                Sign In
+              <Button fullWidth sx={{ width: '80%' }} type="submit" variant="contained" size="large">
+                Log In
               </Button>
             </Grid>
+            <Grid item sx={{ marginTop: '0.5rem' }}>
+              <GoogleLogin />
+            </Grid>
             <Grid item>
-              <Glogin />
               <KaKaoLogin />
             </Grid>
           </Box>
@@ -79,7 +86,7 @@ const SignIn = (props) => {
               </Link>
             </Box>
             <Link component="button" onClick={handleFlip} variant="body2">
-              {'Not registered yet? Sign up'}
+              Not registered yet? Sign up
             </Link>
           </Grid>
         </Grid>
@@ -88,4 +95,4 @@ const SignIn = (props) => {
   );
 };
 
-export default SignIn;
+export default LogIn;

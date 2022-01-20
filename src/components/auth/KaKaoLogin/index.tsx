@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../../../store/features/userSlice';
+import { setUser } from '@store/features/userSlice';
 import { Box } from '@mui/system';
 
 export default function KaKaoLogin() {
@@ -14,6 +14,7 @@ export default function KaKaoLogin() {
     Kakao.Auth.createLoginButton({
       container: '#kakao-login',
       success: function (response: string) {
+        console.log(response);
         setIsLogin(true);
         // 리다이렉션 처리 논의 필요
         navigate(-1);
@@ -30,6 +31,8 @@ export default function KaKaoLogin() {
         url: '/v2/user/me',
         success: function (response: string) {
           // 데이터 어떻게 저장할지 논의 필요
+
+          console.log(response);
           dispatch(setUser(response));
         },
         fail: function (error: string) {
@@ -41,5 +44,5 @@ export default function KaKaoLogin() {
 
   if (!Kakao) return null;
 
-  return <Box id="kakao-login" sx={{ m: 2, px: 6 }} />;
+  return <Box id="kakao-login" sx={{ width: '80%%', height: '80%', p: 1, mt: '0.5px' }} />;
 }

@@ -8,7 +8,7 @@ type Props = {};
 
 const LogInMenu = (props: Props) => {
   return (
-    <StyledBtn variant="contained" startIcon={<LoginIcon color="primary" />}>
+    <StyledBtn variant="contained" startIcon={<LoginIcon />}>
       <Link to={PATH_USER_SIGNIN}>Login</Link>
     </StyledBtn>
   );

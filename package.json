@@ -65,6 +65,7 @@
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
     "@types/google.maps": "^3.47.2",
+    "@types/kakao-js-sdk": "^1.39.1",
     "@types/swagger-ui-react": "^4.1.1",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",

@@ -1,0 +1,17 @@
+.google-login-button{
+    width: 80%;
+    display: flex;
+    box-shadow: 1px 1px 1px 1px black;
+}
+
+.google-login-button span {
+    display: flex;
+    width: 80%;
+    justify-content: center;
+}
+
+#kakao-login-btn {
+    width: 85%;
+    height: 3rem;
+
+}
