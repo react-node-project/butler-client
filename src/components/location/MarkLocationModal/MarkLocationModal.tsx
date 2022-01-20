@@ -4,7 +4,7 @@ import { Button, IconButton, Input, InputLabel, Typography } from '@mui/material
 import CloseIcon from '@mui/icons-material/Close';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 
-import { SendLocationProps } from 'src/store/service/location';
+import { SendLocationProps } from '@store/service/location.api';
 import { MAP_API_KEY } from '../../../constants/EnvContant';
 
 import Styled from './markLocationModal.styled';

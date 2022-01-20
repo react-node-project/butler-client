@@ -54,14 +54,6 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-
-export const StyledResponsiveBox = styled(Box)(({ theme }) => ({
-  display: 'none',
-  [theme.breakpoints.up('md')]: {
-    display: 'block',
-  },
-}));
-
 export const StyledBtn = styled(Button)({
   border: '1px solid #eee',
   background: '#eee',

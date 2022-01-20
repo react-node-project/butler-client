@@ -23,7 +23,7 @@ export const locationAPI = createApi({
     }),
     sendInactiveLocation: build.mutation({
       query: ({ email, location }: InactiveLocationProps) => ({
-        url: `/inactiveLocation`,
+        url: `/location/inactive`,
         method: 'post',
         body: {
           email,
