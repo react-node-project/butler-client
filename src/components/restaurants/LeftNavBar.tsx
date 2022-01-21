@@ -25,9 +25,7 @@ const LeftNavBar = (props: LeftNavBarProps) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleChangeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const filterValue = (event.target as HTMLInputElement).value as LeftNavModalProps['filter'];
-
+  const setFilter = (filterValue: LeftNavModalProps['filter']) => {
     if (filter === 'delivery') {
       navigate(location.pathname + location.search + `&filter=${filterValue}`);
       return;
@@ -43,6 +41,11 @@ const LeftNavBar = (props: LeftNavBarProps) => {
     const longitude = getQueryParams(location.search, 'longitude');
     navigate(location.pathname + `?latitude=${latitude}&longitude=${longitude}`);
     return;
+  };
+
+  const handleChangeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const filterValue = (event.target as HTMLInputElement).value as LeftNavModalProps['filter'];
+    setFilter(filterValue);
   };
 
   const handleSetModalOpen = () => {
@@ -68,7 +71,7 @@ const LeftNavBar = (props: LeftNavBarProps) => {
               <Button size="small" onClick={handleSetModalOpen}>
                 Change
               </Button>
-              <LeftNavModal filter={filter} open={modalOpen} onClose={handleSetModalOpen} />
+              <LeftNavModal filter={filter} open={modalOpen} onClose={handleSetModalOpen} setFilter={setFilter} />
             </StyledFilterTitle>
           </FormLabel>
           <StyledRadioGroup
