@@ -14,12 +14,13 @@ const RestaurantsList = (props: RestaurantsListProps) => {
     <StyledLayout>
       {restaurants.map((item) => (
         <RestaurantsCard
-          key={item.title}
-          imageUrl={item.imageUrl}
-          title={item.title}
+          key={item.store_no}
+          storeNumber={item.store_no}
+          imageUrl={item.store_image_url}
+          title={item.store_name}
           descriptions={item.descriptions}
           review={item.review}
-          distanceText={item.distanceText}
+          distanceText={item.address}
         />
       ))}
     </StyledLayout>

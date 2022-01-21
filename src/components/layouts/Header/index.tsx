@@ -45,7 +45,7 @@ export default function Header({ showSideNav, showFavList }: Props) {
             <Stack direction="row" justifyContent="flex-end" alignItems="center" spacing={2}>
               {isShowSearchBar && <SearchBar />}
               {cart && <Basket />}
-              {isLoggedIn ? (
+              {/* {isLoggedIn ? (
               {basket && <Basket />}
               {user ? (
                 <>
@@ -54,7 +54,7 @@ export default function Header({ showSideNav, showFavList }: Props) {
                 </>
               ) : (
                 <LogInMenu />
-              )}
+              )} */}
 
               {/* side menu */}
               <StyledBtn startIcon={<MenuIcon />} onClick={showSideNav} aria-label="menu">

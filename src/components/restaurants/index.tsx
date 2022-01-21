@@ -1,17 +1,18 @@
-import { RootState } from '@store/index';
 import { useGetRestaurantsQuery } from '@store/service/restaurants';
 import React from 'react';
-import { useSelector } from 'react-redux';
 import CategorySlider from './CategorySlider';
 import CategorySliderSkeleton from './CategorySliderSkeleton';
 import { StyledLayout } from './index.styled';
+import { LeftNavModalProps } from './LeftNavModal';
 import RestaurantsList from './RestaurantsList';
 import RestaurantsListSkeleton from './RestaurantsListSkeleton';
 
-export type RestaurantsProps = {};
+export type RestaurantsProps = {
+  filter: LeftNavModalProps['filter'];
+};
 
 const Restaurants = (props: RestaurantsProps) => {
-  const filter = useSelector((state: RootState) => state.restaurants.filter);
+  const { filter } = props;
   const { data, error, isLoading } = useGetRestaurantsQuery(filter);
 
   if (error) {

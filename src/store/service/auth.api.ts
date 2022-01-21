@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { API_URL } from '../../constants/EnvContant';
+// import { API_URL } from '../../constants/EnvContant';
 
 export const authAPI = createApi({
   reducerPath: 'authAPI',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${API_URL}/auth`,
+    // baseUrl: `${API_URL}/auth`,
   }),
   endpoints: (build) => ({
     login: build.mutation({

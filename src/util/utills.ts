@@ -1,4 +1,4 @@
-export const getUrlParams = (url: string, key: string) => {
+export const getQueryParams = (url: string, key: string) => {
   const query = url.toString().split('?');
   const split = query[1].replace('?', '').split(/[=?&]/);
   const param: any = {};
@@ -7,4 +7,8 @@ export const getUrlParams = (url: string, key: string) => {
   }
 
   return param[key];
+};
+
+export const setQueryParams = (search: string, key: string, value: string) => {
+  return search.replace(key, value);
 };

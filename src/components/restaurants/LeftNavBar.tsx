@@ -9,27 +9,40 @@ import {
   StyledRadioGroup,
 } from './LeftNavBar.styled';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@store/index';
-import { setFilter } from '@store/features/restaurants';
 import LeftNavModal from './LeftNavModal';
 import { LeftNavModalProps } from '@components/restaurants/LeftNavModal';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { getQueryParams, setQueryParams } from './../../util/utills';
 
 export type LeftNavBarProps = {
   cityName?: string;
+  filter: LeftNavModalProps['filter'];
 };
 
 const LeftNavBar = (props: LeftNavBarProps) => {
-  const { cityName = 'Liverpool City Centre' } = props;
-  const dispatch = useDispatch();
-  const filter = useSelector((state: RootState) => state.restaurants.filter);
+  const { cityName = 'Liverpool City Centre', filter } = props;
   const [modalOpen, setModalOPen] = useState<boolean>(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleChangeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
     const filterValue = (event.target as HTMLInputElement).value as LeftNavModalProps['filter'];
-    if (filter !== filterValue) {
-      dispatch(setFilter(filterValue));
+
+    if (filter === 'delivery') {
+      navigate(location.pathname + location.search + `&filter=${filterValue}`);
+      return;
     }
+
+    if (filterValue !== 'delivery') {
+      const search = setQueryParams(location.search, filter, filterValue);
+      navigate(location.pathname + search);
+      return;
+    }
+
+    const latitude = getQueryParams(location.search, 'latitude');
+    const longitude = getQueryParams(location.search, 'longitude');
+    navigate(location.pathname + `?latitude=${latitude}&longitude=${longitude}`);
+    return;
   };
 
   const handleSetModalOpen = () => {
