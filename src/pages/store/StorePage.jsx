@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Box, Grid } from '@mui/material';
 import { StyledGrid } from '../../styles/element.styled';
 import RestaurantDetail from './../../components/restaurantDetails/index'; //
-import Basket from './../../components/restaurantDetails/Basket/index';
+import Cart from '../../components/restaurantDetails/Cart/index';
 
 export default function StorePage() {
   return (
