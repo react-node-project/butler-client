@@ -57,8 +57,6 @@ const ButtonWrapper = ({ currency, showSpinner, amount, style, onClick }: Button
               },
             })
             .then((orderId) => {
-              // Your code here after create the order
-              console.log('orderId', orderId);
               return orderId;
             });
         }}
