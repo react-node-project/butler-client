@@ -14,12 +14,14 @@ type InitialState = {
   fulfillment?: string;
   address: addressType | null;
   cutlery: boolean;
+  method: 'paypal' | 'direct';
 };
 const initialState: InitialState = {
   title: 'Review your order from Zizzi - Royal Leamigton Spa',
   fulfillment: '25 - 40',
   address: null,
   cutlery: true,
+  method: 'paypal',
 };
 
 export const paymentsSlice = createSlice({
@@ -35,9 +37,12 @@ export const paymentsSlice = createSlice({
     toggleCutlery: (state) => {
       state.cutlery = !state.cutlery;
     },
+    setMethod: (state, action) => {
+      state.method = action.payload;
+    },
   },
 });
 
-export const { setTitle, setAddress, toggleCutlery } = paymentsSlice.actions;
+export const { setTitle, setAddress, toggleCutlery, setMethod } = paymentsSlice.actions;
 
 export default paymentsSlice.reducer;

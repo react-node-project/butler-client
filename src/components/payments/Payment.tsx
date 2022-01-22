@@ -1,5 +1,8 @@
 import { FormControlLabelProps, Radio, RadioGroup, useRadioGroup, styled, FormControlLabel } from '@mui/material';
-import React, { ChangeEvent, useState } from 'react';
+import { setMethod } from '@store/features/paymentsSlice';
+import { RootState } from '@store/index';
+import React, { ChangeEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { StyledBorderBox } from './Common.styled';
 
 export type PaymentProps = {};
@@ -29,17 +32,19 @@ function MyFormControlLabel(props: FormControlLabelProps) {
 }
 
 const Payment = (props: PaymentProps) => {
-  const [method, setMethod] = useState<'paypal' | 'direct'>('paypal');
+  const dispatch = useDispatch();
+  const method = useSelector((state: RootState) => state.payments.method);
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setMethod(e.target.value as 'paypal' | 'direct');
+    const value = e.target.value;
+    dispatch(setMethod(value));
   };
   return (
     <div>
       <h3>Payment method</h3>
       <StyledBorderBox>
-        <RadioGroup defaultValue="paypal" name="radio-buttons-group" onChange={onChange}>
+        <RadioGroup defaultValue={method} name="radio-buttons-group" onChange={onChange}>
           <MyFormControlLabel value="paypal" control={<Radio />} label="Paypal" />
-          <MyFormControlLabel value="direct" control={<Radio />} label="직접결제" />
+          {/* <MyFormControlLabel value="direct" control={<Radio />} label="직접결제" /> */}
         </RadioGroup>
       </StyledBorderBox>
     </div>
