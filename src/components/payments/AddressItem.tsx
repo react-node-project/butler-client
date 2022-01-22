@@ -1,39 +1,37 @@
 import { addressType } from '@store/features/paymentsSlice';
 import React from 'react';
+import AddIcon from '@mui/icons-material/Add';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { Button, Box, Typography } from '@mui/material';
 
 export type AddressItemProps = {
-  address: addressType;
+  address: addressType | null;
 };
 
 const AddressItem = (props: AddressItemProps) => {
   const { address } = props;
+
+  if (!address)
+    return (
+      <>
+        <AddIcon /> Add a new address
+      </>
+    );
+
   return (
-    <div>
-      <div>
-        <span>Apartment (optional)</span>
-        <span>{address?.apartment}</span>
-      </div>
-      <div>
-        <span>Street address</span>
-        <span>{address.streetAdress}</span>
-      </div>
-      <div>
-        <span>City/town</span>
-        <span>{address.city}</span>
-      </div>
-      <div>
-        <span>Postcode</span>
-        <span>{address.postcode}</span>
-      </div>
-      <div>
-        <span>Phone number</span>
-        <span>{address.phoneNumber}</span>
-      </div>
-      <div>
-        <span>Add directions to help your rider find you (optional)</span>
-        <span>{address.message}</span>
-      </div>
-    </div>
+    <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', color: 'rgb(187, 187, 187)' }}>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ marginRight: '5px' }}>
+          <LocationOnIcon />
+        </Box>
+        <Box>
+          <Typography>{address.streetAdress}</Typography>
+          <Typography>{address.city + address.postcode}</Typography>
+          <Typography>{address.phoneNumber}</Typography>
+        </Box>
+      </Box>
+      <Button>change</Button>
+    </Box>
   );
 };
 

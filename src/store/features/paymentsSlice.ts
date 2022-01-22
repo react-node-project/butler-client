@@ -12,13 +12,13 @@ export type addressType = {
 type InitialState = {
   title: string;
   fulfillment?: string;
-  address: addressType[];
+  address: addressType | null;
   cutlery: boolean;
 };
 const initialState: InitialState = {
   title: 'Review your order from Zizzi - Royal Leamigton Spa',
   fulfillment: '25 - 40',
-  address: [],
+  address: null,
   cutlery: true,
 };
 

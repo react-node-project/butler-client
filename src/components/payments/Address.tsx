@@ -1,7 +1,6 @@
 import { AccordionDetails, Box, Button, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import { StyledBorderBox } from './Common.styled';
-import AddIcon from '@mui/icons-material/Add';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -22,6 +21,7 @@ export type AddressProps = {};
 type AddressExtendsType = 'panelAdress' | null;
 
 type AddressDialogProps = {
+  address: addressType | null;
   expanded: AddressExtendsType;
   onClickSubmit: (data: any) => void;
   onClickClose: () => void;
@@ -29,13 +29,13 @@ type AddressDialogProps = {
 };
 
 const AddressAccordion = (props: AddressDialogProps) => {
-  const { expanded, onClickSubmit, onClickClose, setExpanded } = props;
+  const { address, expanded, onClickSubmit, onClickClose, setExpanded } = props;
   // TODO: PR 완료후 validationSchema는 utill로 이사
   const validationSchema = yup.object().shape({
-    address: yup.string().required('This is a required entry.'),
+    streetAdress: yup.string().required('This is a required entry.'),
     city: yup.string().required('This is a required entry.'),
     postcode: yup.string().required('This is a required entry.'),
-    phonenumber: yup.string().required('This is a required entry.'),
+    phoneNumber: yup.string().required('This is a required entry.'),
   });
   const {
     register,
@@ -57,7 +57,7 @@ const AddressAccordion = (props: AddressDialogProps) => {
   return (
     <StyledAccordion expanded={expanded === 'panelAdress'} onChange={onChange('panelAdress')}>
       <StyledAccordionSummary aria-controls="adress-content" id="adress-header" expanded={expanded}>
-        <AddIcon /> Add a new address
+        <AddressItem address={address} />
       </StyledAccordionSummary>
       <AccordionDetails>
         <Box component="form" onSubmit={handleSubmit(onClickSubmit)} noValidate>
@@ -69,6 +69,7 @@ const AddressAccordion = (props: AddressDialogProps) => {
               id="apartment"
               label="apartment"
               name="apartment"
+              defaultValue={address?.apartment}
               placeholder="e.g. Apartment 10"
             />
           </StyledInputItem>
@@ -78,12 +79,13 @@ const AddressAccordion = (props: AddressDialogProps) => {
               required
               size={'small'}
               fullWidth
-              id="address"
-              label="address"
+              id="streetAdress"
+              label="streetAdress"
+              defaultValue={address?.streetAdress}
               placeholder="e.g. 1 Cousin Lane"
-              {...register('address')}
-              helperText={errors.address?.message}
-              error={Boolean(errors.address)}
+              {...register('streetAdress')}
+              helperText={errors.streetAdress?.message}
+              error={Boolean(errors.streetAdress)}
             />
           </StyledInputItem>
           <StyledInputItem>
@@ -94,6 +96,7 @@ const AddressAccordion = (props: AddressDialogProps) => {
               fullWidth
               id="city"
               label="city"
+              defaultValue={address?.city}
               placeholder="e.g. London"
               {...register('city')}
               helperText={errors.city?.message}
@@ -108,6 +111,7 @@ const AddressAccordion = (props: AddressDialogProps) => {
               fullWidth
               id="postcode"
               label="postcode"
+              defaultValue={address?.postcode}
               placeholder="e.g. EC4R 3XJ"
               {...register('postcode')}
               helperText={errors.postcode?.message}
@@ -120,17 +124,23 @@ const AddressAccordion = (props: AddressDialogProps) => {
               required
               size={'small'}
               fullWidth
-              id="phonenumber"
-              label="phonenumber"
+              id="phoneNumber"
+              label="phoneNumber"
+              defaultValue={address?.phoneNumber}
               placeholder="e.g. 07123 456 789"
-              {...register('phonenumber')}
-              helperText={errors.phonenumber?.message}
-              error={Boolean(errors.phonenumber)}
+              {...register('phoneNumber')}
+              helperText={errors.phoneNumber?.message}
+              error={Boolean(errors.phoneNumber)}
             />
           </StyledInputItem>
           <StyledInputItem>
             <span>Add directions to help your rider find you (optional)</span>
-            <StyledTextareaAutosize placeholder="e.g. Take the lift to floor 5 and turn left, it's the second door" />
+            <StyledTextareaAutosize
+              id="message"
+              defaultValue={address?.message}
+              placeholder="e.g. Take the lift to floor 5 and turn left, it's the second door"
+              {...register('message')}
+            />
           </StyledInputItem>
           <StyledButtons>
             <Button onClick={onClickClose} variant="outlined">
@@ -151,7 +161,8 @@ const Address = (props: AddressProps) => {
   const dispatch = useDispatch();
   const address = useSelector((state: RootState) => state.payments.address);
   const handleSubmit = (data: addressType) => {
-    dispatch(setAddress([...address, data]));
+    console.log('data', data);
+    dispatch(setAddress(data));
     setExpanded(null);
   };
   const handleClose = () => {
@@ -161,13 +172,9 @@ const Address = (props: AddressProps) => {
   return (
     <div>
       <h3>Delivery address</h3>
-      <div>
-        {address?.map((addressItem, index) => (
-          <AddressItem key={addressItem.city + index} address={addressItem} />
-        ))}
-      </div>
       <StyledBorderBox>
         <AddressAccordion
+          address={address}
           expanded={expanded}
           onClickSubmit={handleSubmit}
           onClickClose={handleClose}
