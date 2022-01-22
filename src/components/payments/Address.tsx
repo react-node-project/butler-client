@@ -161,7 +161,6 @@ const Address = (props: AddressProps) => {
   const dispatch = useDispatch();
   const address = useSelector((state: RootState) => state.payments.address);
   const handleSubmit = (data: addressType) => {
-    console.log('data', data);
     dispatch(setAddress(data));
     setExpanded(null);
   };

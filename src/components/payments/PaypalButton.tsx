@@ -10,12 +10,9 @@ export type PaypalButtonProps = {
   onClick: () => void;
 };
 
-type ButtonWrapperProps = {
-  currency: 'USD' | 'GBP';
+type ButtonWrapperProps = PaypalButtonProps & {
   showSpinner: boolean;
-  amount: string;
   style: any;
-  onClick: () => void;
 };
 
 const ButtonWrapper = ({ currency, showSpinner, amount, style, onClick }: ButtonWrapperProps) => {
@@ -78,7 +75,7 @@ const ButtonWrapper = ({ currency, showSpinner, amount, style, onClick }: Button
 
 const PaypalButton = (props: PaypalButtonProps) => {
   const { amount, currency = 'USD', onClick } = props;
-  const style = { layout: 'vertical', width: '100%' } as const;
+  const style = { layout: 'horizontal', width: '100%' } as const;
 
   const initialOptions = {
     'client-id': PAYPAL_CLIENT_ID,

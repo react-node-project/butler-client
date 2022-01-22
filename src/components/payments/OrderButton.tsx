@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { RootState } from '@store/index';
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -11,17 +11,21 @@ const OrderButton = (props: OrderButtonProps) => {
   // const method = useSelector((state: RootState) => state.payments.method);
 
   const onClickOrder = () => {
+    console.log('aaa');
+    // setIsLoading(true);
     // alert(method);
   };
 
   return (
-    <Button variant="contained" fullWidth disabled={!address} onClick={onClickOrder}>
-      Place delivery order
-      {/* TODO: 버튼 커스텀 가능하면 수정 */}
-      <div style={{ width: 0, height: 0, opacity: 0 }}>
-        <PaypalButton amount="10.0" onClick={onClickOrder} currency="GBP" />
-      </div>
-    </Button>
+    <Box>
+      <Button variant="contained" fullWidth disabled={!address}>
+        Place delivery order
+        {/* TODO: 버튼 커스텀 가능하면 수정 */}
+        <div style={{ position: 'absolute', left: 0, right: 0, top: 0, opacity: 0 }}>
+          <PaypalButton amount="10.0" currency="GBP" onClick={onClickOrder} />
+        </div>
+      </Button>
+    </Box>
   );
 };
 
