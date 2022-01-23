@@ -12,15 +12,17 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LeftNavModal from './LeftNavModal';
 import { LeftNavModalProps } from '@components/restaurants/LeftNavModal';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getQueryParams, setQueryParams } from './../../util/utills';
+import { setQueryParams } from './../../util/utills';
 
 export type LeftNavBarProps = {
   cityName?: string;
+  latitude?: string;
+  longitude?: string;
   filter: LeftNavModalProps['filter'];
 };
 
 const LeftNavBar = (props: LeftNavBarProps) => {
-  const { cityName = 'Liverpool City Centre', filter } = props;
+  const { cityName = 'Liverpool City Centre', latitude, longitude, filter } = props;
   const [modalOpen, setModalOPen] = useState<boolean>(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -37,8 +39,6 @@ const LeftNavBar = (props: LeftNavBarProps) => {
       return;
     }
 
-    const latitude = getQueryParams(location.search, 'latitude');
-    const longitude = getQueryParams(location.search, 'longitude');
     navigate(location.pathname + `?latitude=${latitude}&longitude=${longitude}`);
     return;
   };
