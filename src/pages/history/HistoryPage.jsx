@@ -5,7 +5,7 @@ import { StyledGrid } from '../../styles/sharedElement.styled';
 
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-// import { PATH_RECEIPT } from 'src/constants/PathConstants';
+import { PATH_RECEIPT } from '../../constants/PathConstants';
 import { StyledCard, StyledTextBox } from './history.styled';
 
 const ORDERS = [
@@ -50,8 +50,7 @@ export default function HistoryPage() {
                   </StyledTextBox>
                   <Button endIcon={<ArrowForwardIosIcon />} variant="outlined" size="large">
                     {/* path 오류 why */}
-                    {/* <Link href={PATH_RECEIPT}>details</Link> */}
-                    details
+                    <Link href={PATH_RECEIPT}>details</Link>
                   </Button>
                 </StyledCard>
               ))}
