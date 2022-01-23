@@ -35,15 +35,11 @@ const RestaurantsCard = (props: RestaurantsCardProps) => {
         <StyledText>
           <Box className="title">{title}</Box>
           <Box className="description">
-            {review && (
-              <>
-                <Box component="span" className="review_score">
-                  <StarIcon color="primary" fontSize="inherit" />
-                  {review}
-                </Box>
-                <Box component="span"> ({review})</Box>
-              </>
-            )}
+            <Box component="span" className="review_score">
+              <StarIcon color="primary" fontSize="inherit" />
+              very good
+              <Box component="span"> {review}</Box>
+            </Box>
             <Box component="span"> {descrition}</Box>
           </Box>
           <Box className="distance">{distanceText}</Box>

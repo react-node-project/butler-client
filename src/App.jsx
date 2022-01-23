@@ -13,10 +13,12 @@ import {
   PATH_USER_SIGNIN,
   PATH_HISTORY,
   PATH_RECEIPT,
+  PATH_PAYMENTS,
 } from './constants/PathConstants';
 import AuthFlip from './pages/user/AuthFlip';
 import RestaurantsPage from './pages/restaurants/RestaurantsPage';
 import StorePage from './pages/store/StorePage';
+import PaymentsPage from './pages/payments/PaymentsPage';
 import { KAKAO_API_KEY } from './constants/EnvContant';
 import { ApiDocs } from './pages/api-docs/ApiDocs';
 import FavList from './components/layouts/FavList';
@@ -52,6 +54,7 @@ export default function App() {
             <Route path={PATH_HISTORY} element={<HistoryPage />} />
             <Route path={PATH_RECEIPT} element={<ReceiptPage />} />
             <Route path={PATH_API_DOCS} element={<ApiDocs />} />
+            <Route path={PATH_PAYMENTS} element={<PaymentsPage />} />
           </Routes>
         </Box>
       </Router>
