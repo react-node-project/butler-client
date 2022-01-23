@@ -12,7 +12,7 @@ const initialState = {
   ],
   // cartItems:localStorage.getItem("mycart")? JSON.parse(localStorage.getItem("mycart")):[],
   cartTotalQty: 0,
-  cartTotalAmt: 0,
+  cartTotalAmount: 0,
 };
 // 겹치는 내용 함수로 뺴보기
 
@@ -31,7 +31,7 @@ const cartSlice = createSlice({
         state.cartItems[itemIndex].qty++;
       }
       state.cartTotalQty++;
-      state.cartTotalAmt = state.cartTotalAmt + selectedItem.price; //toFixed(2);
+      state.cartTotalAmount = state.cartTotalAmount + selectedItem.price; //toFixed(2);
       // toast.success(`${action.payload.name} is added`, {position:"bottom-left"})
       // localStorage.setItem("mycart",JSON.stringify(state.cartItems));
     },
@@ -42,7 +42,7 @@ const cartSlice = createSlice({
 
       state.cartItems = newCartItems;
 
-      state.cartTotalAmt -= state.cartItems[itemIndex].price * state.cartItems[itemIndex].qty;
+      state.cartTotalAmount -= state.cartItems[itemIndex].price * state.cartItems[itemIndex].qty;
       state.cartTotalQty -= state.cartItems[itemIndex].qty;
       // console.log(state.cartItems[itemIndex].price,state.cartItems[itemIndex].qty);
     },
@@ -59,7 +59,7 @@ const cartSlice = createSlice({
         state.cartItems = newCartItems;
       }
       // total qty & amt
-      state.cartTotalAmt -= state.cartItems[itemIndex].price;
+      state.cartTotalAmount -= state.cartItems[itemIndex].price;
       state.cartTotalQty -= 1;
       console.log(state.cartItems[itemIndex].price, state.cartItems[itemIndex].qty);
     },
