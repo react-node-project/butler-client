@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Container } from '@mui/material';
+import { Container,Grid } from '@mui/material';
 
 export const StyledContainer = styled(Container)`
   margin: 1rem;
@@ -17,4 +17,10 @@ export const StyledDiv = styled.div`
   width: ${({ width }) => width || '100%'};
   height: ${({ height }) => height || '60vh'};
   background-color: ${({ bg }) => bg || '#fff'}; ;
+`;
+
+export const StyledGrid = styled(Grid)`
+  height: ${({ height }) => height || '60vh'};
+  background-color: ${({ bg }) => bg || '#eee'}; 
+  text-align:center;
 `;

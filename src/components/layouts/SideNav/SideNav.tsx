@@ -49,15 +49,15 @@ const SideNav = ({ isShowSideNav, hideSideNav }: Props) => {
         <StyledSideNavMain>
           <div>
             <StyledButton startIcon={<PersonOutlineIcon />} fullWidth size="large">
-              <Link to={PATH_ACCOUNT}>Account</Link>
+              <Link>Account</Link>
             </StyledButton>
 
             <StyledButton startIcon={<ReceiptLongIcon />} fullWidth size="large" onClick={hideSideNav}>
-              <Link to={PATH_HISTORY}>Order history</Link>
+              <Link href={PATH_HISTORY}>Order history</Link>
             </StyledButton>
 
-            <StyledButton startIcon={<LoginIcon />}  fullWidth size="large" onClick={hideSideNav}>
-              <Link to={PATH_USER_SIGNIN}>Sign up or log in</Link>
+            <StyledButton startIcon={<LoginIcon />} fullWidth size="large" onClick={hideSideNav}>
+              <Link href={PATH_USER_SIGNIN}>Sign up or log in</Link>
             </StyledButton>
           </div>
 
@@ -65,7 +65,7 @@ const SideNav = ({ isShowSideNav, hideSideNav }: Props) => {
             <InputLabel id="select-language-label">Language</InputLabel>
             <Select<string>
               labelId="select-language-label"
-              id="language-select" 
+              id="language-select"
               name="language"
               value={language}
               label="Age"
