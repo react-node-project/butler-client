@@ -23,4 +23,7 @@ export const StyledGrid = styled(Grid)`
   height: ${({ height }) => height || '60vh'};
   background-color: ${({ bg }) => bg || '#eee'}; 
   text-align:center;
+  h2{
+    padding-top:1rem;
+  }
 `;

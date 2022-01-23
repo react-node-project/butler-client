@@ -5,5 +5,5 @@ export const PATH_RESTAURANTS_DETAIL = '/restaurant_detail'; // 수정필요
 export const PATH_API_DOCS = '/api-docs';
 export const PATH_FAVLIST = '/favourites';
 export const PATH_HISTORY = '/history';
-export const PATH_HISTORY_DETAILS = '/history/:id';
+export const PATH_RECEIPT = '/receipt';
 export const PATH_ACCOUNT = '/account';

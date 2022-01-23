@@ -12,7 +12,7 @@ import {
   Typography,
 } from '@mui/material';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import { PATH_USER_SIGNIN, PATH_HISTORY, PATH_ACCOUNT } from '../../../constants/PathConstants';
+import { PATH_USER_SIGNIN, PATH_HISTORY } from '../../../constants/PathConstants';
 import { StyledSideNavContainer, StyledSideNavHeader, StyledSideNavMain, StyledButton } from './sideNav.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { Country, Language, setCountry, setLanguage } from '../../../store/features/configSlice';
