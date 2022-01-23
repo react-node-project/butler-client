@@ -22,7 +22,7 @@ const OrderButton = (props: OrderButtonProps) => {
         Place delivery order
         {/* TODO: 버튼 커스텀 가능하면 수정 */}
         <div style={{ position: 'absolute', left: 0, right: 0, top: 0, opacity: 0 }}>
-          <PaypalButton amount="10.0" currency="GBP" onClick={onClickOrder} />
+          <PaypalButton amount="0.1" currency="GBP" onClick={onClickOrder} />
         </div>
       </Button>
     </Box>
