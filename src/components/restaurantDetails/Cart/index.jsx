@@ -60,7 +60,7 @@ const Cart = React.memo(() => {
           <Divider />
           <StyledSubtotalBox>
             <h3>Subtotal</h3>
-            <h5>£ {cart?.cartTotalAmt}</h5>
+            <h5>£ {cart?.cartTotalAmount}</h5>
           </StyledSubtotalBox>
         </StyledCartBox>
         <StyledButton fullWidth>Go to Checkout</StyledButton>

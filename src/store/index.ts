@@ -6,7 +6,7 @@ import menuSelectionReducer from './features/menuSelectSlice';
 import cartReducer from './features/cartSlicer';
 import configReducer from './features/configSlice';
 
-import { locationAPI } from './service/location';
+// import { locationAPI } from './service/location';
 import { restaurantsAPI } from './service/restaurants';
 import { menuAPI } from './service/restaurantMenu';
 import { authAPI } from '@store/service/auth.api';
@@ -15,7 +15,7 @@ import { userAPI } from '@store/service/user.api';
 const apiReducers = {
   [restaurantsAPI.reducerPath]: restaurantsAPI.reducer,
   [menuAPI.reducerPath]: menuAPI.reducer,
-  [locationAPI.reducerPath]: locationAPI.reducer,
+  // [locationAPI.reducerPath]: locationAPI.reducer,
   [authAPI.reducerPath]: authAPI.reducer,
   [userAPI.reducerPath]: userAPI.reducer,
 };
@@ -34,7 +34,7 @@ export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([
-      locationAPI.middleware,
+      // locationAPI.middleware,
       restaurantsAPI.middleware,
       authAPI.middleware,
       menuAPI.middleware,

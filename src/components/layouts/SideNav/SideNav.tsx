@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Button,
+  Link,
   Divider,
   Drawer,
   FormGroup,
@@ -9,15 +9,17 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
-  Typography
+  Typography,
 } from '@mui/material';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import { PATH_USER_SIGNIN } from '../../../constants/PathConstants';
-import { StyledSideNavContainer, StyledSideNavHeader, StyledSideNavMain } from './sideNav.styled';
-import { StyledLink } from '../../../styles/element.styled';
+import { PATH_USER_SIGNIN, PATH_HISTORY, PATH_ACCOUNT } from '../../../constants/PathConstants';
+import { StyledSideNavContainer, StyledSideNavHeader, StyledSideNavMain, StyledButton } from './sideNav.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { Country, Language, setCountry, setLanguage } from '../../../store/features/configSlice';
 import { RootState } from '../../../store';
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import LoginIcon from '@mui/icons-material/Login';
 
 interface Props {
   isShowSideNav: boolean;
@@ -45,16 +47,25 @@ const SideNav = ({ isShowSideNav, hideSideNav }: Props) => {
         </StyledSideNavHeader>
         <Divider />
         <StyledSideNavMain>
-          <Button sx={{ width: '100%' }} size="large" variant="contained" onClick={hideSideNav}>
-            <StyledLink color="black" style={{ textDecoration: 'none', color: 'black' }} to={PATH_USER_SIGNIN}>
-              Sign up or log in
-            </StyledLink>
-          </Button>
+          <div>
+            <StyledButton startIcon={<PersonOutlineIcon />} fullWidth size="large">
+              <Link to={PATH_ACCOUNT}>Account</Link>
+            </StyledButton>
+
+            <StyledButton startIcon={<ReceiptLongIcon />} fullWidth size="large" onClick={hideSideNav}>
+              <Link to={PATH_HISTORY}>Order history</Link>
+            </StyledButton>
+
+            <StyledButton startIcon={<LoginIcon />}  fullWidth size="large" onClick={hideSideNav}>
+              <Link to={PATH_USER_SIGNIN}>Sign up or log in</Link>
+            </StyledButton>
+          </div>
+
           <FormGroup className="sidenav-selected-buttons">
             <InputLabel id="select-language-label">Language</InputLabel>
             <Select<string>
               labelId="select-language-label"
-              id="language-select"
+              id="language-select" 
               name="language"
               value={language}
               label="Age"
