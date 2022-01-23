@@ -22,26 +22,24 @@ export const userAPI = createApi({
       query: () => '/',
     }),
     signUp: build.mutation<SignUpResponse, SignUpRequest>({
-      query: ({ email, password, firstName, lastName, callingCode, mobile }) => ({
-        url: '/signup',
+      query: ({ email, password, name, callingCode, mobile }) => ({
+        url: '/',
         method: 'post',
         body: {
           email,
           password,
-          firstName,
-          lastName,
+          name,
           callingCode,
           mobile,
         },
       }),
     }),
     updateUser: build.mutation<UserInfo, Partial<UserInfo>>({
-      query({ email, lastName, firstName, callingCode, mobile }) {
+      query({ email, name, callingCode, mobile }) {
         return {
           body: {
             ...(email && { email }),
-            ...(firstName && { firstName }),
-            ...(lastName && { lastName }),
+            ...(name && { name }),
             ...(callingCode && { callingCode }),
             ...(mobile && { mobile }),
           },

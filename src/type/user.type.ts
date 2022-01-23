@@ -1,7 +1,6 @@
 type UserInfo = {
   email: string;
-  lastName: string;
-  firstName: string;
+  name: string;
   callingCode: string;
   mobile: string;
 };

@@ -1,44 +1,97 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
-import { Box, Button, Checkbox, FormControlLabel, Grid, Link, Paper, Typography } from '@mui/material';
-import { useForm } from 'react-hook-form';
+import {
+  Alert,
+  Box,
+  Button,
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+  Grid,
+  InputLabel,
+  Link,
+  MenuItem,
+  Paper,
+  Select,
+  Snackbar,
+  Typography
+} from '@mui/material';
+import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { StyledContainer } from '../../../styles/element.styled';
 import OnTheWay from '../../../asset/img/ontheway';
+import { useSignUpMutation } from '@store/service/user.api';
+import { signUpRequestSchema } from '../../../util/shcema';
+import { SignUpRequest } from '../../../type/user.type';
+
+import { CALLING_CODES } from '../../../constants/CountryConstant';
+import { StyledRow } from '@components/auth/Signup/signup.styled';
 
 interface Props {
-  handleFlip: () => {};
+  handleFlip: () => void;
 }
 
-const validationSchema = yup.object().shape({
-  name: yup.string().required('필수입력사항입니다'),
-  email: yup.string().email('올바른 이메일 형식이 아닙니다').required('필수입력사항입니다'),
-  password: yup
-    .string()
-    .required('필수입력사항입니다')
-    .min(5, '비밀번호는 5자리 이상이어야 합니다')
-    .max(20, '비밀번호는 20자리 이하이어야합니다')
-    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d\s:]).*$/, {
-      message: '비밀번호는 최소한 대문자 한개 (A-Z), 소문자 한개 (a-z), 숫자 (0-9) 그리고 특수문자를 포함하여야 합니다',
-    }),
-});
-type dataSchema = yup.InferType<typeof validationSchema>;
-
 const SignUp = ({ handleFlip }: Props) => {
+  const [signUp] = useSignUpMutation();
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
-  } = useForm({
-    resolver: yupResolver(validationSchema),
+  } = useForm<SignUpRequest>({
+    resolver: yupResolver(signUpRequestSchema),
+    defaultValues: {
+      callingCode: '',
+    },
   });
   const [hidePassword, setHidePassword] = useState(true);
+  const [serverResponse, setServerResponse] = useState<{ type: 'error' | 'success'; message: string; isShow: boolean }>(
+    {
+      type: 'success',
+      message: '',
+      isShow: false,
+    },
+  );
 
-  const onSubmit = (data: dataSchema) => {};
+  const onSubmit = async ({
+    email,
+    password,
+    name,
+    mobile,
+    callingCode,
+  }: yup.InferType<typeof signUpRequestSchema>) => {
+    try {
+      await signUp({
+        email,
+        password,
+        name,
+        mobile,
+        callingCode,
+      }).unwrap();
+      setServerResponse({
+        type: 'success',
+        isShow: true,
+        message: '가입에 성공하셧습니다',
+      });
+      setTimeout(handleFlip, 3000);
+    } catch (e) {
+      setServerResponse({
+        type: 'error',
+        isShow: true,
+        message: '서버에러입니다.',
+      });
+    }
+  };
 
   return (
     <StyledContainer maxWidth="xs">
+      <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={serverResponse.isShow}>
+        <Alert sx={{ minWidth: '30rem' }} severity={serverResponse.type}>
+          {serverResponse.message}
+        </Alert>
+      </Snackbar>
       <Paper sx={{ px: 5, py: 8 }}>
         <Grid container spacing={2} justifyContent="center">
           <Grid item>
@@ -54,7 +107,7 @@ const SignUp = ({ handleFlip }: Props) => {
                 fullWidth
                 id="name"
                 label="이름"
-                autoComplete="family-name"
+                autoComplete="name"
                 {...register('name')}
                 helperText={errors.name?.message}
                 error={Boolean(errors.name)}
@@ -65,7 +118,6 @@ const SignUp = ({ handleFlip }: Props) => {
                 margin="normal"
                 required
                 fullWidth
-                id="email-sign-in"
                 label="이메일"
                 autoComplete="email"
                 {...register('email')}
@@ -81,7 +133,6 @@ const SignUp = ({ handleFlip }: Props) => {
                 fullWidth
                 label="비밀번호"
                 type={hidePassword ? 'password' : 'text'}
-                id="password"
                 autoComplete="new-password"
                 {...register('password')}
                 helperText={errors.password?.message}
@@ -92,9 +143,47 @@ const SignUp = ({ handleFlip }: Props) => {
               <FormControlLabel
                 checked={hidePassword}
                 onChange={() => setHidePassword(!hidePassword)}
-                control={<Checkbox />}
+                control={<Checkbox sx={{ margin: 0 }} />}
                 label="비밀번호 숨기기"
               />
+            </Grid>
+            <Grid item xs={12} display={'flex'}>
+              <StyledRow>
+                <Controller
+                  name="callingCode"
+                  control={control}
+                  render={({ field: { value, onChange } }) => (
+                    <FormControl style={{ flex: 3 }}>
+                      <InputLabel error={Boolean(errors.callingCode)} id="calling-code">
+                        나라 번호
+                      </InputLabel>
+                      <Select
+                        error={Boolean(errors.callingCode)}
+                        labelId="calling-code"
+                        value={value}
+                        onChange={onChange}
+                      >
+                        {CALLING_CODES.map(({ key, value }) => (
+                          <MenuItem key={key} value={value}>
+                            {value}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                      <FormHelperText error={Boolean(errors.callingCode)}>{errors.callingCode?.message}</FormHelperText>
+                    </FormControl>
+                  )}
+                />
+                <TextField
+                  style={{ flex: 7 }}
+                  margin="none"
+                  label="핸드폰 번호"
+                  type="tel"
+                  autoComplete="mobile"
+                  {...register('mobile')}
+                  error={Boolean(errors.mobile)}
+                  helperText={errors.mobile?.message}
+                />
+              </StyledRow>
             </Grid>
 
             <Grid item xs={12}>

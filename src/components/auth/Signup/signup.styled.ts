@@ -1,9 +1,8 @@
 import { styled } from '@mui/styles';
-import { Box } from '@mui/material';
 
-export const StyledBox = styled(Box)({
+export const StyledRow = styled('div')({
   display: 'flex',
-  flexDirection: 'column',
   alignItems: 'center',
-  padding: '10px',
+  width: '100%',
+  margin: '8px 0 8px 0',
 });
