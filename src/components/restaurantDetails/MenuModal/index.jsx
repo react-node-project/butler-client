@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { StyledImg, StyledButton } from './menuModel.styled';
-import { setTotalPrice as setTotalPriceStore, addMenuOption } from '../../../store/features/menuSelectSlice';
+import { addToCart } from '../../../store/features/cartSlice';
 import { useDispatch } from 'react-redux';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -69,10 +69,10 @@ export default function MenuModal(props) {
     }
   };
 
-  const addToCart = () => {
+  const handleAddToCart = () => {
     // dispatch selected items and total
-    dispatch(setTotalPriceStore(floatToFixed(price)));
-    dispatch(addMenuOption(ingredients));
+    dispatch(addToCart(ingredients));
+    console.log(ingredients);
     handleClose();
   };
   return (
@@ -107,7 +107,7 @@ export default function MenuModal(props) {
           </FormGroup>
         </DialogContent>
         <DialogActions>
-          <Button sx={{ m: 1, px: 6, width: '100%' }} onClick={addToCart} type="submit" variant="contained">
+          <Button sx={{ m: 1, px: 6, width: '100%' }} onClick={handleAddToCart} type="submit" variant="contained">
             Add for $ {floatToFixed(price)}
           </Button>
         </DialogActions>

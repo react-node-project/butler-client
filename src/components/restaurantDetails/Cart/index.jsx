@@ -8,22 +8,20 @@ import {
   StyledRemoveIcon,
   StyledAddIcon,
   StyledSubtotalBox,
-  StyledDeleteItemIcon,
 } from './cart.styled';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { Divider, Switch, FormControlLabel, IconButton } from '@mui/material';
 
-import { removeFromCart } from '../../../store/features/cartSlicer';
-// import { useGetAllProductListQuery } from '../../redux/features/productApi';
+import { removeFromCart } from '../../../store/features/cartSlice';
 
 const Cart = React.memo(() => {
-  // const { data, error, isLoading } = useGetAllProductListQuery();
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   const handleRemoveFromCart = useCallback((item) => {
     dispatch(removeFromCart(item));
   }, []);
+
 
   return (
     <>
@@ -34,17 +32,12 @@ const Cart = React.memo(() => {
           {/* cart items */}
           {cart.cartItems?.map((cartItem) => (
             <StyledItemBox key={cartItem.id}>
-              <h5>
-                {cartItem.title}
-                <IconButton onClick={() => handleRemoveFromCart(cartItem)}>
-                  <StyledDeleteItemIcon />
-                </IconButton>
-              </h5>
+              <h5>{cartItem.name}</h5>
               <div className="itemPriceAndQty">
                 <h5>
-                  <StyledAddIcon color="primary" />
-                  {cartItem?.qty}
                   <StyledRemoveIcon color="warning" />
+                  {cartItem?.qty}
+                  <StyledAddIcon color="primary" />
                   <span>£ {cartItem.price * cartItem.qty}</span>
                 </h5>
               </div>

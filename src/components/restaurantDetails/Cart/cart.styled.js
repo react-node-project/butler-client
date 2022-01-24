@@ -63,13 +63,13 @@ export const StyledItemBox = styled(Box)({
 });
 
 export const StyledAddIcon = styled(AddCircleOutlineIcon)({
-  fontSize: '12px',
+  fontSize: '2rem',
   paddingRight: '4px',
 });
 
 export const StyledRemoveIcon = styled(RemoveCircleOutlineIcon)({
-  fontSize: '12px',
-  padding: '0 10px 0 4px',
+  fontSize: '2rem',
+  padding: '4px',
 });
 
 export const StyledSubtotalBox = styled(Box)({
@@ -77,7 +77,7 @@ export const StyledSubtotalBox = styled(Box)({
   textAlign: 'right',
 });
 
-export const StyledDeleteItemIcon = styled(DeleteForeverIcon)({
-  fontSize: '12px',
-  paddingLeft: '6px',
-});
+// export const StyledDeleteItemIcon = styled(DeleteForeverIcon)({
+//   fontSize: '1.5rem',
+//   paddingLeft: '6px',
+// });

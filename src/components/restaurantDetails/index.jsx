@@ -3,7 +3,17 @@ import RestaurantHeader from '../restaurantDetails/RestaurantHeader/index';
 import Cart from './Cart/index';
 import { StyledText, StyledCartGrid, StyledMenuListGrid, StyledListWrapper } from './restaurantDetail.styled';
 import MenuList from './MenuList/index';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide } from '@mui/material';
+import InfoModal from './InfoModal/index';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Slide,
+  Typography,
+} from '@mui/material';
 import { useGetMenuQuery } from '../../store/service/restaurantMenu';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -36,14 +46,16 @@ export default function RestaurantDetail() {
             onClose={infohandleClose}
             aria-describedby="shop-info-description"
           >
-            <DialogTitle>{'Info'}</DialogTitle>
-            <DialogContent>
-              <DialogContentText id="shop-info-description">
-                Here we will have Store location, notes, mobile number
-              </DialogContentText>
+            <DialogTitle>
+              <Typography fontSize="20px" align="center">
+                Info
+              </Typography>
+            </DialogTitle>
+            <DialogContent style={{ backgroundColor: '#f9fafa' }}>
+              <InfoModal />
             </DialogContent>
             <DialogActions>
-              <Button onClick={infohandleClickOpen}>Close</Button>
+              <Button onClick={infohandleClose}>Close</Button>
             </DialogActions>
           </Dialog>
           <StyledListWrapper container>

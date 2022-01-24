@@ -6,8 +6,8 @@ import appReducer from './features/appSlice';
 import userReducer from './features/userSlice';
 import restaurantsReducer from './features/restaurantsSlice';
 import menuSelectionReducer from './features/menuSelectSlice';
-import cartReducer from './features/cartSlicer';
 import configReducer from './features/configSlice';
+import cartReducer from './features/cartSlice';
 
 import { locationAPI } from './service/location.api';
 import { restaurantsAPI } from './service/restaurants';

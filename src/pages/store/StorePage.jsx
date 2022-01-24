@@ -7,8 +7,8 @@ import Cart from '../../components/restaurantDetails/Cart/index';
 export default function StorePage() {
   return (
     <>
-      {/* <Container>
-        <RestaurantDetail /> 
+      <Container>
+        <RestaurantDetail />
       </Container>
       <Box sx={{ margin: 0, background: '#eee' }}>
         <Container>
@@ -17,12 +17,12 @@ export default function StorePage() {
               <p>All Menu</p>
             </StyledGrid>
             <StyledGrid item xs={12} md={4}>
-              <Basket />
+              <Cart />
             </StyledGrid>
           </Grid>
         </Container>
-      </Box> */}
-      <RestaurantDetail />
+      </Box>
+      {/* <RestaurantDetail /> */}
     </>
   );
 }
