@@ -27,6 +27,7 @@
     "@mui/lab": "^5.0.0-alpha.59",
     "@mui/material": "^5.1.1",
     "@mui/styles": "^5.1.1",
+    "@paypal/react-paypal-js": "^7.5.0",
     "@react-google-maps/api": "^2.7.0",
     "@reduxjs/toolkit": "^1.6.2",
     "@testing-library/jest-dom": "^5.16.0",

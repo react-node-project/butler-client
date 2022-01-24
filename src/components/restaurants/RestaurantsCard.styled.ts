@@ -33,10 +33,11 @@ export const StyledThumb = styled(Box)((props: { url?: string }) => ({
   },
 }));
 
-export const StyledButton = styled(Box)((props: { theme: Theme }) => ({
+export const StyledWrap = styled(Box)((props: { theme: Theme }) => ({
   border: 'none',
   background: 'none',
   padding: 0,
+  cursor: 'pointer',
   [props.theme.breakpoints.down(768)]: {
     width: '100%',
   },

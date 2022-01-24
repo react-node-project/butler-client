@@ -1,18 +1,9 @@
 import React from 'react';
 import RestaurantHeader from '../restaurantDetails/RestaurantHeader/index';
-import Basket from './Basket/index';
-import { StyledText, StyledBasketGrid, StyledMenuListGrid, StyledListWrapper } from './restaurantDetail.styled';
+import Cart from './Cart/index';
+import { StyledText, StyledCartGrid, StyledMenuListGrid, StyledListWrapper } from './restaurantDetail.styled';
 import MenuList from './MenuList/index';
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Slide,
-  Grid,
-} from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide } from '@mui/material';
 import { useGetMenuQuery } from '../../store/service/restaurantMenu';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -59,9 +50,9 @@ export default function RestaurantDetail() {
             <StyledMenuListGrid item>
               <MenuList menu={data} menuCategory={data.map((item) => item.category)} />
             </StyledMenuListGrid>
-            <StyledBasketGrid item sx={{ display: { xs: 'none', md: 'block' } }}>
-              <Basket />
-            </StyledBasketGrid>
+            <StyledCartGrid item sx={{ display: { xs: 'none', md: 'block' } }}>
+              <Cart />
+            </StyledCartGrid>
           </StyledListWrapper>
         </StyledText>
       )}

@@ -6,16 +6,12 @@
     "version": "1.0.0"
   },
   "host": "www",
-  "schemes": [
-    "https"
-  ],
+  "schemes": ["https"],
   "paths": {
     "/location": {
       "post": {
         "description": "지역 정보를 보내서 서비스 중인 지역인지 확인한다",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "in": "body",
@@ -103,9 +99,7 @@
     "/location/inactive": {
       "post": {
         "description": "비활성화 지역에 대한 서비스 장소를 이메일로 보내기",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "in": "body",
@@ -164,9 +158,7 @@
     "/getstores": {
       "get": {
         "description": "상점 조회",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "in": "query",
@@ -229,25 +221,25 @@
                   "type": "array",
                   "example": [
                     {
-                      "store_no":"string",
-                      "store_name":"string",
-                      "service_type_code":"string",
-                      "phone_no":"string",
-                      "minimum_payment_amount":"string",
-                      "sale_from_time":"string",
-                      "sale_to_time":"string",
-                      "delivery_from_time":"string",
-                      "delivery_to_time":"string",
-                      "city_code":"string",
-                      "district_code":"string",	
-                      "address":"string",
-                      "latitude":"string",
-                      "longitude":"string",
-                      "manager_phone_no":"string",
-                      "national_code":"string",
-                      "notify":"string",
-                      "bank_code":"string",
-                      "bank_account_no":"string",
+                      "store_no": "string",
+                      "store_name": "string",
+                      "service_type_code": "string",
+                      "phone_no": "string",
+                      "minimum_payment_amount": "string",
+                      "sale_from_time": "string",
+                      "sale_to_time": "string",
+                      "delivery_from_time": "string",
+                      "delivery_to_time": "string",
+                      "city_code": "string",
+                      "district_code": "string",
+                      "address": "string",
+                      "latitude": "string",
+                      "longitude": "string",
+                      "manager_phone_no": "string",
+                      "national_code": "string",
+                      "notify": "string",
+                      "bank_code": "string",
+                      "bank_account_no": "string",
                       "store_image_url": "string",
                       "descriptions": ["string", "string", "string"],
                       "review": "string"
@@ -276,20 +268,17 @@
         }
       }
     },
-    "/":{        
+    "/": {
       "description": "landing page",
-      "produces": [
-        "application/json"
-      ],
-      "responses":{
-        "200":{
-          "description":"OK"
-        }
-,        "404":{
-          "description":"Page Not Found"
+      "produces": ["application/json"],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "404": {
+          "description": "Page Not Found"
         }
       }
-
     }
   }
 }

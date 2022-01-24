@@ -1,12 +1,14 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import appReducer from './features/appSlice';
 import userReducer from './features/userSlice';
-import restaurantsReducer from './features/restaurants';
+import restaurantsReducer from './features/restaurantsSlice';
 import menuSelectionReducer from './features/menuSelectSlice';
+import cartReducer from './features/cartSlicer';
+import configReducer from './features/configSlice';
+
 import { locationAPI } from './service/location.api';
 import { restaurantsAPI } from './service/restaurants';
 import { menuAPI } from './service/restaurantMenu';
-import configReducer from './features/configSlice';
 import { authAPI } from '@store/service/auth.api';
 import { userAPI } from '@store/service/user.api';
 
@@ -17,14 +19,18 @@ const apiReducers = {
   [authAPI.reducerPath]: authAPI.reducer,
   [userAPI.reducerPath]: userAPI.reducer,
 };
+import paymentsReducer from './features/paymentsSlice';
 
 const rootReducer = combineReducers({
   app: appReducer,
   user: userReducer,
   restaurants: restaurantsReducer,
   menuSelection: menuSelectionReducer,
+  cart: cartReducer,
   config: configReducer,
   ...apiReducers,
+  locationAPI: locationAPI.reducer,
+  payments: paymentsReducer,
 });
 
 export const store = configureStore({

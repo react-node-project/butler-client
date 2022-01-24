@@ -14,14 +14,14 @@ export const StyledText = styled(Box)((props) => ({
 export const StyledListWrapper = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.up(992)]: {
     width: '80%',
+    margin: 'auto',
+    textAlign: 'center',
   },
 }));
 
-export const StyledBasketGrid = styled(Grid)(({ theme }) => ({
+export const StyledCartGrid = styled(Grid)(({ theme }) => ({
   width: '30%',
   padding: '1rem',
-  top: '0',
-
   // TODO: Sticky is not working
 }));
 

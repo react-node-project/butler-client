@@ -12,14 +12,13 @@ import {
   StyledRadioGroup,
 } from './LeftNavModal.styled';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { useDispatch } from 'react-redux';
-import { setFilter as setFilterStore } from '@store/features/restaurants';
 
 export type LeftNavModalProps = {
   open: boolean;
   filter: 'delivery' | 'pick-up' | 'table-service';
   city?: string;
   onClose: () => void;
+  setFilter: (filterValue: LeftNavModalProps['filter']) => void;
 };
 
 const ChildModalCity = () => {
@@ -51,9 +50,8 @@ const ChildModalCity = () => {
 };
 
 const LeftNavModal = (props: LeftNavModalProps) => {
-  const { open, filter: _filter, city = 'no city', onClose } = props;
+  const { open, filter: _filter, city = 'no city', onClose, setFilter: _setFilter } = props;
   const [filter, setFilter] = useState(_filter);
-  const dispatch = useDispatch();
 
   const handleChangeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
     const filterValue = (event.target as HTMLInputElement).value as LeftNavModalProps['filter'];
@@ -63,9 +61,7 @@ const LeftNavModal = (props: LeftNavModalProps) => {
   };
 
   const onClickConfirm = () => {
-    console.log('filter', filter);
-    console.log('city', city);
-    dispatch(setFilterStore(filter));
+    _setFilter(filter);
     onClose();
   };
 

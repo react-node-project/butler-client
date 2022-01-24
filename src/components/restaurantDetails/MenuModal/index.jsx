@@ -32,10 +32,7 @@ export default function MenuModal(props) {
   };
   const handleClose = () => {
     props.handleClose();
-    // dispatch selected items and total
-    let priceToAdd = floatToFixed(price);
-    dispatch(setTotalPriceStore(priceToAdd));
-    dispatch(addMenuOption(ingredients));
+
     // clear checkbox, options, price
     setCheckedItems({});
     setingredients({});
@@ -72,6 +69,12 @@ export default function MenuModal(props) {
     }
   };
 
+  const addToCart = () => {
+    // dispatch selected items and total
+    dispatch(setTotalPriceStore(floatToFixed(price)));
+    dispatch(addMenuOption(ingredients));
+    handleClose();
+  };
   return (
     <div>
       <Dialog open={open} TransitionComponent={Transition} keepMounted onClose={handleClose}>
@@ -104,7 +107,7 @@ export default function MenuModal(props) {
           </FormGroup>
         </DialogContent>
         <DialogActions>
-          <Button sx={{ m: 1, px: 6, width: '100%' }} type="submit" variant="contained">
+          <Button sx={{ m: 1, px: 6, width: '100%' }} onClick={addToCart} type="submit" variant="contained">
             Add for $ {floatToFixed(price)}
           </Button>
         </DialogActions>

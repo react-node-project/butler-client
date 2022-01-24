@@ -48,7 +48,7 @@ export const StyledButton = styled(Button)(({ theme }) => ({
   fontWeight: 600,
 }));
 
-export const StyledBasketBox = styled(Box)({
+export const StyledCartBox = styled(Box)({
   textAlign: 'left',
   padding: '0.5rem 1rem',
 });

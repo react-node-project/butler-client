@@ -8,14 +8,28 @@ type GetRestaurantsProps = {
     list: string[];
   };
   restaurants: {
-    imageUrl: string;
-    title: string;
+    store_no: string;
+    store_name: string;
+    service_type_code: string;
+    phone_no: string;
+    minimum_payment_amount: string;
+    sale_from_time: string;
+    sale_to_time: string;
+    delivery_from_time: string;
+    delivery_to_time: string;
+    city_code: string;
+    district_code: string;
+    address: string;
+    latitude: string;
+    longitude: string;
+    manager_phone_no: string;
+    national_code: string;
+    notify: string;
+    bank_code: string;
+    bank_account_no: string;
+    store_image_url: string;
     descriptions: string[];
-    review: {
-      reviewText: string;
-      reviewCount: number;
-    };
-    distanceText: string;
+    review: string;
   }[];
 };
 
@@ -25,8 +39,11 @@ export const restaurantsAPI = createApi({
   endpoints: (build) => ({
     getRestaurants: build.query<GetRestaurantsProps, LeftNavModalProps['filter']>({
       query: (filter) => ({
-        url: `/restauranrs/${filter}`,
-        method: 'get',
+        url: `/getstores`,
+        method: 'GET',
+        params: {
+          filter,
+        },
       }),
     }),
   }),
