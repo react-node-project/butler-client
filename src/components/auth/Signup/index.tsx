@@ -75,7 +75,7 @@ const SignUp = ({ handleFlip }: Props) => {
         isShow: true,
         message: '가입에 성공하셧습니다',
       });
-      setTimeout(handleFlip, 3000);
+      setTimeout(handleFlip, 1000);
     } catch (e) {
       setServerResponse({
         type: 'error',

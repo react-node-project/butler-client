@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import { Box, Button, Grid, Link, Paper, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { StyledContainer } from '../../styles/element.styled';
+import { StyledContainer } from '../../../styles/element.styled';
 import GoogleLogin from './GoogleLogin';
-import OnTheWay from '../../asset/img/ontheway';
-import KaKaoLogin from './KaKaoLogin';
+import OnTheWay from '../../../asset/img/ontheway';
+// import KaKaoLogin from './KakaoLogin';
 import { useLoginMutation } from '@store/service/auth.api';
 import './custom.css';
+import { useDispatch } from 'react-redux';
+import { userAction } from '@store/features/userSlice';
+import { useLazyGetUserQuery } from '@store/service/user.api';
+import { useNavigate } from 'react-router-dom';
+import { PATH_ROOT } from '../../../constants/PathConstants';
 
 interface Props {
-  handleFlip: () => {};
+  handleFlip: () => void;
 }
 
 const LogIn = ({ handleFlip }: Props) => {
@@ -19,13 +24,51 @@ const LogIn = ({ handleFlip }: Props) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [login] = useLoginMutation();
+  let navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [login, loginResult] = useLoginMutation();
+  const [fetchUser, fetchUserResult] = useLazyGetUserQuery();
 
-  const onSubmit = async ({ email, password }: { email: string; password: string }) => {
-    try {
-      await login({ email, password }).unwrap();
-    } catch (e) {}
+  const onSubmit = ({ email, password }: { email: string; password: string }) => {
+    login({ email, password });
   };
+
+  useEffect(() => {
+    const { isLoading, error, data } = loginResult;
+    if (isLoading) return;
+    if (error) {
+      // TODO:: 에러처리
+      return;
+    }
+    if (!data || !data.accessToken) {
+      // TODO:: 에러처리
+      return;
+    }
+    dispatch(userAction.setToken(data.accessToken));
+    fetchUser(null);
+  }, [loginResult]);
+
+  useEffect(() => {
+    const { isLoading, error, data } = fetchUserResult;
+    if (isLoading) return;
+    if (error) {
+      // TODO:: 에러처리
+      return;
+    }
+    if (!data) {
+      // TODO:: 에러처리
+      return;
+    }
+    dispatch(
+      userAction.setUser({
+        email: data.email,
+        callingCode: data.callingCode,
+        mobile: data.mobile,
+        name: data.name,
+      }),
+    );
+    navigate(PATH_ROOT);
+  }, [fetchUserResult]);
 
   return (
     <StyledContainer maxWidth="xs">
@@ -75,9 +118,7 @@ const LogIn = ({ handleFlip }: Props) => {
             <Grid item sx={{ marginTop: '0.5rem' }}>
               <GoogleLogin />
             </Grid>
-            <Grid item>
-              <KaKaoLogin />
-            </Grid>
+            {/*<Grid item><KaKaoLogin /></Grid>*/}
           </Box>
           <Grid item>
             <Box pt={2}>
