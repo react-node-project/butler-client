@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setUser } from '@store/features/userSlice';
 import { Box } from '@mui/system';
 
 export default function KaKaoLogin() {
@@ -31,9 +30,6 @@ export default function KaKaoLogin() {
         url: '/v2/user/me',
         success: function (response: string) {
           // 데이터 어떻게 저장할지 논의 필요
-
-          console.log(response);
-          dispatch(setUser(response));
         },
         fail: function (error: string) {
           console.log(error);

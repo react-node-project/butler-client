@@ -1,6 +1,6 @@
 import React from 'react';
 import { GoogleLogin as GLogin } from 'react-google-login';
-import { GOOGLE_API_KEY } from '../../constants/EnvContant';
+import { GOOGLE_API_KEY } from '../../../constants/EnvContant';
 
 const GoogleLogin = () => {
   const onLoginSuccess = (res: unknown) => {
