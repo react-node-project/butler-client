@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { MOCK_API_URL } from '../../constants/EnvContant';
+import { LoginRequest, LoginResponse } from '../../type/auth.type';
 
 export const authAPI = createApi({
   reducerPath: 'authAPI',
@@ -7,7 +8,7 @@ export const authAPI = createApi({
     baseUrl: `${MOCK_API_URL}/auth`,
   }),
   endpoints: (build) => ({
-    login: build.mutation({
+    login: build.mutation<LoginResponse, LoginRequest>({
       query: ({ email, password }: { password: string; email: string }) => ({
         url: '/login',
         headers: { 'cors-free-key': '8ElvFN0JnirIOD4F' },

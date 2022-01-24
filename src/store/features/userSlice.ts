@@ -1,10 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { UserInfo } from '../../type/user.type';
 
-const initialState: UserInfo & { token: string; isLoggedIn: boolean } = {
+type UserState = UserInfo & { token: string; isLoggedIn: boolean };
+
+const initialState: UserState = {
   mobile: '',
-  lastName: '',
-  firstName: '',
+  name: '',
   callingCode: '',
   email: '',
   token: '',
@@ -15,12 +16,19 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser: (state, action) => {
-      state = { ...action.payload };
+    setUser: (state, { payload }: PayloadAction<UserInfo>) => {
+      return (state = {
+        ...state,
+        ...payload,
+        isLoggedIn: true,
+      });
+    },
+    setToken: (state, { payload: token }: PayloadAction<string>) => {
+      state.token = token;
     },
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const userAction = userSlice.actions;
 
 export default userSlice.reducer;

@@ -8,8 +8,8 @@ export const userAPI = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${MOCK_API_URL}/users`,
     prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as RootState).user;
-      headers.set('cors-free-key', '8ElvFN0JnirIOD4F');
+      const user = (getState() as RootState).user;
+      const { token } = user;
 
       if (token) {
         headers.set('Authorization', `${token}`);
@@ -51,4 +51,4 @@ export const userAPI = createApi({
   }),
 });
 
-export const { useSignUpMutation, useGetUserQuery, useUpdateUserMutation } = userAPI;
+export const { useSignUpMutation, useGetUserQuery, useUpdateUserMutation, useLazyGetUserQuery } = userAPI;
