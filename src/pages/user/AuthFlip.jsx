@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import ReactCardFlip from 'react-card-flip';
 import Box from '@mui/material/Box';
-import SignIn from '../../components/Sign/SignIn/index';
-import SignUp from '../../components/Sign/Signup/index';
+import LogIn from '../../components/auth/Login';
+import SignUp from '../../components/auth/SignUp';
 
 const AutoFlip = () => {
   const [isFlipped, setFlip] = useState(false);
 
-  const cardFlip = () => {
+  const handleFlip = () => {
     setFlip(!isFlipped);
   };
 
@@ -15,8 +15,8 @@ const AutoFlip = () => {
     <>
       <Box>
         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-          <SignIn handleFlip={cardFlip} />
-          <SignUp handleFlip={cardFlip} />
+          <LogIn handleFlip={handleFlip} />
+          <SignUp handleFlip={handleFlip} />
         </ReactCardFlip>
       </Box>
     </>

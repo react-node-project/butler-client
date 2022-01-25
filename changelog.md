@@ -32,7 +32,7 @@ written by esther615kim
  `Changed`
 - path={PATH_RESTAURANTS_DETAIL} to StorePage
 - App.jsx to add FavList and status
-- Header/index.jsx to add responosive styling, rename components('Styled-element') and add menu buttons
+- Header/index.tsx to add responosive styling, rename components('Styled-element') and add menu buttons
 
 `Added`
 - cartSlicer
@@ -170,7 +170,7 @@ written by esther615kim
 - jest --save-dev
   `Changed`
 - mute PATH_USER `Bug`
-- change the folder structure in components>Sign>SignUp/SignIn -fixed
+- change the folder structure in components>Sign>SignUp/LogIn -fixed
 
 `Bug`
 

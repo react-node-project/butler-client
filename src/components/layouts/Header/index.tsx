@@ -23,7 +23,6 @@ export default function Header({ showSideNav, showFavList }: Props) {
   const cart = true;
 
   const isBrowserWidth = useMediaQuery(theme.breakpoints.up('md'));
-  const user = useSelector((state: RootState) => state.user);
   const [isShowSearchBar, setIsShowSearchBar] = useState(false);
 
   useEffect(() => {
@@ -46,16 +45,15 @@ export default function Header({ showSideNav, showFavList }: Props) {
               {isShowSearchBar && <SearchBar />}
               <FavMenu showFavList={showFavList} />
               {cart && <Basket />}
-              {/* {isLoggedIn ? (
-              {basket && <Basket />}
-              {user ? (
+              {isLoggedIn ? (
                 <>
                   <FavMenu showFavList={showFavList} />
                   <ApiDocsMenu />
                 </>
               ) : (
                 <LogInMenu />
-              )} */}
+                )
+              }
 
               {/* side menu */}
               <StyledBtn startIcon={<MenuIcon />} onClick={showSideNav} aria-label="menu">

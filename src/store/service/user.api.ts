@@ -8,8 +8,8 @@ export const userAPI = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${MOCK_API_URL}/users`,
     prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as RootState).user;
-      headers.set('cors-free-key', '8ElvFN0JnirIOD4F');
+      const user = (getState() as RootState).user;
+      const { token } = user;
 
       if (token) {
         headers.set('Authorization', `${token}`);
@@ -22,26 +22,24 @@ export const userAPI = createApi({
       query: () => '/',
     }),
     signUp: build.mutation<SignUpResponse, SignUpRequest>({
-      query: ({ email, password, firstName, lastName, callingCode, mobile }) => ({
-        url: '/signup',
+      query: ({ email, password, name, callingCode, mobile }) => ({
+        url: '/',
         method: 'post',
         body: {
           email,
           password,
-          firstName,
-          lastName,
+          name,
           callingCode,
           mobile,
         },
       }),
     }),
     updateUser: build.mutation<UserInfo, Partial<UserInfo>>({
-      query({ email, lastName, firstName, callingCode, mobile }) {
+      query({ email, name, callingCode, mobile }) {
         return {
           body: {
             ...(email && { email }),
-            ...(firstName && { firstName }),
-            ...(lastName && { lastName }),
+            ...(name && { name }),
             ...(callingCode && { callingCode }),
             ...(mobile && { mobile }),
           },
@@ -53,4 +51,4 @@ export const userAPI = createApi({
   }),
 });
 
-export const { useSignUpMutation, useGetUserQuery, useUpdateUserMutation } = userAPI;
+export const { useSignUpMutation, useGetUserQuery, useUpdateUserMutation, useLazyGetUserQuery } = userAPI;

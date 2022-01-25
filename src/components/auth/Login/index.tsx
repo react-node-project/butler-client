@@ -1,34 +1,84 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import TextField from '@mui/material/TextField';
-import { Box, Button, Link, Paper, Grid, Typography } from '@mui/material';
+import { Box, Button, Grid, Link, Paper, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { StyledContainer } from '../../../styles/element.styled';
-import Glogin from '../Glogin';
+import GoogleLogin from './GoogleLogin';
 import OnTheWay from '../../../asset/img/ontheway';
-import KaKaoLogin from '../KaKaoLogin/index';
+// import KaKaoLogin from './KakaoLogin';
+import { useLoginMutation } from '@store/service/auth.api';
+import './custom.css';
+import { useDispatch } from 'react-redux';
+import { userAction } from '@store/features/userSlice';
+import { useLazyGetUserQuery } from '@store/service/user.api';
+import { useNavigate } from 'react-router-dom';
+import { PATH_ROOT } from '../../../constants/PathConstants';
 
-const SignIn = (props) => {
+interface Props {
+  handleFlip: () => void;
+}
+
+const LogIn = ({ handleFlip }: Props) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
+  let navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [login, loginResult] = useLoginMutation();
+  const [fetchUser, fetchUserResult] = useLazyGetUserQuery();
+
+  const onSubmit = ({ email, password }: { email: string; password: string }) => {
+    login({ email, password });
   };
-  const handleFlip = () => {
-    props.handleFlip();
-  };
+
+  useEffect(() => {
+    const { isLoading, error, data } = loginResult;
+    if (isLoading) return;
+    if (error) {
+      // TODO:: 에러처리
+      return;
+    }
+    if (!data || !data.accessToken) {
+      // TODO:: 에러처리
+      return;
+    }
+    dispatch(userAction.setToken(data.accessToken));
+    fetchUser(null);
+  }, [loginResult]);
+
+  useEffect(() => {
+    const { isLoading, error, data } = fetchUserResult;
+    if (isLoading) return;
+    if (error) {
+      // TODO:: 에러처리
+      return;
+    }
+    if (!data) {
+      // TODO:: 에러처리
+      return;
+    }
+    dispatch(
+      userAction.setUser({
+        email: data.email,
+        callingCode: data.callingCode,
+        mobile: data.mobile,
+        name: data.name,
+      }),
+    );
+    navigate(PATH_ROOT);
+  }, [fetchUserResult]);
+
   return (
     <StyledContainer maxWidth="xs">
       <Paper sx={{ px: 5, py: 8 }}>
         <Grid container spacing={2} justifyContent="center">
           <Grid item>
-            <Typography variant="h5">Sign In</Typography>
+            <Typography variant="h5">Log In</Typography>
             <OnTheWay />
           </Grid>
 
-          {/* 아래는 formcontrol */}
           <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
             <Grid item>
               <TextField
@@ -37,7 +87,6 @@ const SignIn = (props) => {
                 fullWidth
                 id="email-signup"
                 label="Enter email"
-                name="email"
                 autoComplete="email"
                 autoFocus
                 helperText={errors.email?.message}
@@ -51,7 +100,6 @@ const SignIn = (props) => {
                 margin="normal"
                 required
                 fullWidth
-                name="password"
                 label="Enter password"
                 type="password"
                 id="password-signup"
@@ -63,14 +111,14 @@ const SignIn = (props) => {
             </Grid>
             {/* Login buttons */}
             <Grid item>
-              <Button sx={{ m: 1, px: 6 }} type="submit" variant="contained" size="large">
-                Sign In
+              <Button fullWidth sx={{ width: '80%' }} type="submit" variant="contained" size="large">
+                Log In
               </Button>
             </Grid>
-            <Grid item>
-              <Glogin />
-              <KaKaoLogin />
+            <Grid item sx={{ marginTop: '0.5rem' }}>
+              <GoogleLogin />
             </Grid>
+            {/*<Grid item><KaKaoLogin /></Grid>*/}
           </Box>
           <Grid item>
             <Box pt={2}>
@@ -79,7 +127,7 @@ const SignIn = (props) => {
               </Link>
             </Box>
             <Link component="button" onClick={handleFlip} variant="body2">
-              {'Not registered yet? Sign up'}
+              Not registered yet? Sign up
             </Link>
           </Grid>
         </Grid>
@@ -88,4 +136,4 @@ const SignIn = (props) => {
   );
 };
 
-export default SignIn;
+export default LogIn;

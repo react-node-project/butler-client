@@ -1,8 +1,6 @@
-// import { Button } from '@mui/material';
 import React from 'react';
-// import { StyledContainer } from '../styles/element.styled';
 import ThemeMenu from './../components/Landing/ThemeMenu';
-import { Paper, Container, Grid } from '@mui/material';
+import { Container, Grid, Paper } from '@mui/material';
 import LocationSearch from '@components/location/LocationSearch';
 import Footer from '../components/footer';
 

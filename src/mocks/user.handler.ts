@@ -7,21 +7,30 @@ import { signUpRequestSchema } from '../util/shcema';
 const sampleUser: UserInfo = {
   email: 'butler@gmail.com',
   callingCode: '00',
-  firstName: 'paul',
-  lastName: 'lucid',
+  name: 'paul',
   mobile: '010-1234-1234',
 };
 
 export const userHandler = [
   rest.post(
     `${MOCK_API_URL}/users`,
-    async (req: RestRequest<SignUpRequest>, res: ResponseComposition<ButlerResponse>, { status, json }) => {
+    async (req: RestRequest<SignUpRequest>, res: ResponseComposition<ButlerResponse>, ctx) => {
       try {
-        await signUpRequestSchema.validate(req);
-      } catch (e) {
+        await signUpRequestSchema.validate(req.body);
         return res(
-          status(400),
-          json({
+          ctx.status(200),
+          ctx.json({
+            code: 1000,
+            message: 'ok',
+            userNumber: 1,
+            email: req.body.email,
+          }),
+        );
+      } catch (e) {
+        console.log('ee', e);
+        return res(
+          ctx.status(400),
+          ctx.json({
             code: 2000,
             message: '필수 데이터가 존재하지않습니다',
           }),
