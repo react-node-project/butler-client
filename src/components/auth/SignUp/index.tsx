@@ -27,7 +27,7 @@ import { signUpRequestSchema } from '../../../util/shcema';
 import { SignUpRequest } from '../../../type/user.type';
 
 import { CALLING_CODES } from '../../../constants/CountryConstant';
-import { StyledRow } from '@components/auth/Signup/signup.styled';
+import { StyledRow } from '@components/auth/SignUp/signup.styled';
 
 interface Props {
   handleFlip: () => void;
