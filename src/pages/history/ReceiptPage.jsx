@@ -1,68 +1,26 @@
-import React from 'react';
+import { Button} from '@mui/material';
+import { useReactToPrint } from 'react-to-print';
+import React, { useRef } from 'react';
+// import { ComponentToPrint } from './ComponentToPrint';
 
-import { Container, Box, Button, Divider, Typography } from '@mui/material';
-
-import { StyledBox, StyledPaper } from './history.styled';
 import { StyledDivWrapper } from '../../styles/sharedElement.styled';
-import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+import Receipt from './../../components/history/Receipt';
 
-export default function ReceiptPage() {
+const ReceiptPage =()=> {
+  const componentRef = useRef(null);
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
   return (
-    // receipt view 만 작성: 리뷰 안하셔도 됩니당
+    <>
     <StyledDivWrapper>
-      <Container>
-        <StyledPaper>
-          <Box>
-            <ReceiptLongIcon size="large" />
-          </Box>
-          <h2>Order # 39215</h2>
-
-          <Divider />
-
-          <StyledBox>
-            <div>
-              <Typography variant="body1" gutterBottom>
-                From
-              </Typography>
-              <Typography variant="body1" gutterBottom color="text.secondary">
-                restaurant address details
-              </Typography>
-              <Typography variant="subtitle2" gutterBottom color="text.secondary">
-                264443
-              </Typography>
-            </div>
-            <div>
-              <Typography variant="body1" gutterBottom>
-                To
-              </Typography>
-              <Typography variant="body1" gutterBottom color="text.secondary">
-                delivered address
-              </Typography>
-
-              <Typography variant="subtitle2" gutterBottom color="text.secondary">
-                +44 3405 25342
-              </Typography>
-            </div>
-          </StyledBox>
-
-          <Divider />
-
-          <StyledBox>
-            <div>
-              <Typography variant="body1" gutterBottom>
-                My order
-              </Typography>
-              <Typography variant="subtitle2" gutterBottom color="text.secondary">
-                Total
-              </Typography>
-            </div>
-          </StyledBox>
-
-          <Divider />
-
-          <Button variant="outlined">download receipt</Button>
-        </StyledPaper>
-      </Container>
+      <Receipt ref={componentRef} />
+      <Button pt={2} onClick={handlePrint} variant="contained" size="large">
+        download receipt
+      </Button>
     </StyledDivWrapper>
+    </>
   );
 }
+
+export default ReceiptPage;

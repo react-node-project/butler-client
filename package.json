@@ -48,6 +48,7 @@
     "react-hook-form": "^7.20.2",
     "react-redux": "^7.2.6",
     "react-sticky": "^6.0.3",
+    "react-to-print": "^2.14.4",
     "redux-persist": "^6.0.0",
     "remove": "^0.1.5",
     "styled-breakpoints": "^10.0.1",

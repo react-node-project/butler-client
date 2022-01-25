@@ -32,6 +32,7 @@ export const StyledDivWrapper = styled.div`
 margin:0,
   flex: ${({ flex }) => flex || 1};
   padding: 1rem;
+  text-align:center;
   height: ${({ height }) => height || '100vh'};
   background-color: ${({ bg }) => bg || '#eee'}; ;
 `;
