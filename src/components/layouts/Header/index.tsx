@@ -52,9 +52,7 @@ export default function Header({ showSideNav, showFavList }: Props) {
                 </>
               ) : (
                 <LogInMenu />
-                )
-              }
-
+              )}
               {/* side menu */}
               <StyledBtn startIcon={<MenuIcon />} onClick={showSideNav} aria-label="menu">
                 Menu

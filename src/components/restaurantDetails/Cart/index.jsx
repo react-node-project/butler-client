@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   StyledCard,
@@ -14,12 +14,13 @@ import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { Divider, Switch, FormControlLabel, IconButton } from '@mui/material';
 
 import { incrementItemQty, decrementItemQty, removeFromCart } from '../../../store/features/cartSlice';
-
-// export default function Cart() {
-const Cart = React.memo(() => {
+export default function Cart() {
   const cart = useSelector((state) => state.cart);
+  const [tipChecked, setTip] = useState(false);
   const dispatch = useDispatch();
-
+  const handleTipChange = () => {
+    setTip(!tipChecked);
+  };
   return (
     <>
       <StyledCard>
@@ -51,19 +52,18 @@ const Cart = React.memo(() => {
           <Divider />
           <div>
             <h3>
-              Tip <FormControlLabel control={<Switch defaultChecked />} label="£0.69" />
+              Tip
+              <FormControlLabel control={<Switch checked={tipChecked} onChange={handleTipChange} />} label="£0.69" />
             </h3>
           </div>
           <Divider />
           <StyledSubtotalBox>
             <h3>Subtotal</h3>
-            <h5>£ {cart?.cartTotalAmount}</h5>
+            <h5>£ {tipChecked ? cart?.cartTotalAmount + 0.69 : cart?.cartTotalAmount}</h5>
           </StyledSubtotalBox>
         </StyledCartBox>
         <StyledButton fullWidth>Go to Checkout</StyledButton>
       </StyledCard>
     </>
   );
-});
-
-export default Cart;
+}
