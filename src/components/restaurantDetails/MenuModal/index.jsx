@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { StyledImg, StyledButton } from './menuModel.styled';
-import { setTotalPrice as setTotalPriceStore, addMenuOption } from '../../../store/features/menuSelectSlice';
+import { addToCart } from '../../../store/features/cartSlice';
 import { useDispatch } from 'react-redux';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -23,7 +23,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function MenuModal(props) {
   const [checkedItems, setCheckedItems] = React.useState({});
   const [ingredients, setingredients] = React.useState({});
-  const { open, menuName, menuDesc, menuIngri, imgUrl } = props;
+  const { open, menuName, menuDesc, menuIngri, imgUrl, menuPrice } = props;
   const [price, setPrice] = React.useState(0);
   const dispatch = useDispatch();
 
@@ -41,7 +41,7 @@ export default function MenuModal(props) {
 
   const addIngredients = (menuName, item) => {
     let currentIngredients = ingredients[menuName] || [];
-    setingredients({ ...ingredients, [menuName]: [...currentIngredients, item] });
+    setingredients({ ...ingredients, [menuName]: [...currentIngredients, { ingredient: item[0], price: item[1] }] });
   };
 
   const removeIngredients = (menuName, item) => {
@@ -52,6 +52,7 @@ export default function MenuModal(props) {
   const handleIngredients = (e, idx, item, menuName) => {
     // if already checked, uncheck and remove item's price from the total
     // if not add item and its price
+
     if (item[0] in checkedItems) {
       if (checkedItems[item[0]]) {
         setCheckedItems({ ...checkedItems, [item[0]]: false });
@@ -69,10 +70,22 @@ export default function MenuModal(props) {
     }
   };
 
-  const addToCart = () => {
-    // dispatch selected items and total
-    dispatch(setTotalPriceStore(floatToFixed(price)));
-    dispatch(addMenuOption(ingredients));
+  const handleAddToCart = () => {
+    // calculate ingredients total
+    let ingredientsTotal = Object.values(ingredients)[0]
+      .map((item) => item.price)
+      .reduce((acc, val) => acc + val, 0);
+
+    // cart object item that will be dispatched to the redux store
+    let cartItemObj = {
+      foodName: Object.keys(ingredients)[0],
+      ingredients: Object.values(ingredients),
+      price: floatToFixed(parseInt(menuPrice, 10) + ingredientsTotal),
+    };
+
+    console.log(cartItemObj);
+    //dispatch selected items and total
+    dispatch(addToCart(cartItemObj));
     handleClose();
   };
   return (
@@ -107,7 +120,7 @@ export default function MenuModal(props) {
           </FormGroup>
         </DialogContent>
         <DialogActions>
-          <Button sx={{ m: 1, px: 6, width: '100%' }} onClick={addToCart} type="submit" variant="contained">
+          <Button sx={{ m: 1, px: 6, width: '100%' }} onClick={handleAddToCart} type="submit" variant="contained">
             Add for $ {floatToFixed(price)}
           </Button>
         </DialogActions>

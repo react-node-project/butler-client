@@ -17,6 +17,7 @@ export default function MenuList(props) {
   const [menuDesc, setMenuDesc] = React.useState('');
   const [menuIngri, setMenuIngri] = React.useState([]);
   const [imgUrl, setImgUrl] = React.useState('');
+  const [price, setPrice] = React.useState('');
 
   let refs = [useRef(null), useRef(null)];
 
@@ -37,11 +38,12 @@ export default function MenuList(props) {
     });
   };
 
-  const handleCardClick = (menuName, menuDesc, menuIngri, imgUrl) => {
+  const handleCardClick = (menuName, menuDesc, menuIngri, imgUrl, price) => {
     setMenuName(menuName);
     setMenuDesc(menuDesc);
     setMenuIngri(menuIngri);
     setImgUrl(imgUrl);
+    setPrice(price);
     setOpen(true);
   };
 
@@ -53,6 +55,7 @@ export default function MenuList(props) {
         menuDesc={menuDesc}
         menuIngri={menuIngri}
         imgUrl={imgUrl}
+        menuPrice={price}
         handleClose={handleClose}
       />
       <Grid container top="0" position="sticky" direction="row-reverse">

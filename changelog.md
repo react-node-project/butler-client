@@ -18,8 +18,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Installed` for installing new dependencies
 - `Setting` for adding/changing the general settings
 
+## [0.1.16] - 2022-01-26
+
+written by minervatea
+
+`Summary`
+
+Cart 통합, Info Modal Layout 
+
+`Installed`
+- nanoid library
+
+`Changed`
+- dynamic url for restaurant detail page
+
+`Added`
+- Info Modal
 
 ## [0.1.15] - 2022-01-15
+
 `Installed` webpack Merge 설정
 
 `Setting` webpack 설정(분리 => dev(devtool 변경),prod,common)
@@ -27,32 +44,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 written by esther615kim
 
 `Summary`
-- Navbar 검색창 추가 & 반응형, FavList 추가 
 
- `Changed`
+- Navbar 검색창 추가 & 반응형, FavList 추가
+
+`Changed`
+
 - path={PATH_RESTAURANTS_DETAIL} to StorePage
 - App.jsx to add FavList and status
 - Header/index.tsx to add responosive styling, rename components('Styled-element') and add menu buttons
 
 `Added`
+
 - cartSlicer
 - FavList component
 - Basket folder in src/components
 
-
 ## [0.1.1] - 2022-01-09
+
 `Setting`
- - swagger api 문서 추가
+
+- swagger api 문서 추가
 
 ## [0.1.1] - 2022-01-08
 
 written by 조효형
 
 `Added`
+
 - 스켈레톤 추가
 - env_sample 추가
 
 `Changed`
+
 - restaurants 모바일 ui 작업
 
 ## [0.1.0] - 2022-01-05
@@ -65,6 +88,7 @@ written by Minju
 - 메뉴 카테고리 선택시 그 섹션으로 스크롤 이동
 
 `Changed`
+
 - changed component name from ShopDetail to RestaurantDetail
 - 모달창 x 버튼 색깔이 가려져서 변경
 
