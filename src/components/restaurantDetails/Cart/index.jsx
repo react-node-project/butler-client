@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   StyledCard,
@@ -8,20 +8,17 @@ import {
   StyledRemoveIcon,
   StyledAddIcon,
   StyledSubtotalBox,
+  StyledDeleteItemIcon,
 } from './cart.styled';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { Divider, Switch, FormControlLabel, IconButton } from '@mui/material';
 
-import { removeFromCart } from '../../../store/features/cartSlice';
+import { incrementItemQty, decrementItemQty, removeFromCart } from '../../../store/features/cartSlice';
 
+// export default function Cart() {
 const Cart = React.memo(() => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-
-  const handleRemoveFromCart = useCallback((item) => {
-    dispatch(removeFromCart(item));
-  }, []);
-
 
   return (
     <>
@@ -33,11 +30,18 @@ const Cart = React.memo(() => {
           {cart.cartItems?.map((cartItem) => (
             <StyledItemBox key={cartItem.id}>
               <h5>{cartItem.name}</h5>
+              <IconButton onClick={() => dispatch(removeFromCart(cartItem.id))}>
+                <StyledDeleteItemIcon />
+              </IconButton>
               <div className="itemPriceAndQty">
                 <h5>
-                  <StyledRemoveIcon color="warning" />
+                  <IconButton onClick={() => dispatch(decrementItemQty(cartItem.id))}>
+                    <StyledRemoveIcon color="warning" />
+                  </IconButton>
                   {cartItem?.qty}
-                  <StyledAddIcon color="primary" />
+                  <IconButton onClick={() => dispatch(incrementItemQty(cartItem.id))}>
+                    <StyledAddIcon color="primary" />
+                  </IconButton>
                   <span>£ {cartItem.price * cartItem.qty}</span>
                 </h5>
               </div>
@@ -59,8 +63,6 @@ const Cart = React.memo(() => {
         <StyledButton fullWidth>Go to Checkout</StyledButton>
       </StyledCard>
     </>
-    // )
-    // }
   );
 });
 

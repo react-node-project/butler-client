@@ -45,13 +45,9 @@ export default function App() {
             <Route path={PATH_USER_SIGNIN} element={<AuthFlip />} />
             <Route path={PATH_ROOT} element={<Home />} />
             <Route path={PATH_RESTAURANTS} element={<RestaurantsPage />} />
-<<<<<<< Updated upstream
             <Route path={PATH_RESTAURANTS_DETAIL} element={<StorePage />} />
             <Route path={PATH_HISTORY} element={<HistoryPage />} />
             <Route path={PATH_RECEIPT} element={<ReceiptPage />} />
-=======
-            <Route path={PATH_RESTAURANTS_DETAIL} element={<RestaurantDetail />} />
->>>>>>> Stashed changes
             <Route path={PATH_API_DOCS} element={<ApiDocs />} />
             <Route path={PATH_PAYMENTS} element={<PaymentsPage />} />
           </Routes>

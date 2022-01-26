@@ -4,16 +4,7 @@ import Cart from './Cart/index';
 import { StyledText, StyledCartGrid, StyledMenuListGrid, StyledListWrapper } from './restaurantDetail.styled';
 import MenuList from './MenuList/index';
 import InfoModal from './InfoModal/index';
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Slide,
-  Typography,
-} from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Slide, Typography } from '@mui/material';
 import { useGetMenuQuery } from '../../store/service/restaurantMenu';
 
 const Transition = React.forwardRef(function Transition(props, ref) {

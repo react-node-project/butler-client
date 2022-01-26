@@ -77,7 +77,7 @@ export const StyledSubtotalBox = styled(Box)({
   textAlign: 'right',
 });
 
-// export const StyledDeleteItemIcon = styled(DeleteForeverIcon)({
-//   fontSize: '1.5rem',
-//   paddingLeft: '6px',
-// });
+export const StyledDeleteItemIcon = styled(DeleteForeverIcon)({
+  fontSize: '1.5rem',
+  paddingLeft: '6px',
+});

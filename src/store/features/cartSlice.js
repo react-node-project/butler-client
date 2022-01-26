@@ -3,30 +3,53 @@ import { nanoid } from 'nanoid';
 
 const initialState = {
   cartItems: [],
-  totalPrice: 0,
+  cartTotalAmount: 0,
 };
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    // add item to cart
-    // action object => multiple parameter
+    // TODO: deconstruct payload
     addToCart: (state, action) => {
-      const itemName = Object.keys(action.payload)[0];
-      const itemIngredients = Object.values(action.payload)[0];
-      const itemIndex = state.cartItems.findIndex((item) => item.name === itemName);
+      // refactoring
+      const itemName = action.payload.foodName;
+      const itemIngredients = action.payload.ingredients[0];
+      const itemPrice = action.payload.price;
 
-      state.cartItems = [...state.cartItems, { id: nanoid(4), name: itemName, ingredients: itemIngredients, qty: 1 }];
+      state.cartItems = [
+        ...state.cartItems,
+        { id: nanoid(4), name: itemName, ingredients: itemIngredients, qty: 1, price: itemPrice },
+      ];
+
+      state.cartTotalAmount = state.cartTotalAmount + itemPrice;
     },
     removeFromCart: (state, action) => {
-      state.selectedMenuOption = state.selectedMenuOption.filter((el) => el !== action.payload);
+      state.cartItems = state.cartItems.filter((item) => item.id !== action.payload.id);
     },
-    // decrement qty
-    decrementItemQty(state, action) {},
+
+    incrementItemQty(state, action) {
+      state.cartItems.forEach((item) => {
+        if (item.id === action.payload) {
+          item.qty++;
+        }
+      });
+    },
+
+    decrementItemQty(state, action) {
+      state.cartItems.forEach((item) => {
+        if (item.id === action.payload) {
+          if (item.qty > 1) {
+            item.qty--;
+          } else {
+            state.cartItems = state.cartItems.filter((item) => item.id !== action.payload.id);
+          }
+        }
+      });
+    },
   },
 });
 
-export const { addToCart, removeFromCart, decrementItemQty } = cartSlice.actions; // individual reducer
+export const { addToCart, removeFromCart, incrementItemQty, decrementItemQty } = cartSlice.actions; // individual reducer
 
 export default cartSlice.reducer;
