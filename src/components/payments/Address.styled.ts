@@ -15,8 +15,8 @@ export const StyledTextareaAutosize = styled(TextareaAutosize)({
 });
 
 export const StyledAccordionSummary = styled(AccordionSummary)(
-  (props: { theme?: Theme; expanded: 'panelAdress' | null }) => ({
-    display: props.expanded === 'panelAdress' ? 'none' : 'block',
+  (props: { theme?: Theme; expanded: 'panelAddress' | null }) => ({
+    display: props.expanded === 'panelAddress' ? 'none' : 'block',
     minHeight: 'auto',
     padding: 0,
     margin: 0,

@@ -18,7 +18,7 @@ import AddressItem from './AddressItem';
 
 export type AddressProps = {};
 
-type AddressExtendsType = 'panelAdress' | null;
+type AddressExtendsType = 'panelAddress' | null;
 
 type AddressDialogProps = {
   address: addressType | null;
@@ -32,7 +32,7 @@ const AddressAccordion = (props: AddressDialogProps) => {
   const { address, expanded, onClickSubmit, onClickClose, setExpanded } = props;
   // TODO: PR 완료후 validationSchema는 utill로 이사
   const validationSchema = yup.object().shape({
-    streetAdress: yup.string().required('This is a required entry.'),
+    streetAddress: yup.string().required('This is a required entry.'),
     city: yup.string().required('This is a required entry.'),
     postcode: yup.string().required('This is a required entry.'),
     phoneNumber: yup.string().required('This is a required entry.'),
@@ -55,8 +55,8 @@ const AddressAccordion = (props: AddressDialogProps) => {
   };
 
   return (
-    <StyledAccordion expanded={expanded === 'panelAdress'} onChange={onChange('panelAdress')}>
-      <StyledAccordionSummary aria-controls="adress-content" id="adress-header" expanded={expanded}>
+    <StyledAccordion expanded={expanded === 'panelAddress'} onChange={onChange('panelAddress')}>
+      <StyledAccordionSummary aria-controls="adrdess-content" id="address-header" expanded={expanded}>
         <AddressItem address={address} />
       </StyledAccordionSummary>
       <AccordionDetails>
@@ -79,13 +79,13 @@ const AddressAccordion = (props: AddressDialogProps) => {
               required
               size={'small'}
               fullWidth
-              id="streetAdress"
-              label="streetAdress"
-              defaultValue={address?.streetAdress}
+              id="streetAddress"
+              label="streetAddress"
+              defaultValue={address?.streetAddress}
               placeholder="e.g. 1 Cousin Lane"
-              {...register('streetAdress')}
-              helperText={errors.streetAdress?.message}
-              error={Boolean(errors.streetAdress)}
+              {...register('streetAddress')}
+              helperText={errors.streetAddress?.message}
+              error={Boolean(errors.streetAddress)}
             />
           </StyledInputItem>
           <StyledInputItem>
