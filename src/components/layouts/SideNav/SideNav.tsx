@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { PATH_HISTORY, PATH_USER_LOGIN } from '../../../constants/PathConstants';
+import { PATH_ACCOUNT, PATH_HISTORY, PATH_USER_LOGIN } from '../../../constants/PathConstants';
 import { StyledButton, StyledSideNavContainer, StyledSideNavHeader, StyledSideNavMain } from './sideNav.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { Country, Language, setCountry, setLanguage } from '@store/features/configSlice';
@@ -62,7 +62,7 @@ const SideNav = ({ isShowSideNav, hideSideNav }: Props) => {
             {isLoggedIn ? (
               <>
                 <StyledButton startIcon={<PersonOutlineIcon />} fullWidth size="large">
-                  <Link>Account</Link>
+                  <Link href={PATH_ACCOUNT}>Account</Link>
                 </StyledButton>
                 <StyledButton startIcon={<ReceiptLongIcon />} fullWidth size="large" onClick={hideSideNav}>
                   <Link href={PATH_HISTORY}>Order history</Link>

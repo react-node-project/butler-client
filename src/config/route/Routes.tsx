@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes as Switch } from 'react-router-dom';
 import {
+  PATH_ACCOUNT,
   PATH_API_DOCS,
   PATH_HISTORY,
   PATH_PAYMENTS,
@@ -20,6 +21,7 @@ import { ApiDocs } from '../../pages/api-docs/ApiDocs';
 import PaymentsPage from '../../pages/payments/PaymentsPage';
 import ProtectedRoutes from './ProtectedRoutes';
 import NotFoundPage from './NotFoundPage';
+import Account from '../../pages/user/Account';
 
 export const Routes = () => {
   return (
@@ -31,14 +33,15 @@ export const Routes = () => {
       <Route path={PATH_HISTORY} element={<HistoryPage />} />
       <Route path={PATH_RECEIPT} element={<ReceiptPage />} />
 
+      <Route element={<ProtectedRoutes permission="onlyUser" />}>
+        <Route path={PATH_ACCOUNT} element={<Account />} />
+      </Route>
       <Route element={<ProtectedRoutes permission="noneUser" />}>
         <Route path={PATH_USER_LOGIN} element={<AuthFlip />} />
       </Route>
-
       <Route element={<ProtectedRoutes permission="admin" />}>
         <Route path={PATH_API_DOCS} element={<ApiDocs />} />
       </Route>
-
       <Route path="*" element={<NotFoundPage />} />
     </Switch>
   );
