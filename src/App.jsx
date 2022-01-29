@@ -7,13 +7,13 @@ import Home from './pages/Home';
 import Box from '@mui/material/Box';
 import {
   PATH_API_DOCS,
+  PATH_HISTORY,
+  PATH_PAYMENTS,
+  PATH_RECEIPT,
   PATH_RESTAURANTS,
   PATH_RESTAURANTS_DETAIL,
   PATH_ROOT,
-  PATH_USER_SIGNIN,
-  PATH_HISTORY,
-  PATH_RECEIPT,
-  PATH_PAYMENTS,
+  PATH_USER_LOGIN
 } from './constants/PathConstants';
 import AuthFlip from './pages/user/AuthFlip';
 import RestaurantsPage from './pages/restaurants/RestaurantsPage';
@@ -47,7 +47,7 @@ export default function App() {
         <FavList isShowSideNav={isShowFavList} hideSideNav={hideFavList} />
         <Box component="main">
           <Routes>
-            <Route path={PATH_USER_SIGNIN} element={<AuthFlip />} />
+            <Route path={PATH_USER_LOGIN} element={<AuthFlip />} />
             <Route path={PATH_ROOT} element={<Home />} />
             <Route path={PATH_RESTAURANTS} element={<RestaurantsPage />} />
             <Route path={PATH_RESTAURANTS_DETAIL} element={<StorePage />} />

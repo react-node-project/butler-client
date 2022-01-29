@@ -1,19 +1,19 @@
 import React from 'react';
 import {
-  Link,
   Divider,
   Drawer,
   FormGroup,
   IconButton,
   InputLabel,
+  Link,
   MenuItem,
   Select,
   SelectChangeEvent,
-  Typography,
+  Typography
 } from '@mui/material';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import { PATH_USER_SIGNIN, PATH_HISTORY } from '../../../constants/PathConstants';
-import { StyledSideNavContainer, StyledSideNavHeader, StyledSideNavMain, StyledButton } from './sideNav.styled';
+import { PATH_HISTORY, PATH_USER_LOGIN } from '../../../constants/PathConstants';
+import { StyledButton, StyledSideNavContainer, StyledSideNavHeader, StyledSideNavMain } from './sideNav.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { Country, Language, setCountry, setLanguage } from '../../../store/features/configSlice';
 import { RootState } from '../../../store';
@@ -29,6 +29,7 @@ interface Props {
 const SideNav = ({ isShowSideNav, hideSideNav }: Props) => {
   const dispatch = useDispatch();
   const { language, country } = useSelector((state: RootState) => state.config);
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
 
   const onChangeSelect = (e: SelectChangeEvent<string>) => {
     dispatch(
@@ -48,17 +49,22 @@ const SideNav = ({ isShowSideNav, hideSideNav }: Props) => {
         <Divider />
         <StyledSideNavMain>
           <div>
-            <StyledButton startIcon={<PersonOutlineIcon />} fullWidth size="large">
-              <Link>Account</Link>
-            </StyledButton>
-
-            <StyledButton startIcon={<ReceiptLongIcon />} fullWidth size="large" onClick={hideSideNav}>
-              <Link href={PATH_HISTORY}>Order history</Link>
-            </StyledButton>
-
-            <StyledButton startIcon={<LoginIcon />} fullWidth size="large" onClick={hideSideNav}>
-              <Link href={PATH_USER_SIGNIN}>Sign up or log in</Link>
-            </StyledButton>
+            {isLoggedIn ? (
+              <>
+                <StyledButton startIcon={<PersonOutlineIcon />} fullWidth size="large">
+                  <Link>Account</Link>
+                </StyledButton>
+                <StyledButton startIcon={<ReceiptLongIcon />} fullWidth size="large" onClick={hideSideNav}>
+                  <Link href={PATH_HISTORY}>Order history</Link>
+                </StyledButton>
+              </>
+            ) : (
+              <>
+                <StyledButton startIcon={<LoginIcon />} fullWidth size="large" onClick={hideSideNav}>
+                  <Link href={PATH_USER_LOGIN}>Sign up or log in</Link>
+                </StyledButton>
+              </>
+            )}
           </div>
 
           <FormGroup className="sidenav-selected-buttons">

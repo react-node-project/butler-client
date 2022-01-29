@@ -7,7 +7,7 @@ import { Card, CardContent, IconButton, Modal, TextField } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 import { MAP_API_KEY as apiKey } from '../../constants/EnvContant';
-import { PATH_RESTAURANTS, PATH_USER_SIGNIN } from '../../constants/PathConstants';
+import { PATH_RESTAURANTS, PATH_USER_LOGIN } from '../../constants/PathConstants';
 import { SendLocationProps, useSendLocationMutation } from '@store/service/location.api';
 import { StyledLink } from '../../styles/element.styled';
 
@@ -140,7 +140,7 @@ const LocationSearch = () => {
           </div>
 
           <div style={{ padding: '5px' }}>
-            <StyledLink to={PATH_USER_SIGNIN}>Log in </StyledLink>
+            <StyledLink to={PATH_USER_LOGIN}>Log in </StyledLink>
             for your recent address
           </div>
         </CardContent>
