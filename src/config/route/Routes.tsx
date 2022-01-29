@@ -19,6 +19,7 @@ import ReceiptPage from '../../pages/history/ReceiptPage';
 import { ApiDocs } from '../../pages/api-docs/ApiDocs';
 import PaymentsPage from '../../pages/payments/PaymentsPage';
 import ProtectedRoutes from './ProtectedRoutes';
+import NotFoundPage from './NotFoundPage';
 
 export const Routes = () => {
   return (
@@ -38,7 +39,7 @@ export const Routes = () => {
         <Route path={PATH_API_DOCS} element={<ApiDocs />} />
       </Route>
 
-      {/* 404  */}
+      <Route path="*" element={<NotFoundPage />} />
     </Switch>
   );
 };

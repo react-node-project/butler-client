@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import { KAKAO_API_KEY } from './constants/EnvContant';
 import FavList from './components/layouts/FavList';
 import Routes from './config/route/Routes';
+import ErrorBoundary from './config/route/ErrorBoundary';
 
 export default function App() {
   const [isShowSideNav, setIsShowSideNav] = useState(false);
@@ -22,14 +23,16 @@ export default function App() {
 
   return (
     <>
-      <Router>
-        <Header showSideNav={showSideNav} showFavList={showFavList} />
-        <SideNav isShowSideNav={isShowSideNav} hideSideNav={hideSideNav} />
-        <FavList isShowSideNav={isShowFavList} hideSideNav={hideFavList} />
-        <Box component="main">
-          <Routes />
-        </Box>
-      </Router>
+      <ErrorBoundary>
+        <Router>
+          <Header showSideNav={showSideNav} showFavList={showFavList} />
+          <SideNav isShowSideNav={isShowSideNav} hideSideNav={hideSideNav} />
+          <FavList isShowSideNav={isShowFavList} hideSideNav={hideFavList} />
+          <Box component="main">
+            <Routes />
+          </Box>
+        </Router>
+      </ErrorBoundary>
     </>
   );
 }
