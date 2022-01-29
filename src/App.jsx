@@ -4,7 +4,7 @@ import { Header, SideNav } from './components/layouts';
 import Box from '@mui/material/Box';
 import { KAKAO_API_KEY } from './constants/EnvContant';
 import FavList from './components/layouts/FavList';
-import Routes from './confg/Routes';
+import Routes from './config/route/Routes';
 
 export default function App() {
   const [isShowSideNav, setIsShowSideNav] = useState(false);
