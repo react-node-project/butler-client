@@ -26,6 +26,9 @@ export const userSlice = createSlice({
     setToken: (state, { payload: token }: PayloadAction<string>) => {
       state.token = token;
     },
+    resetUser: (state) => {
+      return (state = initialState);
+    },
   },
 });
 

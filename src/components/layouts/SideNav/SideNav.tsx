@@ -12,14 +12,17 @@ import {
   Typography
 } from '@mui/material';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { PATH_HISTORY, PATH_USER_LOGIN } from '../../../constants/PathConstants';
 import { StyledButton, StyledSideNavContainer, StyledSideNavHeader, StyledSideNavMain } from './sideNav.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { Country, Language, setCountry, setLanguage } from '../../../store/features/configSlice';
-import { RootState } from '../../../store';
+import { Country, Language, setCountry, setLanguage } from '@store/features/configSlice';
+import { RootState } from '@store/index';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import LoginIcon from '@mui/icons-material/Login';
+import { useLazyLogoutQuery } from '@store/service/auth.api';
+import { userAction } from '@store/features/userSlice';
 
 interface Props {
   isShowSideNav: boolean;
@@ -30,11 +33,18 @@ const SideNav = ({ isShowSideNav, hideSideNav }: Props) => {
   const dispatch = useDispatch();
   const { language, country } = useSelector((state: RootState) => state.config);
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
+  const [logout] = useLazyLogoutQuery();
 
   const onChangeSelect = (e: SelectChangeEvent<string>) => {
     dispatch(
       e.target.name === 'country' ? setCountry(e.target.value as Country) : setLanguage(e.target.value as Language),
     );
+  };
+
+  const doLogout = () => {
+    logout(null);
+    dispatch(userAction.resetUser());
+    hideSideNav();
   };
 
   const list = () => (
@@ -56,6 +66,9 @@ const SideNav = ({ isShowSideNav, hideSideNav }: Props) => {
                 </StyledButton>
                 <StyledButton startIcon={<ReceiptLongIcon />} fullWidth size="large" onClick={hideSideNav}>
                   <Link href={PATH_HISTORY}>Order history</Link>
+                </StyledButton>
+                <StyledButton startIcon={<LogoutIcon />} fullWidth size="large" onClick={doLogout}>
+                  <a>Logout</a>
                 </StyledButton>
               </>
             ) : (
