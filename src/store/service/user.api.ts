@@ -48,7 +48,19 @@ export const userAPI = createApi({
         };
       },
     }),
+    checkPassword: build.mutation({
+      query: (password) => ({
+        url: '/checkPassword',
+        body: password,
+      }),
+    }),
   }),
 });
 
-export const { useSignUpMutation, useGetUserQuery, useUpdateUserMutation, useLazyGetUserQuery } = userAPI;
+export const {
+  useSignUpMutation,
+  useGetUserQuery,
+  useUpdateUserMutation,
+  useCheckPasswordMutation,
+  useLazyGetUserQuery,
+} = userAPI;
