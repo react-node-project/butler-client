@@ -1,7 +1,7 @@
 import { object, SchemaOf, string } from 'yup';
-import { SignUpRequest } from '../type/user.type';
+import { SignUpRequest, UserInfo } from '../type/user.type';
 
-const phoneNumberRegex = RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/);
+export const phoneNumberRegex = RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/);
 const passwordRegx = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d\s:]).*$/);
 
 const signUpRequestSchema: SchemaOf<SignUpRequest> = object().shape({
@@ -20,4 +20,13 @@ const signUpRequestSchema: SchemaOf<SignUpRequest> = object().shape({
   }),
 });
 
-export { signUpRequestSchema };
+const updateUserSchema: SchemaOf<UserInfo> = object().shape({
+  email: string().email('올바른 이메일 형식이 아닙니다').required('이메일은 필수 입력사항입니다'),
+  name: string().required('이름은 필수 입력사항입니다'),
+  callingCode: string().required('나라 코드 번호는 필수 입력사항입니다'),
+  mobile: string().required('핸드폰 번호는 필수 입력사항입니다').matches(phoneNumberRegex, {
+    message: '핸드폰 번호 양식으로 입력해주세요',
+  }),
+});
+
+export { signUpRequestSchema, updateUserSchema };

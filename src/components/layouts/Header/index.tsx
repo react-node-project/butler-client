@@ -32,7 +32,6 @@ export default function Header({ showSideNav, showFavList }: Props) {
     setIsShowSearchBar(isShowPage && isBrowserWidth);
   }, [location, isBrowserWidth]);
 
-  console.log(location.pathname);
   return (
     <Box>
       <AppBar position="sticky">

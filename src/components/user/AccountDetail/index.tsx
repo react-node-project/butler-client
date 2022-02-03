@@ -1,23 +1,179 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import {
+  Box,
+  Button,
+  Divider,
+  FormControl,
+  FormHelperText,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography
+} from '@mui/material';
+import { useSelector } from 'react-redux';
+import { RootState } from '@store/index';
+import { Controller, useForm } from 'react-hook-form';
+import { SignUpRequest } from '../../../type/user.type';
+import { phoneNumberRegex } from '../../../util/shcema';
+import TextField from '@mui/material/TextField';
+import { StyledRow } from '@components/auth/SignUp/signup.styled';
+import { CALLING_CODES } from '../../../constants/CountryConstant';
+import { theme } from '../../../styles/theme';
+import { StyledGrid } from '../../../styles/sharedElement.styled';
+import { useCheckPasswordMutation, useUpdateUserMutation } from '@store/service/user.api';
 
-type Props = {};
+const AccountDetail = () => {
+  const originUser = useSelector((state: RootState) => state.user);
+  const [checkPassword] = useCheckPasswordMutation();
+  const [updateUser] = useUpdateUserMutation();
 
-const AccountDetail = (props: Props) => {
+  const {
+    register,
+    control,
+    handleSubmit,
+    getValues,
+
+    formState: { errors, isDirty, dirtyFields },
+  } = useForm<SignUpRequest>({
+    defaultValues: {
+      callingCode: originUser.callingCode,
+      mobile: originUser.mobile,
+      name: originUser.name,
+      password: '',
+    },
+    mode: 'onBlur',
+  });
+  const saveChanges = async () => {
+    try {
+      const { name, password, callingCode, mobile } = getValues();
+      await checkPassword(password).unwrap();
+
+      await updateUser({
+        ...(dirtyFields.name && { name }),
+        ...(dirtyFields.callingCode && { callingCode }),
+        ...(dirtyFields.mobile && { mobile }),
+      });
+    } catch (e) {
+      /**
+       *  에러처리
+       * */
+    }
+  };
+
   return (
-    <Box>
-      <div className="header">Account Details</div>
-      <div className="content">
-        <input type="text" />
-        <input type="text" disabled />
-        <input type="tel" />
-      </div>
-      <div className="footer">
-        <span>You must supply your valid password</span>
-        <input type="password" />
-        <button>Save Change</button>
-      </div>
-    </Box>
+    <StyledGrid
+      height="auto"
+      sx={{ m: 2, p: 2 }}
+      style={{ backgroundColor: theme.palette.primary.contrastText, width: '60%' }}
+    >
+      <Box className="header" sx={{ m: 1, p: 1 }}>
+        <Typography textAlign="start" fontSize="1.5rem">
+          Account Details
+        </Typography>
+      </Box>
+      <Divider />
+      <Grid container direction="column" sx={{ justifyContent: 'center', alignItems: 'center', width: '100%', pt: 2 }}>
+        <TextField
+          sx={{ width: '60%' }}
+          label="name"
+          id="name"
+          autoComplete="name"
+          {...register('name', {
+            required: {
+              value: true,
+              message: 'name is required',
+            },
+            minLength: {
+              value: 3,
+              message: 'please input Name min least 3 character',
+            },
+          })}
+          helperText={errors.name?.message}
+          error={Boolean(errors.name)}
+        />
+        <TextField
+          margin="dense"
+          value={originUser.email}
+          sx={{ width: '60%' }}
+          label="Email"
+          disabled
+          autoComplete="email"
+        />
+        <FormControl sx={{ width: '60%' }}>
+          <StyledRow>
+            <Controller
+              name="callingCode"
+              control={control}
+              render={({ field: { name, value, onChange } }) => (
+                <FormControl style={{ flex: 3 }}>
+                  <InputLabel error={Boolean(errors.mobile)} id="calling-code">
+                    나라 번호
+                  </InputLabel>
+                  <Select
+                    error={Boolean(errors.mobile)}
+                    labelId="calling-code"
+                    name={name}
+                    value={value}
+                    onChange={onChange}
+                  >
+                    {CALLING_CODES.map(({ key, value }) => (
+                      <MenuItem key={key} value={value}>
+                        {value}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                  {Boolean(errors.mobile) && <FormHelperText error={Boolean(errors.mobile)}>&nbsp; </FormHelperText>}
+                </FormControl>
+              )}
+            />
+            <TextField
+              style={{ flex: 7 }}
+              label="Mobile"
+              type="tel"
+              {...register('mobile', {
+                required: {
+                  value: true,
+                  message: 'mobile is Required',
+                },
+                pattern: {
+                  value: phoneNumberRegex,
+                  message: 'please Input Phone Number(000-0000-0000)',
+                },
+              })}
+              error={Boolean(errors.mobile)}
+              helperText={errors.mobile?.message}
+            />
+          </StyledRow>
+        </FormControl>
+      </Grid>
+      {isDirty && (
+        <>
+          <Divider />
+          <Box
+            sx={{ pt: 2 }}
+            style={{
+              width: '100%',
+              alignItems: 'center',
+              justifyContent: 'center',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <Typography>You must supply your current valid password</Typography>
+            <TextField
+              style={{ width: '60%' }}
+              type="password"
+              error={Boolean(errors.password)}
+              helperText={errors.password?.message}
+              label="Current Password"
+              {...register('password', { required: { value: true, message: 'input your password' } })}
+            />
+            <Button onClick={handleSubmit(saveChanges)}>Save Changes</Button>
+          </Box>
+        </>
+      )}
+    </StyledGrid>
   );
 };
 
