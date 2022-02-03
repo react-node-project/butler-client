@@ -4,13 +4,14 @@ import { Link, useLocation } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import { useSelector } from 'react-redux';
-import { StyledBtn, StyledLinkButton, StyledToolbar } from './header.styled';
+import { StyledBtn, StyledLinkButton, StyledSubHeaderContainer, StyledToolbar } from './header.styled';
 import Typography from '@mui/material/Typography';
 
-import { PATH_RESTAURANTS, PATH_RESTAURANTS_DETAIL, PATH_ROOT } from '../../../constants/PathConstants';
+import { PATH_ACCOUNT, PATH_RESTAURANTS, PATH_RESTAURANTS_DETAIL, PATH_ROOT } from '../../../constants/PathConstants';
 import { ApiDocsMenu, Basket, FavMenu, LogInMenu, SearchBar } from '@components/layouts/Header/menus';
 import { RootState } from '@store/index';
 import { theme } from '../../../styles/theme';
+import { AccountHeader } from '@components/layouts/Header/subHeader';
 
 interface Props {
   showSideNav: () => void;
@@ -20,7 +21,7 @@ interface Props {
 export default function Header({ showSideNav, showFavList }: Props) {
   let location = useLocation();
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
-  const cart = true;
+  const { cartItems } = useSelector((state: RootState) => state.cart);
 
   const isBrowserWidth = useMediaQuery(theme.breakpoints.up('md'));
   const [isShowSearchBar, setIsShowSearchBar] = useState(false);
@@ -31,6 +32,7 @@ export default function Header({ showSideNav, showFavList }: Props) {
     setIsShowSearchBar(isShowPage && isBrowserWidth);
   }, [location, isBrowserWidth]);
 
+  console.log(location.pathname);
   return (
     <Box>
       <AppBar position="sticky">
@@ -43,8 +45,7 @@ export default function Header({ showSideNav, showFavList }: Props) {
             </Typography>
             <Stack direction="row" justifyContent="flex-end" alignItems="center" spacing={2}>
               {isShowSearchBar && <SearchBar />}
-              <FavMenu showFavList={showFavList} />
-              {cart && <Basket />}
+              {cartItems.length && <Basket />}
               {isLoggedIn ? (
                 <>
                   <FavMenu showFavList={showFavList} />
@@ -52,15 +53,13 @@ export default function Header({ showSideNav, showFavList }: Props) {
                 </>
               ) : (
                 <LogInMenu />
-                )
-              }
-
-              {/* side menu */}
+              )}
               <StyledBtn startIcon={<MenuIcon />} onClick={showSideNav} aria-label="menu">
                 Menu
               </StyledBtn>
             </Stack>
           </StyledToolbar>
+          <StyledSubHeaderContainer>{location.pathname === PATH_ACCOUNT && <AccountHeader />}</StyledSubHeaderContainer>
         </Box>
       </AppBar>
     </Box>
