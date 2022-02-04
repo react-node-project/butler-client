@@ -7,7 +7,7 @@ export default function MenuCard(props) {
   return (
     <ButtonBase
       onClick={(event) => {
-        props.handleCardClick(title, desc, ingredients, url);
+        props.handleCardClick(title, desc, ingredients, url, price);
       }}
     >
       <Card sx={{ display: 'flex', maxWidth: '650px', maxHeight: '180px' }}>

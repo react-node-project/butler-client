@@ -11,10 +11,6 @@ export default function App() {
   const [isShowSideNav, setIsShowSideNav] = useState(false);
   const showSideNav = () => setIsShowSideNav(true);
   const hideSideNav = () => setIsShowSideNav(false);
-
-  const [isShowFavList, setIsShowFavList] = useState(false);
-  const showFavList = () => setIsShowFavList(true);
-  const hideFavList = () => setIsShowFavList(false);
   const { Kakao } = window;
 
   if (Kakao && !Kakao.isInitialized()) {
