@@ -6,7 +6,7 @@ import { signUpRequestSchema } from '../util/shcema';
 
 const sampleUser: UserInfo = {
   email: 'butler@gmail.com',
-  callingCode: '00',
+  callingCode: '+81',
   name: 'paul',
   mobile: '010-1234-1234',
 };

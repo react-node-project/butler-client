@@ -13,6 +13,7 @@ import { restaurantsAPI } from './service/restaurants';
 import { menuAPI } from './service/restaurantMenu';
 import { authAPI } from '@store/service/auth.api';
 import { userAPI } from '@store/service/user.api';
+import paymentsReducer from './features/paymentsSlice';
 
 const apiReducers = {
   [restaurantsAPI.reducerPath]: restaurantsAPI.reducer,
@@ -21,7 +22,6 @@ const apiReducers = {
   [authAPI.reducerPath]: authAPI.reducer,
   [userAPI.reducerPath]: userAPI.reducer,
 };
-import paymentsReducer from './features/paymentsSlice';
 
 const rootReducer = combineReducers({
   app: appReducer,
@@ -29,9 +29,8 @@ const rootReducer = combineReducers({
   restaurants: restaurantsReducer,
   cart: cartReducer,
   config: configReducer,
-  ...apiReducers,
-  locationAPI: locationAPI.reducer,
   payments: paymentsReducer,
+  ...apiReducers,
 });
 
 const persistConfig = {

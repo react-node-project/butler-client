@@ -1,29 +1,11 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-// import { Home } from './pages/Home';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { Header, SideNav } from './components/layouts';
-import Home from './pages/Home';
-
 import Box from '@mui/material/Box';
-import {
-  PATH_API_DOCS,
-  PATH_RESTAURANTS,
-  PATH_RESTAURANTS_DETAIL,
-  PATH_ROOT,
-  PATH_USER_SIGNIN,
-  PATH_HISTORY,
-  PATH_RECEIPT,
-  PATH_PAYMENTS,
-} from './constants/PathConstants';
-import AuthFlip from './pages/user/AuthFlip';
-import RestaurantsPage from './pages/restaurants/RestaurantsPage';
-import StorePage from './pages/store/StorePage';
-import PaymentsPage from './pages/payments/PaymentsPage';
 import { KAKAO_API_KEY } from './constants/EnvContant';
-import { ApiDocs } from './pages/api-docs/ApiDocs';
 import FavList from './components/layouts/FavList';
-import HistoryPage from './pages/history/HistoryPage';
-import ReceiptPage from './pages/history/ReceiptPage';
+import Routes from './config/route/Routes';
+import ErrorBoundary from './config/route/ErrorBoundary';
 
 export default function App() {
   const [isShowSideNav, setIsShowSideNav] = useState(false);
@@ -37,22 +19,16 @@ export default function App() {
 
   return (
     <>
-      <Router>
-        <Header showSideNav={showSideNav} />
-        <SideNav isShowSideNav={isShowSideNav} hideSideNav={hideSideNav} />
-        <Box component="main">
-          <Routes>
-            <Route path={PATH_USER_SIGNIN} element={<AuthFlip />} />
-            <Route path={PATH_ROOT} element={<Home />} />
-            <Route path={PATH_RESTAURANTS} element={<RestaurantsPage />} />
-            <Route path={PATH_RESTAURANTS_DETAIL} element={<StorePage />} />
-            <Route path={PATH_HISTORY} element={<HistoryPage />} />
-            <Route path={PATH_RECEIPT} element={<ReceiptPage />} />
-            <Route path={PATH_API_DOCS} element={<ApiDocs />} />
-            <Route path={PATH_PAYMENTS} element={<PaymentsPage />} />
-          </Routes>
-        </Box>
-      </Router>
+      <ErrorBoundary>
+        <Router>
+          <Header showSideNav={showSideNav} showFavList={showFavList} />
+          <SideNav isShowSideNav={isShowSideNav} hideSideNav={hideSideNav} />
+          <FavList isShowSideNav={isShowFavList} hideSideNav={hideFavList} />
+          <Box component="main">
+            <Routes />
+          </Box>
+        </Router>
+      </ErrorBoundary>
     </>
   );
 }
