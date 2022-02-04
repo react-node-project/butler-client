@@ -8,9 +8,16 @@ import Routes from './config/route/Routes';
 import ErrorBoundary from './config/route/ErrorBoundary';
 
 export default function App() {
-  const [isShowSideNav, setIsShowSideNav] = useState(false);
-  const showSideNav = () => setIsShowSideNav(true);
-  const hideSideNav = () => setIsShowSideNav(false);
+  const [isShow, setIsShow] = useState({
+    sideNav: false,
+    favList: false,
+  });
+
+  const showSideNav = () => setIsShow({ sideNav: true, favList: false });
+  const showFavList = () => setIsShow({ sideNav: false, favList: true });
+  const hideSideNav = () => setIsShow({ sideNav: false, favList: false });
+  const hideFavList = () => setIsShow({ sideNav: false, favList: false });
+
   const { Kakao } = window;
 
   if (Kakao && !Kakao.isInitialized()) {
@@ -22,8 +29,8 @@ export default function App() {
       <ErrorBoundary>
         <Router>
           <Header showSideNav={showSideNav} showFavList={showFavList} />
-          <SideNav isShowSideNav={isShowSideNav} hideSideNav={hideSideNav} />
-          <FavList isShowSideNav={isShowFavList} hideSideNav={hideFavList} />
+          <SideNav isShowSideNav={isShow.sideNav} hideSideNav={hideSideNav} />
+          <FavList isShowSideNav={isShow.favList} hideSideNav={hideFavList} />
           <Box component="main">
             <Routes />
           </Box>
