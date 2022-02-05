@@ -9,7 +9,16 @@ type Props = {};
 
 const Account = (props: Props) => {
   return (
-    <Container>
+    <Container
+      sx={{
+        backgroundColor: '#eee',
+        width: '100%',
+        mt: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
       {/* 유저 수정*/}
       <AccountDetail />
       <Addresses />
