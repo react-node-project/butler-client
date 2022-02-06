@@ -1,5 +1,8 @@
 import { useGetRestaurantsQuery } from '@store/service/restaurants';
 import React from 'react';
+import { useLocation } from 'react-router-dom';
+import { getQueryParams } from './../../util/utills';
+import BreadcrumbsBox from './Breadcrumbs';
 import CategorySlider from './CategorySlider';
 import CategorySliderSkeleton from './CategorySliderSkeleton';
 import { StyledLayout } from './index.styled';
@@ -12,15 +15,17 @@ export type RestaurantsProps = {
 };
 
 const Restaurants = (props: RestaurantsProps) => {
+  const location = useLocation();
   const { filter } = props;
-  const { data, error, isLoading } = useGetRestaurantsQuery(filter);
+  const collection = getQueryParams(location.search, 'collection');
+  const { data: restaurants, error, isLoading } = useGetRestaurantsQuery({ filter, collection });
 
   if (error) {
     console.log('error', error);
     return null;
   }
 
-  if (!data || isLoading)
+  if (!restaurants || isLoading)
     return (
       <StyledLayout sx={{ flexGrow: 1 }}>
         <CategorySliderSkeleton count={6} />
@@ -30,8 +35,8 @@ const Restaurants = (props: RestaurantsProps) => {
 
   return (
     <StyledLayout sx={{ flexGrow: 1 }}>
-      <CategorySlider categories={data.categories} />
-      <RestaurantsList restaurants={data.restaurants} />
+      {collection ? <BreadcrumbsBox title={collection} /> : <CategorySlider />}
+      <RestaurantsList restaurants={restaurants} />
     </StyledLayout>
   );
 };

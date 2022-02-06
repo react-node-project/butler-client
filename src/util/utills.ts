@@ -10,7 +10,3 @@ export const getQueryParams = (url: string, key: string) => {
 
   return param[key];
 };
-
-export const setQueryParams = (search: string, key: string, value: string) => {
-  return search.replace(key, value);
-};
