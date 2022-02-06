@@ -1,10 +1,11 @@
 import RestaurantsContents from '@components/restaurants';
 import LeftNavBar from '@components/restaurants/LeftNavBar';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Grid } from '@mui/material';
 import { StyledLayout } from './RestaurantsPage.styled';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { LeftNavModalProps } from '@components/restaurants/LeftNavModal';
+import NotFoundPage from './../../config/route/NotFoundPage';
 
 export type RestaurantsPageProps = {};
 
@@ -14,13 +15,10 @@ const RestaurantsPage = (props: RestaurantsPageProps) => {
   const filter = (URLSearch.get('filter') ?? 'delivery') as LeftNavModalProps['filter'];
   const latitude = URLSearch.get('latitude') as string;
   const longitude = URLSearch.get('longitude') as string;
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!latitude || !longitude) {
-      navigate('/');
-    }
-  }, [latitude, longitude]);
+  if (!latitude || !longitude) {
+    return <NotFoundPage />;
+  }
 
   return (
     <StyledLayout container wrap="nowrap">
