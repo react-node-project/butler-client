@@ -2,6 +2,7 @@ import { IconButton } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import { StyledTitle } from '@components/slider/CardSlider.styled';
 
 export type BreadcrumbsProps = {
   title: string;
@@ -20,7 +21,7 @@ const BreadcrumbsBox = (props: BreadcrumbsProps) => {
       <IconButton onClick={onClickButton} color="primary">
         <KeyboardBackspaceIcon sx={{ padding: 0 }} />
       </IconButton>
-      <h2>{title}</h2>
+      <StyledTitle variant="h3">{title}</StyledTitle>
     </div>
   );
 };

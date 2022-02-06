@@ -65,7 +65,7 @@ const CollectionSlider = (props: CollectionSliderProps) => {
   };
 
   return (
-    <CardSlider title={'Delivering to Liverpool City Centre'} list={COLLECTION} cardWidth={167} sliderRef={sliderRef}>
+    <CardSlider list={COLLECTION} cardWidth={167} sliderRef={sliderRef}>
       <StyledList component="ul" ref={sliderRef} className="slide_list">
         {COLLECTION.map((item) => (
           <StyledCardItem

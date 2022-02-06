@@ -8,6 +8,7 @@ export const StyledLayout = styled(Box)({
 
 export const StyledTitle = styled(Typography)({
   marginBottom: '24px',
+  fontSize: '22px',
 });
 
 export const StyledContents = styled(Box)({

@@ -26,6 +26,7 @@ written by 조효형
 
 - collection 선택 시 뒤로가기 버튼 추가
 - 좋아요 클릭시 디테일페이지 이동 부분 수정
+- 주소이름 추가
 
 `Changed`
 
