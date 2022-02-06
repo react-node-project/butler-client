@@ -29,11 +29,10 @@ const LeftNavBar = (props: LeftNavBarProps) => {
 
   const setFilter = (filterValue: LeftNavModalProps['filter']) => {
     if (filterValue !== 'delivery') {
-      URLSearch.set('collection', filterValue);
+      URLSearch.set('filter', filterValue);
       const newParam = URLSearch.toString();
 
       navigate(`${location.pathname}?${newParam}`);
-      navigate(location.pathname + location.search + `&filter=${filterValue}`);
       return;
     }
 

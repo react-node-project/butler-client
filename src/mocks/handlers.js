@@ -6,7 +6,6 @@ import { RESTAURANT_MENU } from './data/restaurantMenu';
 import { locationHandler } from './location.handler';
 import { authHandler } from './auth.handler';
 import { userHandler } from './user.handler';
-import { getQueryParams } from './../util/utills';
 
 export const handlers = [
   rest.get(`${MOCK_API_URL}/theme-menus`, (req, res, ctx) => {
@@ -14,7 +13,7 @@ export const handlers = [
   }),
 
   rest.get(`${MOCK_API_URL}/getstores`, (req, res, ctx) => {
-    const filter = getQueryParams(req.url.search, 'filter');
+    const filter = req.url.searchParams.get('filter') ?? 'delivery';
 
     if (filter === 'delivery') {
       return res(ctx.status(200), ctx.json([...RESTAURANTS_LIST]));

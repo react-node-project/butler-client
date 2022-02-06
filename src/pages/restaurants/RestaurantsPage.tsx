@@ -4,15 +4,16 @@ import React, { useEffect } from 'react';
 import { Grid } from '@mui/material';
 import { StyledLayout } from './RestaurantsPage.styled';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getQueryParams } from './../../util/utills';
+import { LeftNavModalProps } from '@components/restaurants/LeftNavModal';
 
 export type RestaurantsPageProps = {};
 
 const RestaurantsPage = (props: RestaurantsPageProps) => {
   const location = useLocation();
-  const filter = getQueryParams(location.search, 'filter') ?? 'delivery';
-  const latitude = getQueryParams(location.search, 'latitude');
-  const longitude = getQueryParams(location.search, 'longitude');
+  const URLSearch = new URLSearchParams(location.search);
+  const filter = (URLSearch.get('filter') ?? 'delivery') as LeftNavModalProps['filter'];
+  const latitude = URLSearch.get('latitude') as string;
+  const longitude = URLSearch.get('longitude') as string;
   const navigate = useNavigate();
 
   useEffect(() => {

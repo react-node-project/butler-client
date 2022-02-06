@@ -1,9 +1,8 @@
 import { useGetRestaurantsQuery } from '@store/service/restaurants';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { getQueryParams } from './../../util/utills';
 import BreadcrumbsBox from './Breadcrumbs';
-import CollectionSlider from './CollectionSlider';
+import CollectionSlider, { COLLECTION_TYPES } from './CollectionSlider';
 import CollectionSliderSkeleton from './CollectionSliderSkeleton';
 import { StyledLayout } from './index.styled';
 import { LeftNavModalProps } from './LeftNavModal';
@@ -17,7 +16,7 @@ export type RestaurantsProps = {
 const Restaurants = (props: RestaurantsProps) => {
   const location = useLocation();
   const { filter } = props;
-  const collection = getQueryParams(location.search, 'collection');
+  const collection = new URLSearchParams(location.search).get('collection') as COLLECTION_TYPES[number]['name'];
   const { data: restaurants, error, isLoading } = useGetRestaurantsQuery({ filter, collection });
 
   if (error) {

@@ -3,7 +3,6 @@ import { StyledCardItem, StyledList } from './CollectionSlider.styled';
 import { Box } from '@mui/system';
 import CardSlider from '@components/slider/CardSlider';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getQueryParams } from '../../util/utills';
 
 export type CollectionSliderProps = {};
 
@@ -54,7 +53,7 @@ const CollectionSlider = (props: CollectionSliderProps) => {
   const URLSearch = new URLSearchParams(location.search);
 
   const onClickCard = (name: string) => (e: React.MouseEvent) => {
-    const collection = getQueryParams(location.search, 'collection');
+    const collection = URLSearch.get('collection');
     if (collection) {
       URLSearch.set('collection', name);
       const newParam = URLSearch.toString();
