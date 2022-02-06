@@ -1,18 +1,18 @@
 import React, { useRef } from 'react';
-import { StyledCardItem, StyledList } from './CategorySlider.styled';
+import { StyledCardItem, StyledList } from './CollectionSlider.styled';
 import { Box } from '@mui/system';
 import CardSlider from '@components/slider/CardSlider';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getQueryParams } from '../../util/utills';
 
-export type CategorySliderProps = {};
+export type CollectionSliderProps = {};
 
-export type CATEGORIES_TYPES = {
+export type COLLECTION_TYPES = {
   name: 'grocery' | 'pizza' | 'burgers' | 'chinese' | 'desert' | 'asian' | 'indian' | 'healthy';
   url: string;
 }[];
 
-const CATEGORIES: CATEGORIES_TYPES = [
+const COLLECTION: COLLECTION_TYPES = [
   {
     name: 'grocery',
     url: 'https://co-restaurants.roocdn.com/images/a5eb46e1f2ddbb48acc18c32506067e8bc1ba6f7/shortcut/grocery.png?width=334&height=176&fit=crop&bg-color=007e8a&auto=webp&format=png',
@@ -47,7 +47,7 @@ const CATEGORIES: CATEGORIES_TYPES = [
   },
 ];
 
-const CategorySlider = (props: CategorySliderProps) => {
+const CollectionSlider = (props: CollectionSliderProps) => {
   const sliderRef = useRef<HTMLUListElement>(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -66,9 +66,9 @@ const CategorySlider = (props: CategorySliderProps) => {
   };
 
   return (
-    <CardSlider title={'Delivering to Liverpool City Centre'} list={CATEGORIES} cardWidth={167} sliderRef={sliderRef}>
+    <CardSlider title={'Delivering to Liverpool City Centre'} list={COLLECTION} cardWidth={167} sliderRef={sliderRef}>
       <StyledList component="ul" ref={sliderRef} className="slide_list">
-        {CATEGORIES.map((item) => (
+        {COLLECTION.map((item) => (
           <StyledCardItem
             key={item.name}
             className="card_item"
@@ -85,4 +85,4 @@ const CategorySlider = (props: CategorySliderProps) => {
   );
 };
 
-export default CategorySlider;
+export default CollectionSlider;

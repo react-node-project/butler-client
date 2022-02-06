@@ -1,4 +1,4 @@
-import { CATEGORIES_TYPES } from '@components/restaurants/CategorySlider';
+import { COLLECTION_TYPES } from '@components/restaurants/CollectionSlider';
 import { LeftNavModalProps } from '@components/restaurants/LeftNavModal';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { MOCK_API_URL } from '../../constants/EnvContant';
@@ -36,7 +36,7 @@ export const restaurantsAPI = createApi({
   endpoints: (build) => ({
     getRestaurants: build.query<
       GetRestaurantsProps['restaurants'],
-      { filter: LeftNavModalProps['filter']; collection: CATEGORIES_TYPES[number]['name'] }
+      { filter: LeftNavModalProps['filter']; collection: COLLECTION_TYPES[number]['name'] }
     >({
       query: ({ filter, collection }) => ({
         url: `/getstores`,

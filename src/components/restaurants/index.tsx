@@ -3,8 +3,8 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { getQueryParams } from './../../util/utills';
 import BreadcrumbsBox from './Breadcrumbs';
-import CategorySlider from './CategorySlider';
-import CategorySliderSkeleton from './CategorySliderSkeleton';
+import CollectionSlider from './CollectionSlider';
+import CollectionSliderSkeleton from './CollectionSliderSkeleton';
 import { StyledLayout } from './index.styled';
 import { LeftNavModalProps } from './LeftNavModal';
 import RestaurantsList from './RestaurantsList';
@@ -28,14 +28,14 @@ const Restaurants = (props: RestaurantsProps) => {
   if (!restaurants || isLoading)
     return (
       <StyledLayout sx={{ flexGrow: 1 }}>
-        <CategorySliderSkeleton count={6} />
+        <CollectionSliderSkeleton title={collection} count={6} />
         <RestaurantsListSkeleton count={6} />
       </StyledLayout>
     );
 
   return (
     <StyledLayout sx={{ flexGrow: 1 }}>
-      {collection ? <BreadcrumbsBox title={collection} /> : <CategorySlider />}
+      {collection ? <BreadcrumbsBox title={collection} /> : <CollectionSlider />}
       <RestaurantsList restaurants={restaurants} />
     </StyledLayout>
   );
