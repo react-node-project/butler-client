@@ -1,7 +1,7 @@
 import { styled } from '@mui/styles';
 import { Box, Theme } from '@mui/material';
 
-export const StyledLayout = styled(Box)({ marginBottom: '16px' });
+export const StyledLayout = styled(Box)({ position: 'relative', marginBottom: '16px' });
 
 export const StyledThumb = styled(Box)((props: { url?: string }) => ({
   position: 'relative',
