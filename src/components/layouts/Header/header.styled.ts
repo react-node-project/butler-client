@@ -1,5 +1,6 @@
 import { alpha, styled } from '@mui/material/styles';
 import { Box, Button, InputBase, Toolbar } from '@mui/material';
+import { theme } from '../../../styles/theme';
 
 export const StyledLinkButton = styled(Button)({
   marginRight: 15,
@@ -68,4 +69,11 @@ export const StyledBtn = styled(Button)({
     background: '#fff',
     fontWeight: 600,
   },
+});
+
+export const StyledSubHeaderContainer = styled(Box)({
+  display: 'flex',
+  justifyContent: 'center',
+  width: '100%',
+  backgroundColor: theme.palette.primary.main,
 });

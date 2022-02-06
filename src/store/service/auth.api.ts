@@ -2,7 +2,6 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { MOCK_API_URL } from '../../constants/EnvContant';
 import { LoginRequest, LoginResponse } from '../../type/auth.type';
 
-
 export const authAPI = createApi({
   reducerPath: 'authAPI',
   baseQuery: fetchBaseQuery({
@@ -26,4 +25,4 @@ export const authAPI = createApi({
   }),
 });
 
-export const { useLoginMutation, useLogoutQuery, useExtendAuthQuery } = authAPI;
+export const { useLoginMutation, useLazyLogoutQuery, useExtendAuthQuery } = authAPI;

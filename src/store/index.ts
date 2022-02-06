@@ -5,15 +5,15 @@ import storage from 'redux-persist/lib/storage';
 import appReducer from './features/appSlice';
 import userReducer from './features/userSlice';
 import restaurantsReducer from './features/restaurantsSlice';
-import menuSelectionReducer from './features/menuSelectSlice';
-import cartReducer from './features/cartSlicer';
 import configReducer from './features/configSlice';
+import cartReducer from './features/cartSlice';
 
 import { locationAPI } from './service/location.api';
 import { restaurantsAPI } from './service/restaurants';
 import { menuAPI } from './service/restaurantMenu';
 import { authAPI } from '@store/service/auth.api';
 import { userAPI } from '@store/service/user.api';
+import paymentsReducer from './features/paymentsSlice';
 
 const apiReducers = {
   [restaurantsAPI.reducerPath]: restaurantsAPI.reducer,
@@ -22,18 +22,15 @@ const apiReducers = {
   [authAPI.reducerPath]: authAPI.reducer,
   [userAPI.reducerPath]: userAPI.reducer,
 };
-import paymentsReducer from './features/paymentsSlice';
 
 const rootReducer = combineReducers({
   app: appReducer,
   user: userReducer,
   restaurants: restaurantsReducer,
-  menuSelection: menuSelectionReducer,
   cart: cartReducer,
   config: configReducer,
-  ...apiReducers,
-  locationAPI: locationAPI.reducer,
   payments: paymentsReducer,
+  ...apiReducers,
 });
 
 const persistConfig = {

@@ -29,6 +29,6 @@ export const StyledMenuListGrid = styled(Grid)(({ theme }) => ({
   width: '70%',
   [theme.breakpoints.down(768)]: {
     width: '100%',
-    //TODO: show basket modal bar on the bottom
+    //TODO: show cart modal bar on the bottom
   },
 }));

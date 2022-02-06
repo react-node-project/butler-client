@@ -6,7 +6,7 @@ export const RESTAURANT_MENU = [
         title: 'The Burnout',
         url: 'https://rs-menus-api.roocdn.com/images/985e91cc-0a14-414a-a6ba-19a06a1d843c/image.jpeg?width=122.5&amp;height=122.5&amp;auto=webp&amp;format=jpg&amp',
         desc: 'The best comeback since Britney Spears 💁‍♀️ Fried chicken, smokey bacon, aged cheddar, burnout sauce, lettuce, tomato, onion, pickles ...',
-        price: '$26.00',
+        price: '26.00',
         ingredients: [
           ['Change to Gluten Free Bun', 2.6],
           ['Sweet Potato Chips with Burger', 2.3],
@@ -18,7 +18,7 @@ export const RESTAURANT_MENU = [
         title: 'Double Deluxe',
         url: 'https://rs-menus-api.roocdn.com/images/d18edb68-6482-4df1-b4dd-28151abb0398/image.jpeg?width=122.5&amp;height=122.5&amp;auto=webp&amp;format=jpg&amp',
         desc: 'Double beef, double cheese, bacon, gm relish, onion, pickles, greasy’s sauce. Served with chips. (Gf if you add the bun).',
-        price: '$26.00',
+        price: '26.00',
         ingredients: [
           ['Sweet Potato Chips with Burger', 2.3],
           ['Add Beef Patty', 4.7],
@@ -29,7 +29,7 @@ export const RESTAURANT_MENU = [
         title: 'Greasy',
         url: 'https://rs-menus-api.roocdn.com/images/b49a49f3-ac39-494b-b835-52668e2b7ffc/image.jpeg?width=122.5&amp;height=122.5&amp;auto=webp&amp;format=jpg&amp',
         desc: 'Beef patty, lettuce, cheese, onion, pickles, gm relish, greasy’s sauce. Served with chips. (Gf if you add the bun).',
-        price: '$21.00',
+        price: '21.00',
         ingredients: [
           ['Change to Gluten Free Bun', 2.6],
           ['Sweet Potato Chips with Burger', 2.3],
@@ -41,7 +41,7 @@ export const RESTAURANT_MENU = [
         title: 'Dirty Bird',
         url: 'https://rs-menus-api.roocdn.com/images/89e4da19-1e98-48cc-a43b-706d7524d290/image.jpeg?width=122.5&amp;height=122.5&amp;auto=webp&amp',
         desc: 'Southern fried chicken, lettuce, tomato, onion, cheese, greasy’s sauce. Served with chips.',
-        price: '$25.00',
+        price: '25.00',
         ingredients: [
           ['Change to Gluten Free Bun', 2.6],
           ['Sweet Potato Chips with Burger', 2.3],
@@ -53,7 +53,7 @@ export const RESTAURANT_MENU = [
         title: 'Nimbin',
         url: 'https://rs-menus-api.roocdn.com/images/8e62d227-4234-4187-8814-cb9aa8511883/image.jpeg?width=122.5&amp;height=122.5&amp;auto=webp&amp',
         desc: 'Crumbed portobello mushroom, lettuce, tomato, onion, cheese, greasy’s sauce. Served with chips.',
-        price: '$24.00',
+        price: '24.00',
         ingredients: [
           ['Change to Gluten Free Bun', 2.6],
           ['Sweet Potato Chips with Burger', 2.3],
@@ -65,7 +65,7 @@ export const RESTAURANT_MENU = [
         title: 'Full Service',
         url: 'https://rs-menus-api.roocdn.com/images/985e91cc-0a14-414a-a6ba-19a06a1d843c/image.jpeg?width=122.5&amp;height=122.5&amp;auto=webp&amp;format=jpg&amp',
         desc: 'The best comeback since Britney Spears 💁‍♀️ Fried chicken, smokey bacon, aged cheddar, burnout sauce, lettuce, tomato, onion, pickles ...',
-        price: '$26.00',
+        price: '26.00',
         ingredients: [
           ['Change to Gluten Free Bun', 2.6],
           ['Sweet Potato Chips with Burger', 2.3],
@@ -77,7 +77,7 @@ export const RESTAURANT_MENU = [
         title: 'PittStop',
         url: 'https://rs-menus-api.roocdn.com/images/985e91cc-0a14-414a-a6ba-19a06a1d843c/image.jpeg?width=122.5&amp;height=122.5&amp;auto=webp&amp;format=jpg&amp',
         desc: 'The best comeback since Britney Spears 💁‍♀️ Fried chicken, smokey bacon, aged cheddar, burnout sauce, lettuce, tomato, onion, pickles ...',
-        price: '$26.00',
+        price: '26.00',
         ingredients: [
           ['Change to Gluten Free Bun', 2.6],
           ['Sweet Potato Chips with Burger', 2.3],
@@ -89,7 +89,7 @@ export const RESTAURANT_MENU = [
         title: 'The Parmy',
         url: 'https://rs-menus-api.roocdn.com/images/985e91cc-0a14-414a-a6ba-19a06a1d843c/image.jpeg?width=122.5&amp;height=122.5&amp;auto=webp&amp;format=jpg&amp',
         desc: 'The best comeback since Britney Spears 💁‍♀️ Fried chicken, smokey bacon, aged cheddar, burnout sauce, lettuce, tomato, onion, pickles ...',
-        price: '$26.00',
+        price: '26.00',
         ingredients: [
           ['Change to Gluten Free Bun', 2.6],
           ['Sweet Potato Chips with Burger', 2.3],
@@ -106,7 +106,7 @@ export const RESTAURANT_MENU = [
         title: 'SpitfirePizza',
         url: 'https://rs-menus-api.roocdn.com/images/985e91cc-0a14-414a-a6ba-19a06a1d843c/image.jpeg?width=122.5&amp;height=122.5&amp;auto=webp&amp;format=jpg&amp',
         desc: 'The best comeback since Britney Spears 💁‍♀️ Fried chicken, smokey bacon, aged cheddar, burnout sauce, lettuce, tomato, onion, pickles ...',
-        price: '$26.00',
+        price: '26.00',
         ingredients: [
           ['Change to Gluten Free Bun', 2.6],
           ['Sweet Potato Chips with Burger', 2.3],
@@ -118,7 +118,7 @@ export const RESTAURANT_MENU = [
         title: 'Motor City Pizza',
         url: 'https://rs-menus-api.roocdn.com/images/985e91cc-0a14-414a-a6ba-19a06a1d843c/image.jpeg?width=122.5&amp;height=122.5&amp;auto=webp&amp;format=jpg&amp',
         desc: 'The best comeback since Britney Spears 💁‍♀️ Fried chicken, smokey bacon, aged cheddar, burnout sauce, lettuce, tomato, onion, pickles ...',
-        price: '$26.00',
+        price: '26.00',
         ingredients: [
           ['Change to Gluten Free Bun', 2.6],
           ['Sweet Potato Chips with Burger', 2.3],
@@ -130,7 +130,7 @@ export const RESTAURANT_MENU = [
         title: 'Supreme Pizza',
         url: 'https://rs-menus-api.roocdn.com/images/985e91cc-0a14-414a-a6ba-19a06a1d843c/image.jpeg?width=122.5&amp;height=122.5&amp;auto=webp&amp;format=jpg&amp',
         desc: 'The best comeback since Britney Spears 💁‍♀️ Fried chicken, smokey bacon, aged cheddar, burnout sauce, lettuce, tomato, onion, pickles ...',
-        price: '$26.00',
+        price: '26.00',
         ingredients: [
           ['Change to Gluten Free Bun', 2.6],
           ['Sweet Potato Chips with Burger', 2.3],
@@ -142,7 +142,7 @@ export const RESTAURANT_MENU = [
         title: 'Continental Pizza',
         url: 'https://rs-menus-api.roocdn.com/images/985e91cc-0a14-414a-a6ba-19a06a1d843c/image.jpeg?width=122.5&amp;height=122.5&amp;auto=webp&amp;format=jpg&amp',
         desc: 'The best comeback since Britney Spears 💁‍♀️ Fried chicken, smokey bacon, aged cheddar, burnout sauce, lettuce, tomato, onion, pickles ...',
-        price: '$26.00',
+        price: '26.00',
         ingredients: [
           ['Change to Gluten Free Bun', 2.6],
           ['Sweet Potato Chips with Burger', 2.3],
@@ -154,7 +154,7 @@ export const RESTAURANT_MENU = [
         title: 'Tesla Pizza',
         url: 'https://rs-menus-api.roocdn.com/images/985e91cc-0a14-414a-a6ba-19a06a1d843c/image.jpeg?width=122.5&amp;height=122.5&amp;auto=webp&amp;format=jpg&amp',
         desc: 'The best comeback since Britney Spears 💁‍♀️ Fried chicken, smokey bacon, aged cheddar, burnout sauce, lettuce, tomato, onion, pickles ...',
-        price: '$26.00',
+        price: '26.00',
         ingredients: [
           ['Change to Gluten Free Bun', 2.6],
           ['Sweet Potato Chips with Burger', 2.3],
@@ -166,7 +166,7 @@ export const RESTAURANT_MENU = [
         title: 'Indy 500 Pizza',
         url: 'https://rs-menus-api.roocdn.com/images/985e91cc-0a14-414a-a6ba-19a06a1d843c/image.jpeg?width=122.5&amp;height=122.5&amp;auto=webp&amp;format=jpg&amp',
         desc: 'The best comeback since Britney Spears 💁‍♀️ Fried chicken, smokey bacon, aged cheddar, burnout sauce, lettuce, tomato, onion, pickles ...',
-        price: '$26.00',
+        price: '26.00',
         ingredients: [
           ['Change to Gluten Free Bun', 2.6],
           ['Sweet Potato Chips with Burger', 2.3],
@@ -178,7 +178,7 @@ export const RESTAURANT_MENU = [
         title: 'Meatlover Pizza',
         url: 'https://rs-menus-api.roocdn.com/images/985e91cc-0a14-414a-a6ba-19a06a1d843c/image.jpeg?width=122.5&amp;height=122.5&amp;auto=webp&amp;format=jpg&amp',
         desc: 'The best comeback since Britney Spears 💁‍♀️ Fried chicken, smokey bacon, aged cheddar, burnout sauce, lettuce, tomato, onion, pickles ...',
-        price: '$26.00',
+        price: '26.00',
         ingredients: [
           ['Change to Gluten Free Bun', 2.6],
           ['Sweet Potato Chips with Burger', 2.3],
@@ -190,7 +190,7 @@ export const RESTAURANT_MENU = [
         title: 'Garlic Prawn',
         url: 'https://rs-menus-api.roocdn.com/images/985e91cc-0a14-414a-a6ba-19a06a1d843c/image.jpeg?width=122.5&amp;height=122.5&amp;auto=webp&amp;format=jpg&amp',
         desc: 'The best comeback since Britney Spears 💁‍♀️ Fried chicken, smokey bacon, aged cheddar, burnout sauce, lettuce, tomato, onion, pickles ...',
-        price: '$26.00',
+        price: '26.00',
         ingredients: [
           ['Change to Gluten Free Bun', 2.6],
           ['Sweet Potato Chips with Burger', 2.3],
