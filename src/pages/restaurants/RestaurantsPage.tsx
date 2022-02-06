@@ -1,4 +1,4 @@
-import RestaurantsContents from '@components/restaurants';
+import RestaurantsContents from '@components/restaurants/RestaurantsContents';
 import LeftNavBar from '@components/restaurants/LeftNavBar';
 import React from 'react';
 import { Grid } from '@mui/material';
@@ -9,24 +9,38 @@ import NotFoundPage from './../../config/route/NotFoundPage';
 
 export type RestaurantsPageProps = {};
 
-const RestaurantsPage = (props: RestaurantsPageProps) => {
-  const location = useLocation();
-  const URLSearch = new URLSearchParams(location.search);
-  const filter = (URLSearch.get('filter') ?? 'delivery') as LeftNavModalProps['filter'];
-  const latitude = URLSearch.get('latitude') as string;
-  const longitude = URLSearch.get('longitude') as string;
+export type locationType = {
+  latitude?: string;
+  longitude?: string;
+  cityName?: string;
+};
 
-  if (!latitude || !longitude) {
+const RestaurantsPage = (props: RestaurantsPageProps) => {
+  const _location = useLocation();
+  const URLSearch = new URLSearchParams(_location.search);
+  const filter = (URLSearch.get('filter') ?? 'delivery') as LeftNavModalProps['filter'];
+  const location: locationType = {
+    latitude: URLSearch.get('latitude') ?? undefined,
+    longitude: URLSearch.get('longitude') ?? undefined,
+    cityName: URLSearch.get('address') ?? undefined,
+  };
+
+  if (!location.latitude || !location.longitude) {
     return <NotFoundPage />;
   }
 
   return (
     <StyledLayout container wrap="nowrap">
       <Grid item>
-        <LeftNavBar filter={filter} latitude={latitude} longitude={longitude} />
+        <LeftNavBar
+          filter={filter}
+          latitude={location.latitude}
+          longitude={location.longitude}
+          cityName={location.cityName}
+        />
       </Grid>
       <Grid item flex="3" sx={{ minWidth: 0 }}>
-        <RestaurantsContents filter={filter} />
+        <RestaurantsContents filter={filter} cityName={location.cityName} />
       </Grid>
     </StyledLayout>
   );

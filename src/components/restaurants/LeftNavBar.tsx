@@ -21,7 +21,7 @@ export type LeftNavBarProps = {
 };
 
 const LeftNavBar = (props: LeftNavBarProps) => {
-  const { cityName = 'Liverpool City Centre', latitude, longitude, filter } = props;
+  const { cityName, latitude, longitude, filter } = props;
   const [modalOpen, setModalOPen] = useState<boolean>(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -35,8 +35,7 @@ const LeftNavBar = (props: LeftNavBarProps) => {
       navigate(`${location.pathname}?${newParam}`);
       return;
     }
-
-    navigate(location.pathname + `?latitude=${latitude}&longitude=${longitude}`);
+    navigate(location.pathname + `?latitude=${latitude}&longitude=${longitude}&address=${cityName}`);
     return;
   };
 
