@@ -8,7 +8,7 @@ export type BreadcrumbsProps = {
   title: string;
 };
 
-const BreadcrumbsBox = (props: BreadcrumbsProps) => {
+const BackButton = (props: BreadcrumbsProps) => {
   const navigate = useNavigate();
   const { title } = props;
 
@@ -26,4 +26,4 @@ const BreadcrumbsBox = (props: BreadcrumbsProps) => {
   );
 };
 
-export default BreadcrumbsBox;
+export default BackButton;

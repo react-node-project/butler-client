@@ -52,7 +52,7 @@ const CollectionSlider = (props: CollectionSliderProps) => {
   const navigate = useNavigate();
   const URLSearch = new URLSearchParams(location.search);
 
-  const onClickCard = (name: string) => (e: React.MouseEvent) => {
+  const onClickCard = (name: COLLECTION_TYPES[number]['name']) => (e: React.MouseEvent) => {
     const collection = URLSearch.get('collection');
     if (collection) {
       URLSearch.set('collection', name);

@@ -2,7 +2,7 @@ import { StyledTitle } from '@components/slider/CardSlider.styled';
 import { useGetRestaurantsQuery } from '@store/service/restaurants';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import BreadcrumbsBox from './Breadcrumbs';
+import BackButton from './BackButton';
 import CollectionSlider, { COLLECTION_TYPES } from './CollectionSlider';
 import CollectionSliderSkeleton from './CollectionSliderSkeleton';
 import { StyledLayout } from './RestaurantsContents.styled';
@@ -38,7 +38,7 @@ const RestaurantsContents = (props: RestaurantsProps) => {
   return (
     <StyledLayout sx={{ flexGrow: 1 }}>
       {collection ? (
-        <BreadcrumbsBox title={collection} />
+        <BackButton title={collection} />
       ) : (
         <>
           <StyledTitle variant="h3">{title}</StyledTitle>
