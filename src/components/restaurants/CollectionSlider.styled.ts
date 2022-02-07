@@ -14,7 +14,7 @@ export const StyledCardItem = styled(Box)((props: { backgroundImage?: string }) 
     height: '100%',
     padding: '8px',
     borderRadius: '5px',
-    backgroundImage: props.backgroundImage,
+    backgroundImage: `url(${props.backgroundImage})`,
     backgroundSize: 'cover',
     backgroundPosition: '50%',
     color: '#fff',

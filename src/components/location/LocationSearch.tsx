@@ -40,7 +40,7 @@ const LocationSearch = () => {
     _location = { ...location };
     try {
       await _sendLocation({ address, location }).unwrap();
-      navigate(`${PATH_RESTAURANTS}?latitude=${location.lat}&longitude=${location.lng}`);
+      navigate(`${PATH_RESTAURANTS}?latitude=${location.lat}&longitude=${location.lng}&address=${address}`);
     } catch (error) {
       const err = error as FetchBaseQueryError;
 

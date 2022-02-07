@@ -1,33 +1,30 @@
+import { COLLECTION_TYPES } from '@components/restaurants/CollectionSlider';
 import { LeftNavModalProps } from '@components/restaurants/LeftNavModal';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { MOCK_API_URL } from '../../constants/EnvContant';
 
 type GetRestaurantsProps = {
-  categories: {
-    title: string;
-    list: string[];
-  };
   restaurants: {
-    store_no: string;
-    store_name: string;
-    service_type_code: string;
-    phone_no: string;
-    minimum_payment_amount: string;
-    sale_from_time: string;
-    sale_to_time: string;
-    delivery_from_time: string;
-    delivery_to_time: string;
-    city_code: string;
-    district_code: string;
+    storeNo: string;
+    storeName: string;
+    serviceTypeCode: string;
+    phoneNo: string;
+    minimumPaymentAmount: string;
+    saleFromTime: string;
+    saleToTime: string;
+    deliveryFromTime: string;
+    deliveryToTime: string;
+    cityCode: string;
+    districtCode: string;
     address: string;
     latitude: string;
     longitude: string;
-    manager_phone_no: string;
-    national_code: string;
+    managerPhoneNo: string;
+    nationalCode: string;
     notify: string;
-    bank_code: string;
-    bank_account_no: string;
-    store_image_url: string;
+    bankCode: string;
+    bankAccountNo: string;
+    storeImageUrl: string;
     descriptions: string[];
     review: string;
   }[];
@@ -37,12 +34,16 @@ export const restaurantsAPI = createApi({
   reducerPath: 'restaurantsApi',
   baseQuery: fetchBaseQuery({ baseUrl: MOCK_API_URL }),
   endpoints: (build) => ({
-    getRestaurants: build.query<GetRestaurantsProps, LeftNavModalProps['filter']>({
-      query: (filter) => ({
+    getRestaurants: build.query<
+      GetRestaurantsProps['restaurants'],
+      { filter: LeftNavModalProps['filter']; collection: COLLECTION_TYPES[number]['name'] }
+    >({
+      query: ({ filter, collection }) => ({
         url: `/getstores`,
         method: 'GET',
         params: {
           filter,
+          ...(collection && { collection }),
         },
       }),
     }),

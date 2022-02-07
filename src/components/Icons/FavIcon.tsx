@@ -1,7 +1,7 @@
-import { Button } from '@mui/material';
 import React, { useState } from 'react';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { StyledButton } from './FavIcon.styled';
 
 export type FavIconProps = {
   active?: boolean;
@@ -21,9 +21,9 @@ const FavIcon = (props: FavIconProps) => {
   };
 
   return (
-    <Button size="small" onClick={onClickButton}>
+    <StyledButton color="primary" onClick={onClickButton}>
       {isActive ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-    </Button>
+    </StyledButton>
   );
 };
 

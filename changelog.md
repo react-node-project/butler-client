@@ -18,21 +18,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Installed` for installing new dependencies
 - `Setting` for adding/changing the general settings
 
+## [0.1.17] - 2022-02-07
+
+written by 조효형
+
+`Added`
+
+- collection 선택 시 뒤로가기 버튼 추가
+- 좋아요 클릭시 디테일페이지 이동 부분 수정
+- 주소이름 추가
+
+`Changed`
+
+- collection슬라이더 데이터 상수로 변경
+- collection 쿼리파라미터 추가
+- 데이터 필드 이름 수정
+- mockAPI 핸들러 수정
+
+`Remove`
+
+- 불필요한 utill 함수 제거
+
 ## [0.1.16] - 2022-01-26
 
 written by minervatea
 
 `Summary`
 
-Cart 통합, Info Modal Layout 
+Cart 통합, Info Modal Layout
 
 `Installed`
+
 - nanoid library
 
 `Changed`
+
 - dynamic url for restaurant detail page
 
 `Added`
+
 - Info Modal
 
 ## [0.1.15] - 2022-01-15
