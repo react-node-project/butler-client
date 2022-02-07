@@ -1,21 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { MOCK_API_URL } from '../../constants/EnvContant';
 import { SignUpRequest, SignUpResponse, UserInfo } from '../../type/user.type';
-import { RootState } from '@store/index';
+import { prepareHeaderToken } from '../../util/api.util';
 
 export const userAPI = createApi({
   reducerPath: 'userAPI',
   baseQuery: fetchBaseQuery({
     baseUrl: `${MOCK_API_URL}/users`,
-    prepareHeaders: (headers, { getState }) => {
-      const user = (getState() as RootState).user;
-      const { token } = user;
-
-      if (token) {
-        headers.set('Authorization', `${token}`);
-      }
-      return headers;
-    },
+    prepareHeaders: prepareHeaderToken,
   }),
   endpoints: (build) => ({
     getUser: build.query<UserInfo, null>({
