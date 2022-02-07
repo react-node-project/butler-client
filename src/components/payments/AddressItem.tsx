@@ -25,7 +25,7 @@ const AddressItem = (props: AddressItemProps) => {
           <LocationOnIcon />
         </Box>
         <Box>
-          <Typography>{address.streetAdress}</Typography>
+          <Typography>{address.streetAddress}</Typography>
           <Typography>{address.city + address.postcode}</Typography>
           <Typography>{address.phoneNumber}</Typography>
         </Box>
