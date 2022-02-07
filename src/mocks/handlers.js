@@ -7,13 +7,14 @@ import {
   CATEGORY_LIST_TABLE_SERVICE,
   RESTAURANTS_LIST,
   RESTAURANTS_LIST_PICK_UP,
-  RESTAURANTS_LIST_TABLE_SERVICE,
+  RESTAURANTS_LIST_TABLE_SERVICE
 } from './data/restaurants';
 import { RESTAURANT_MENU } from './data/restaurantMenu';
 import { locationHandler } from './location.handler';
 import { authHandler } from './auth.handler';
 import { userHandler } from './user.handler';
-import { getQueryParams } from './../util/utills';
+import { addressHandler } from './address.handler';
+import { getQueryParams } from '../util/utills';
 
 export const handlers = [
   rest.get(`${MOCK_API_URL}/theme-menus`, (req, res, ctx) => {
@@ -52,6 +53,7 @@ export const handlers = [
   ...locationHandler,
   ...authHandler,
   ...userHandler,
+  ...addressHandler,
 ];
 
 const worker = setupWorker(...handlers);
