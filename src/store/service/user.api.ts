@@ -47,6 +47,7 @@ export const userAPI = createApi({
           type,
           value,
         },
+        method: 'POST',
       }),
     }),
   }),
