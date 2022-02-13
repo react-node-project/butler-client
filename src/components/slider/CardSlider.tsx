@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import {
-  StyledContents,
-  StyledLayout,
-  StyledNextButton,
-  StyledPrevButton,
-  StyledSlider,
-  StyledTitle,
-} from './CardSlider.styled';
+import { StyledContents, StyledLayout, StyledNextButton, StyledPrevButton, StyledSlider } from './CardSlider.styled';
 import useWindowSize from '@hooks/useWindowSize';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 export type CardSliderProps = {
-  title: string;
   list: any[];
   cardWidth: number;
   sliderRef: any;
@@ -20,7 +12,7 @@ export type CardSliderProps = {
 };
 
 const CardSlider = (props: CardSliderProps) => {
-  const { title, list, cardWidth, children, sliderRef } = props;
+  const { list, cardWidth, children, sliderRef } = props;
   const windowSize = useWindowSize();
   const [index, setIndex] = useState<number>(1);
   const [count, setCount] = useState<number>(1);
@@ -59,7 +51,6 @@ const CardSlider = (props: CardSliderProps) => {
 
   return (
     <StyledLayout>
-      <StyledTitle variant="h3">{title}</StyledTitle>
       <StyledContents>
         <StyledSlider>
           {prevIndex > 0 && (

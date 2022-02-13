@@ -30,7 +30,6 @@ const RestaurantsCard = (props: RestaurantsCardProps) => {
       <StyledWrap onClick={onClickCard}>
         <StyledThumb className="thumb" url={imageUrl}>
           {!isOpen && <span>Back soon</span>}
-          <FavIcon />
         </StyledThumb>
         <StyledText>
           <Box className="title">{title}</Box>
@@ -45,6 +44,7 @@ const RestaurantsCard = (props: RestaurantsCardProps) => {
           <Box className="distance">{distanceText}</Box>
         </StyledText>
       </StyledWrap>
+      <FavIcon />
     </StyledLayout>
   );
 };

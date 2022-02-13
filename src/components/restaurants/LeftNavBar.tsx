@@ -12,7 +12,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LeftNavModal from './LeftNavModal';
 import { LeftNavModalProps } from '@components/restaurants/LeftNavModal';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { setQueryParams } from './../../util/utills';
 
 export type LeftNavBarProps = {
   cityName?: string;
@@ -22,24 +21,21 @@ export type LeftNavBarProps = {
 };
 
 const LeftNavBar = (props: LeftNavBarProps) => {
-  const { cityName = 'Liverpool City Centre', latitude, longitude, filter } = props;
+  const { cityName, latitude, longitude, filter } = props;
   const [modalOpen, setModalOPen] = useState<boolean>(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const URLSearch = new URLSearchParams(location.search);
 
   const setFilter = (filterValue: LeftNavModalProps['filter']) => {
-    if (filter === 'delivery') {
-      navigate(location.pathname + location.search + `&filter=${filterValue}`);
-      return;
-    }
-
     if (filterValue !== 'delivery') {
-      const search = setQueryParams(location.search, filter, filterValue);
-      navigate(location.pathname + search);
+      URLSearch.set('filter', filterValue);
+      const newParam = URLSearch.toString();
+
+      navigate(`${location.pathname}?${newParam}`);
       return;
     }
-
-    navigate(location.pathname + `?latitude=${latitude}&longitude=${longitude}`);
+    navigate(location.pathname + `?latitude=${latitude}&longitude=${longitude}&address=${cityName}`);
     return;
   };
 

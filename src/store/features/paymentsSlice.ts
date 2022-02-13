@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export type addressType = {
   apartment?: string;
-  streetAdress: string;
+  streetAddress: string;
   city: string;
   postcode: string;
   phoneNumber: string;

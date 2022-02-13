@@ -57,7 +57,7 @@ export const StyledFilterTitle = styled(Box)((props: { theme: Theme }) => ({
         textDecoration: 'underline',
       },
       [props.theme.breakpoints.up(768)]: {
-        width: '95%',
+        width: '150px',
         '&:hover': {
           textDecoration: 'none',
         },

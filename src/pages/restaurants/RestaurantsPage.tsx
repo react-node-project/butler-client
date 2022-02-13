@@ -1,33 +1,46 @@
-import RestaurantsContents from '@components/restaurants';
+import RestaurantsContents from '@components/restaurants/RestaurantsContents';
 import LeftNavBar from '@components/restaurants/LeftNavBar';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Grid } from '@mui/material';
 import { StyledLayout } from './RestaurantsPage.styled';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { getQueryParams } from './../../util/utills';
+import { useLocation } from 'react-router-dom';
+import { LeftNavModalProps } from '@components/restaurants/LeftNavModal';
+import NotFoundPage from './../../config/route/NotFoundPage';
 
 export type RestaurantsPageProps = {};
 
-const RestaurantsPage = (props: RestaurantsPageProps) => {
-  const location = useLocation();
-  const filter = getQueryParams(location.search, 'filter') ?? 'delivery';
-  const latitude = getQueryParams(location.search, 'latitude');
-  const longitude = getQueryParams(location.search, 'longitude');
-  const navigate = useNavigate();
+export type locationType = {
+  latitude?: string;
+  longitude?: string;
+  cityName?: string;
+};
 
-  useEffect(() => {
-    if (!latitude || !longitude) {
-      navigate('/');
-    }
-  }, [latitude, longitude]);
+const RestaurantsPage = (props: RestaurantsPageProps) => {
+  const _location = useLocation();
+  const URLSearch = new URLSearchParams(_location.search);
+  const filter = (URLSearch.get('filter') ?? 'delivery') as LeftNavModalProps['filter'];
+  const location: locationType = {
+    latitude: URLSearch.get('latitude') ?? undefined,
+    longitude: URLSearch.get('longitude') ?? undefined,
+    cityName: URLSearch.get('address') ?? undefined,
+  };
+
+  if (!location.latitude || !location.longitude) {
+    return <NotFoundPage />;
+  }
 
   return (
     <StyledLayout container wrap="nowrap">
       <Grid item>
-        <LeftNavBar filter={filter} latitude={latitude} longitude={longitude} />
+        <LeftNavBar
+          filter={filter}
+          latitude={location.latitude}
+          longitude={location.longitude}
+          cityName={location.cityName}
+        />
       </Grid>
       <Grid item flex="3" sx={{ minWidth: 0 }}>
-        <RestaurantsContents filter={filter} />
+        <RestaurantsContents filter={filter} cityName={location.cityName} />
       </Grid>
     </StyledLayout>
   );
