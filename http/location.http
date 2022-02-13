@@ -1,0 +1,4 @@
+GET {{url}}/getstores?lastitude=10.8007819&longitude=106.7474015&distance=1
+Accept: application/json
+
+###

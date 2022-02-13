@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { MOCK_API_URL } from '../../constants/EnvContant';
+import { API_URL } from '../../constants/EnvContant';
 import { SignUpRequest, SignUpResponse, UserInfo } from '../../type/user.type';
 import { prepareHeaderToken } from '../../util/api.util';
 
 export const userAPI = createApi({
   reducerPath: 'userAPI',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${MOCK_API_URL}/users`,
+    baseUrl: `${API_URL}/users`,
     prepareHeaders: prepareHeaderToken,
   }),
   endpoints: (build) => ({
@@ -15,7 +15,7 @@ export const userAPI = createApi({
     }),
     signUp: build.mutation<SignUpResponse, SignUpRequest>({
       query: ({ email, password, name, callingCode, mobile }) => ({
-        url: '/',
+        url: '/signup',
         method: 'post',
         body: {
           email,

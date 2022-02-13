@@ -1,0 +1,6 @@
+GET {{url}}/users
+Accept: application/json
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lck5vIjo1LCJpc3MiOjE2NDQ3NTQzNjcsImV4cCI6MTY0NDc2MTU2NywiaWF0IjoxNjQ0NzU0MzY2fQ.A29v7IUwK3CdB0afDE8F_i4sl6kmH0TCBmHhYSA1cAQ
+
+###
