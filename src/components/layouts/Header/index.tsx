@@ -44,7 +44,7 @@ export default function Header({ showSideNav, showFavList }: Props) {
             </Typography>
             <Stack direction="row" justifyContent="flex-end" alignItems="center" spacing={2}>
               {isShowSearchBar && <SearchBar />}
-              {cartItems.length && <Basket />}
+              {cartItems.length > 0 && <Basket />}
               {isLoggedIn ? (
                 <>
                   <FavMenu showFavList={showFavList} />

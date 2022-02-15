@@ -7,13 +7,14 @@ import userReducer from './features/userSlice';
 import restaurantsReducer from './features/restaurantsSlice';
 import configReducer from './features/configSlice';
 import cartReducer from './features/cartSlice';
+import paymentsReducer from './features/paymentsSlice';
 
 import { locationAPI } from './service/location.api';
 import { restaurantsAPI } from './service/restaurants';
 import { menuAPI } from './service/restaurantMenu';
 import { authAPI } from '@store/service/auth.api';
 import { userAPI } from '@store/service/user.api';
-import paymentsReducer from './features/paymentsSlice';
+import { addressAPI } from '@store/service/addess.api';
 
 const apiReducers = {
   [restaurantsAPI.reducerPath]: restaurantsAPI.reducer,
@@ -21,7 +22,17 @@ const apiReducers = {
   [locationAPI.reducerPath]: locationAPI.reducer,
   [authAPI.reducerPath]: authAPI.reducer,
   [userAPI.reducerPath]: userAPI.reducer,
+  [addressAPI.reducerPath]: addressAPI.reducer,
 };
+
+const apiMiddleware = [
+  restaurantsAPI.middleware,
+  menuAPI.middleware,
+  locationAPI.middleware,
+  authAPI.middleware,
+  userAPI.middleware,
+  addressAPI.middleware,
+];
 
 const rootReducer = combineReducers({
   app: appReducer,
@@ -37,6 +48,7 @@ const persistConfig = {
   key: 'root',
   version: 1,
   storage,
+  blacklist: Object.keys(apiReducers),
 };
 const reducer = persistReducer(persistConfig, rootReducer);
 
@@ -47,7 +59,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat([locationAPI.middleware, restaurantsAPI.middleware, authAPI.middleware, menuAPI.middleware]),
+    }).concat(apiMiddleware),
 });
 
 export const persistor = persistStore(store);

@@ -27,7 +27,6 @@ export const userHandler = [
           }),
         );
       } catch (e) {
-        console.log('ee', e);
         return res(
           ctx.status(400),
           ctx.json({
@@ -46,7 +45,7 @@ export const userHandler = [
           code: 2000,
           message: 'token 이 존재하지 않습니다',
         }),
-        status(400),
+        status(401),
       );
     }
 
@@ -62,6 +61,10 @@ export const userHandler = [
   rest.patch(
     `${MOCK_API_URL}/users`,
     async (req: RestRequest<SignUpRequest>, res: ResponseComposition<ButlerResponse>, { status, json }) => {
+      if (!req.headers.get('authorization')) {
+        return res(status(401));
+      }
+
       res(
         status(200),
         json({
@@ -72,4 +75,15 @@ export const userHandler = [
       );
     },
   ),
+  rest.post(`${MOCK_API_URL}/users/verify`, (req: RestRequest<{ type: 'password'; value: string }>, res, context) => {
+    if (!req.headers.get('authorization')) {
+      return res(context.status(401));
+    }
+    const { type, value } = req.body;
+    if (!type || !value) {
+      return res(context.status(400));
+    }
+
+    return res(context.status(200));
+  }),
 ];

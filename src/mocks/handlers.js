@@ -6,6 +6,8 @@ import { RESTAURANT_MENU } from './data/restaurantMenu';
 import { locationHandler } from './location.handler';
 import { authHandler } from './auth.handler';
 import { userHandler } from './user.handler';
+import { addressHandler } from './address.handler';
+import { getQueryParams } from '../util/utills';
 
 export const handlers = [
   rest.get(`${MOCK_API_URL}/theme-menus`, (req, res, ctx) => {
@@ -38,6 +40,7 @@ export const handlers = [
   ...locationHandler,
   ...authHandler,
   ...userHandler,
+  ...addressHandler,
 ];
 
 const worker = setupWorker(...handlers);

@@ -11,7 +11,7 @@ import {
   Select,
   Typography
 } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store/index';
 import { Controller, useForm } from 'react-hook-form';
 import { SignUpRequest } from '../../../type/user.type';
@@ -21,19 +21,20 @@ import { StyledRow } from '@components/auth/SignUp/signup.styled';
 import { CALLING_CODES } from '../../../constants/CountryConstant';
 import { theme } from '../../../styles/theme';
 import { StyledGrid } from '../../../styles/sharedElement.styled';
-import { useCheckPasswordMutation, useUpdateUserMutation } from '@store/service/user.api';
+import { useUpdateUserMutation, useVerifyUserMutation } from '@store/service/user.api';
+import { userAction } from '@store/features/userSlice';
 
 const AccountDetail = () => {
   const originUser = useSelector((state: RootState) => state.user);
-  const [checkPassword] = useCheckPasswordMutation();
+  const [verifyUser] = useVerifyUserMutation();
   const [updateUser] = useUpdateUserMutation();
-
+  const dispatch = useDispatch();
   const {
     register,
     control,
     handleSubmit,
     getValues,
-
+    reset,
     formState: { errors, isDirty, dirtyFields },
   } = useForm<SignUpRequest>({
     defaultValues: {
@@ -44,16 +45,20 @@ const AccountDetail = () => {
     },
     mode: 'onBlur',
   });
+
   const saveChanges = async () => {
     try {
       const { name, password, callingCode, mobile } = getValues();
-      await checkPassword(password).unwrap();
+      await verifyUser({ type: 'password', value: password }).unwrap();
 
-      await updateUser({
+      const data = {
         ...(dirtyFields.name && { name }),
         ...(dirtyFields.callingCode && { callingCode }),
         ...(dirtyFields.mobile && { mobile }),
-      });
+      };
+      await updateUser(data).unwrap();
+      dispatch(userAction.setUser(data));
+      reset(data);
     } catch (e) {
       /**
        *  에러처리
@@ -162,6 +167,7 @@ const AccountDetail = () => {
           >
             <Typography>You must supply your current valid password</Typography>
             <TextField
+              sx={{ m: 0.5 }}
               style={{ width: '60%' }}
               type="password"
               error={Boolean(errors.password)}
