@@ -57,8 +57,8 @@ const ButtonWrapper = ({ currency, showSpinner, amount, style, onClick }: Button
               return orderId;
             });
         }}
-        onApprove={function (data, actions) {
-          return actions.order.capture().then(function () {
+        onApprove={(data, actions) => {
+          return (actions.order as { capture: () => Promise<unknown> }).capture().then(function () {
             // TODO: 결제 완료 후 리다이렉션
             navigate(PATH_ROOT);
           });
@@ -75,7 +75,12 @@ const ButtonWrapper = ({ currency, showSpinner, amount, style, onClick }: Button
 
 const PaypalButton = (props: PaypalButtonProps) => {
   const { amount, currency = 'USD', onClick } = props;
-  const style = { layout: 'horizontal', width: '100%' } as const;
+  const style = {
+    layout: 'horizontal',
+    color: 'blue',
+    label: 'paypal',
+    tagline: 'false',
+  } as const;
 
   const initialOptions = {
     'client-id': PAYPAL_CLIENT_ID,
@@ -84,9 +89,11 @@ const PaypalButton = (props: PaypalButtonProps) => {
   };
 
   return (
-    <PayPalScriptProvider options={initialOptions}>
-      <ButtonWrapper currency={currency} showSpinner={false} amount={amount} style={style} onClick={onClick} />
-    </PayPalScriptProvider>
+    <div style={{ maxWidth: '100%' }}>
+      <PayPalScriptProvider options={initialOptions}>
+        <ButtonWrapper currency={currency} showSpinner={false} amount={amount} style={style} onClick={onClick} />
+      </PayPalScriptProvider>
+    </div>
   );
 };
 
