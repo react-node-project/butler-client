@@ -1,5 +1,5 @@
 import React from 'react';
-import RestaurantHeader from '../restaurantDetails/RestaurantHeader/index';
+import RestaurantHeader from './RestaurantHeader/index';
 import Cart from './Cart/index';
 import { StyledText, StyledCartGrid, StyledMenuListGrid, StyledListWrapper } from './restaurantDetail.styled';
 import MenuList from './MenuList/index';
@@ -12,7 +12,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function RestaurantDetail() {
-  const { data, error, isLoading } = useGetMenuQuery();
+  const { data, isLoading } = useGetMenuQuery();
   const [open, setOpen] = React.useState(false);
 
   const infohandleClickOpen = () => {
@@ -29,7 +29,7 @@ export default function RestaurantDetail() {
         <>Loading..</>
       ) : (
         <StyledText>
-          <RestaurantHeader slideDialog={infohandleClickOpen} />
+          <RestaurantHeader data={data} slideDialog={infohandleClickOpen} />
           <Dialog
             open={open}
             TransitionComponent={Transition}

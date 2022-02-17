@@ -58,7 +58,7 @@ export default function MenuList(props) {
         menuPrice={price}
         handleClose={handleClose}
       />
-      <Grid container top="0" position="sticky" direction="row-reverse">
+      {/* <Grid container top="0" position="sticky" direction="row-reverse">
         <FormControl sx={{ m: 1, width: 300 }}>
           <InputLabel>Greasy's Burgers</InputLabel>
           <Select
@@ -76,7 +76,7 @@ export default function MenuList(props) {
             ))}
           </Select>
         </FormControl>
-      </Grid>
+      </Grid> */}
 
       <StyledMenuWrapper>
         <Grid container justifyContent="center" alignItems="center" spacing={2}>
