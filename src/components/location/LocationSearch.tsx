@@ -113,7 +113,7 @@ const LocationSearch = () => {
     <>
       <StyledBox>
         <Typography pb={1} gutterBottom variant="h6">
-          Enter address to find local restuarants
+        Find your local restaurants
         </Typography>
         <Stack direction="row" spacing={1}>
           <OutlinedInput

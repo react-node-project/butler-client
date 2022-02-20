@@ -6,7 +6,7 @@ import { Grid, Typography, ImageListItem, ImageList, ImageListItemBar } from '@m
 export default function ThemeMenu() {
   return (
     <>
-      <Typography data-testid="header" align="left" variant="h4">
+      <Typography mt={2} data-testid="header" align="left" variant="h5">
         What's on the menu?
       </Typography>
 
