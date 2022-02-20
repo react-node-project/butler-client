@@ -2,6 +2,7 @@ import { styled } from '@mui/styles';
 
 export const StyledDiv = styled('div')({
   position: 'relative',
+  overflowY:'hidden',
   '& .title': {
     position: 'absolute',
     display: 'flex',

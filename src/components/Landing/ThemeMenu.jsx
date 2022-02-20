@@ -13,14 +13,15 @@ export default function ThemeMenu() {
       <ImageList>
         <Grid container spacing={3}>
           {THEMEMENU.map((item) => (
-            <Grid key={item.title} item xs={12} sm={12} md={6}>
+            <Grid key={item.title} item xs={12} sm={12} md={12}>
               <StyledDiv>
-                <ImageListItem key={item.url}>
+                {/* <ImageListItem key={item.url}> */}
                   <img
-                    style={{ height: 140 }}
-                    src={`${item.url}?w=168&fit=crop&auto=format`}
+                     src={item.url}
+                    // src={`${item.url}?&fit=crop&auto=format`}
                     alt={item.title}
                     loading="lazy"
+                    style={{objectFit:"cover",width:"90%",height:140}}
                   />
                   <div className="title">
                     <Typography variant="h5" align="center">
@@ -36,7 +37,7 @@ export default function ThemeMenu() {
                     }
                     position="below"
                   />
-                </ImageListItem>
+                {/* </ImageListItem> */}
               </StyledDiv>
             </Grid>
           ))}
