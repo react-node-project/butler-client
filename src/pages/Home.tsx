@@ -1,5 +1,5 @@
 import React from 'react';
-import ThemeMenu from './../components/Landing/ThemeMenu';
+import ThemeMenu from '../components/Landing/ThemeMenu';
 import { Container, Grid, Paper } from '@mui/material';
 import LocationSearch from '@components/location/LocationSearch';
 import Footer from '../components/footer';
