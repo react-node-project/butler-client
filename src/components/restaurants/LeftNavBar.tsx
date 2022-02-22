@@ -12,16 +12,16 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LeftNavModal from './LeftNavModal';
 import { LeftNavModalProps } from '@components/restaurants/LeftNavModal';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { coordinatesTypes } from './../../pages/restaurants/RestaurantsPage';
 
 export type LeftNavBarProps = {
-  cityName?: string;
-  latitude?: string;
-  longitude?: string;
+  coordinates: coordinatesTypes;
   filter: LeftNavModalProps['filter'];
 };
 
 const LeftNavBar = (props: LeftNavBarProps) => {
-  const { cityName, latitude, longitude, filter } = props;
+  const { coordinates, filter } = props;
+  const { cityName, latitude, longitude } = coordinates;
   const [modalOpen, setModalOPen] = useState<boolean>(false);
   const location = useLocation();
   const navigate = useNavigate();

@@ -16,11 +16,12 @@ const RestaurantsList = (props: RestaurantsListProps) => {
         <RestaurantsCard
           key={item.storeNo}
           storeNumber={item.storeNo}
-          imageUrl={item.storeImageUrl}
+          imageUrl={item.store_image}
           title={item.storeName}
-          descriptions={item.descriptions}
-          review={item.review}
+          notify={item.notify}
+          reviewCount={item.reviewCount}
           distanceText={item.address}
+          districtCode={item.districtCode}
         />
       ))}
     </StyledLayout>

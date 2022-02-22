@@ -10,20 +10,23 @@ export type RestaurantsCardProps = {
   storeNumber: string;
   imageUrl: string;
   title: string;
-  review?: string;
-  descriptions: string[];
+  reviewCount?: string;
+  notify: string;
   distanceText: string;
+  districtCode: string;
   isOpen?: boolean;
 };
 
 const RestaurantsCard = (props: RestaurantsCardProps) => {
-  const { storeNumber, imageUrl, title, review, descriptions, distanceText, isOpen = true } = props;
-  const descrition = descriptions.join('· ');
+  const { storeNumber, imageUrl, title, reviewCount, notify, distanceText, districtCode, isOpen = true } = props;
+  // const descrition = descriptions.join('· ');
   const navigate = useNavigate();
 
   const onClickCard = () => {
     navigate(`${PATH_RESTAURANTS}/${storeNumber}`);
   };
+
+  console.log('notify', notify);
 
   return (
     <StyledLayout className={'card_item'}>
@@ -37,11 +40,11 @@ const RestaurantsCard = (props: RestaurantsCardProps) => {
             <Box component="span" className="review_score">
               <StarIcon color="primary" fontSize="inherit" />
               very good
-              <Box component="span"> {review}</Box>
+              <Box component="span"> ({reviewCount})</Box>
             </Box>
-            <Box component="span"> {descrition}</Box>
+            {/* <Box component="span"> {notify}</Box> */}
           </Box>
-          <Box className="distance">{distanceText}</Box>
+          <Box className="distance">{`${distanceText} ${districtCode}`}</Box>
         </StyledText>
       </StyledWrap>
       <FavIcon />

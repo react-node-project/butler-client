@@ -9,18 +9,22 @@ import { StyledLayout } from './RestaurantsContents.styled';
 import { LeftNavModalProps } from './LeftNavModal';
 import RestaurantsList from './RestaurantsList';
 import RestaurantsListSkeleton from './RestaurantsListSkeleton';
+import { coordinatesTypes } from './../../pages/restaurants/RestaurantsPage';
 
 export type RestaurantsProps = {
   filter: LeftNavModalProps['filter'];
   cityName?: string;
+  coordinates: coordinatesTypes;
 };
 
 const RestaurantsContents = (props: RestaurantsProps) => {
-  const { filter, cityName } = props;
+  const { coordinates, filter } = props;
+  const { cityName } = coordinates;
   const title = `Delivering to ${cityName}`;
   const location = useLocation();
   const collection = new URLSearchParams(location.search).get('collection') as COLLECTION_TYPES[number]['name'];
-  const { data: restaurants, error, isLoading } = useGetRestaurantsQuery({ filter, collection });
+  const { data, error, isLoading } = useGetRestaurantsQuery({ coordinates, filter, collection });
+  const restaurants = data?.list;
 
   if (error) {
     console.log('error', error);

@@ -7,7 +7,8 @@ export const StyledThumb = styled(Box)((props: { url?: string }) => ({
   position: 'relative',
   width: '100%',
   paddingTop: '56.25%',
-  backgroundImage: `url(${props.url})`,
+  // backgroundImage: `url(${props.url})`,
+  backgroundImage: `url(https://rs-menus-api.roocdn.com/images/ffa2b1cc-8d1b-43b1-9402-14961f3a9a79/image.jpeg?width=524&height=294&auto=webp&format=jpg&fit=crop&v=)`,
   backgroundSize: 'cover',
   backgroundPosition: '50%',
   '& > span': {
