@@ -59,6 +59,7 @@ export default function Cart() {
           <Divider />
           <StyledSubtotalBox>
             <h3>Subtotal</h3>
+            {/* <h5>30.43</h5> */}
             <h5>£ {tipChecked ? cart?.cartTotalAmount + 0.69 : cart?.cartTotalAmount}</h5>
           </StyledSubtotalBox>
         </StyledCartBox>

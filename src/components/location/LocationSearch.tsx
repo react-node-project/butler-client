@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { usePlacesWidget } from 'react-google-autocomplete';
 
 import SendIcon from '@mui/icons-material/Send';
-import { Card, CardContent, IconButton, Modal, TextField } from '@mui/material';
+import { Button, Stack, OutlinedInput, IconButton, Modal, InputAdornment, Typography } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 import { MAP_API_KEY as apiKey } from '../../constants/EnvContant';
@@ -17,6 +17,7 @@ import { RootState } from '../../store';
 
 import MarkLocationModal from './MarkLocationModal/MarkLocationModal';
 import DisabledLocationModal from './InactiveLocationModal/InactiveLocationModal';
+import { StyledBox } from './location.styled';
 
 interface DefinedServerError {
   code: number;
@@ -110,41 +111,48 @@ const LocationSearch = () => {
 
   return (
     <>
-      <Card
-        sx={{ width: '100%', display: 'flex', justifyContent: 'flexStart', textAlign: 'start', marginBottom: '1rem' }}
-      >
-        <CardContent sx={{ width: '100%' }}>
-          <p>Enter your address to find local restaurants</p>
-          <div>
-            <TextField
-              sx={{ width: '350px' }}
-              size={'small'}
-              inputRef={ref}
-              value={searchText}
-              onChange={handleSearchText}
-              variant="outlined"
-              placeholder="Enter your full address"
-            />
-            <IconButton name="useCurrentLocation" title="useCurrentLocation" onClick={handleCurrentLocation}>
-              <SendIcon fontSize="inherit" />
-            </IconButton>
+      <StyledBox>
+        <Typography pb={1} gutterBottom variant="h6">
+        Find your local restaurants
+        </Typography>
+        <Stack direction="row" spacing={1}>
+          <OutlinedInput
+            size={'small'}
+            inputRef={ref}
+            value={searchText}
+            onChange={handleSearchText}
+            placeholder="Enter your address"
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  className="current"
+                  name="useCurrentLocation"
+                  title="useCurrentLocation"
+                  onClick={handleCurrentLocation}
+                >
+                  <SendIcon fontSize="inherit" />
+                </IconButton>
+              </InputAdornment>
+            }
+          />
 
-            <LoadingButton
-              loading={sendLocationResult.isLoading}
-              variant="contained"
-              name="searchLocation"
-              onClick={showMarkLocationModal}
-            >
-              Search
-            </LoadingButton>
-          </div>
-
-          <div style={{ padding: '5px' }}>
-            <StyledLink to={PATH_USER_LOGIN}>Log in </StyledLink>
-            for your recent address
-          </div>
-        </CardContent>
-      </Card>
+          <LoadingButton
+            loading={sendLocationResult.isLoading}
+            variant="contained"
+            name="searchLocation"
+            onClick={showMarkLocationModal}
+          >
+            Search
+          </LoadingButton>
+        </Stack>
+        <div>
+          <StyledLink to={PATH_USER_LOGIN}>
+            <Button mt={2} className="login">
+              Login
+            </Button>
+          </StyledLink>
+        </div>
+      </StyledBox>
       <Modal
         open={isShow.markLocationModal}
         children={

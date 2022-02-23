@@ -51,21 +51,7 @@ export const FOOTERDATA = [
 ];
 
 export const THEMEMENU = [
-  {
-    title: 'comfort food',
-    url: 'https://f.roocdn.com/images/menu_tags/288/menu-tag-image.jpg?width',
-    desc: 'Classic, comforting dishes that always hit the spot.',
-  },
-  {
-    title: 'Desert and sweet dishes',
-    url: 'https://f.roocdn.com/images/menu_tags/328/menu-tag-image.jpg?width',
-    desc: 'Sweet delights that are a tasty addition to any day.',
-  },
-  {
-    title: 'Office Gathering',
-    url: 'https://f.roocdn.com/images/menu_tags/285/menu-tag-image.jpg?width',
-    desc: "Whether you're hosting clients, planning a work event or feeding your team...",
-  },
+
   {
     title: 'Only Butler',
     url: 'https://f.roocdn.com/images/menu_tags/293/menu-tag-image.jpg?width',
