@@ -49,6 +49,7 @@ export default function RestaurantDetail() {
               <Button onClick={infohandleClose}>Close</Button>
             </DialogActions>
           </Dialog>
+
           <StyledListWrapper container>
             <StyledMenuListGrid item>
               <MenuList menu={data} menuCategory={data.map((item) => item.category)} />

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { StyledHeaderImage, StyledHeader, StyledOptionBar, StyledOptionItem } from './restaurantHedaer.styled';
+import { StyledHeaderImage, StyledHeader } from './restaurantHedaer.styled';
 import burgerImg from '../../../asset/img/burger.png';
 import Rating from '../Rating/index';
-import { Grid, Button, List, Typography, ListItem, IconButton, Stack, Divider } from '@mui/material';
+import { Grid, Button, List, Typography, ListItem, IconButton, Divider } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import InfoIcon from '@mui/icons-material/Info';
@@ -10,7 +10,6 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 export default function RestaurantHeader(props) {
   const [heartClicked, setHeartClicked] = useState(false);
-  const { data } = props;
   const handleHeartClick = () => {
     setHeartClicked(!heartClicked);
   };
@@ -53,13 +52,6 @@ export default function RestaurantHeader(props) {
         </Grid>
       </StyledHeader>
       <Divider />
-      <StyledOptionBar>
-        <Stack direction="row" spacing={2}>
-          {data.map((item) => (
-            <StyledOptionItem>{item.category}</StyledOptionItem>
-          ))}
-        </Stack>
-      </StyledOptionBar>
       <Divider />
     </>
   );
