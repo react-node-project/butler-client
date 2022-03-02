@@ -1,7 +1,7 @@
 export const PATH_ROOT = '/';
 export const PATH_USER_LOGIN = '/login';
 export const PATH_RESTAURANTS = '/restaurants';
-export const PATH_RESTAURANTS_DETAIL = 'restaurants/:id';
+export const PATH_RESTAURANTS_DETAIL = '/restaurant_details'; // 개발편의를 위해 static 경로로 설정
 export const PATH_API_DOCS = '/api-docs';
 export const PATH_FAVLIST = '/favourites';
 export const PATH_HISTORY = '/history';

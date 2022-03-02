@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { StyledHeaderImage, StyledHeader } from './restaurantHedaer.styled';
 import burgerImg from '../../../asset/img/burger.png';
-import { Grid, Button, List, Typography, ListItem, IconButton } from '@mui/material';
+import Rating from '../Rating/index';
+import { Grid, Button, List, Typography, ListItem, IconButton, Divider } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import InfoIcon from '@mui/icons-material/Info';
@@ -9,7 +10,6 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 export default function RestaurantHeader(props) {
   const [heartClicked, setHeartClicked] = useState(false);
-
   const handleHeartClick = () => {
     setHeartClicked(!heartClicked);
   };
@@ -24,6 +24,9 @@ export default function RestaurantHeader(props) {
             <List>
               <ListItem disablePadding>
                 <Typography variant="h4">Grease Monkey</Typography>
+              </ListItem>
+              <ListItem disablePadding>
+                <Rating rating={4.5} numReviews={30} />
               </ListItem>
               <ListItem disablePadding>
                 <Typography variant="h8">20 - 35 min Burgers·American·Fried Chicken</Typography>
@@ -48,6 +51,8 @@ export default function RestaurantHeader(props) {
           </IconButton>
         </Grid>
       </StyledHeader>
+      <Divider />
+      <Divider />
     </>
   );
 }
