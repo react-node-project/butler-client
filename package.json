@@ -5,12 +5,11 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/react-node-project/butler-client"
   },
   "scripts": {
     "test": "jest --watch",
     "dev": "webpack serve --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "CI=false && react-scripts build", 
   },
   "eslintConfig": {
     "extends": [
